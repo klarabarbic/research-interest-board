@@ -1,0 +1,60 @@
+<div class="bar-top">
+  <div class="wrap">
+    <span class="brand">Research Interest Board</span>
+    <nav aria-label="Page"><a href="#now">Now</a><a href="#mapsec">Map</a><a href="#" data-open="sources">Method</a></nav>
+  </div>
+</div>
+
+<header class="now" id="now">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>My research interest board · updated 30 Sep 2026</div>
+      <h1>Research Interest Board <span>AI, law &amp; language</span></h1>
+      <p class="intro">I'm interested in how AI is entering legal systems: the courts, the rules, the language law is written in, and the privacy of the people it touches. Every claim on this board links to its source.</p>
+      <div class="pulse">
+        <b>4.94%</b>
+        <p>of all news articles GDELT monitored on 24 Sep 2026 mentioned “artificial intelligence,” the highest daily share in my three-year dataset.</p>
+        <svg id="spark" viewBox="0 0 420 70" role="img" aria-label="Daily share of news mentioning AI in September 2026"></svg>
+        <p class="note">AI's daily share of news, 1–30 Sep 2026. Gaps are days with no GDELT data. Source: <a href="https://api.gdeltproject.org/api/v2/doc/doc?query=%22artificial%20intelligence%22&mode=timelinevolraw&timelinesmooth=0&startdatetime=20231001000000&enddatetime=20260930000000">GDELT DOC 2.0</a></p>
+      </div>
+      <a class="cue" href="#mapsec"><i>↓</i> Explore how my topics connect</a>
+    </div>
+    <div>
+      <div class="feed-head"><h2 class="live">Trending now · September 2026</h2><button class="linkbtn" data-open="month">All September stories →</button></div>
+      <ul class="feed" id="feed"></ul>
+    </div>
+  </div>
+</header>
+
+<section class="mapsec" id="mapsec">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>The map</div>
+    <h2>How my interests connect</h2>
+    <p class="lede">At the centre is my core question, AI in legal systems. Each topic around it opens its sources, charts and videos. Hover over a topic to see why it links to its neighbours.</p>
+    <div class="mapwrap">
+      <svg id="map" viewBox="0 0 1000 640" role="group" aria-label="Network of research topics"></svg>
+      <div class="maphint">
+        <span class="keys">
+          <span style="--c:var(--law)">Law</span><span style="--c:var(--ai)">AI &amp; news</span><span style="--c:var(--lang)">Language</span><span style="--c:var(--priv)">Privacy</span><span style="--c:var(--warn)">Outlook</span>
+        </span>
+        <span>Click a topic to open it · Esc to close</span>
+      </div>
+    </div>
+    <ul class="topiclist" id="topiclist"></ul>
+    <div class="stats statsrow" id="heroStats"></div>
+  </div>
+</section>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="scrim" data-close></div>
+  <div class="panelx" role="dialog" aria-modal="true" aria-labelledby="sheetCrumb" tabindex="-1" id="panelx">
+    <div class="sheet-head">
+      <span class="crumbs" id="sheetCrumb"></span>
+      <button class="btn" data-close>← Back to map</button>
+    </div>
+    <div class="related" id="related"></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<div id="library" hidden>

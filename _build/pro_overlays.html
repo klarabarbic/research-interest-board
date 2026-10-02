@@ -1,0 +1,29 @@
+
+<div class="ask" id="ask" hidden>
+  <div class="scrim" data-askclose></div>
+  <div class="ask-panel" role="dialog" aria-modal="true" aria-label="Ask the board">
+    <div class="ask-in"><span aria-hidden="true" style="color:var(--ai);font-size:20px">⌕</span><input id="askQ" type="search" placeholder="Ask about courts, privacy, vagueness, a case…" autocomplete="off" aria-label="Ask the board"><kbd>Esc</kbd></div>
+    <div class="ask-chips" id="askChips">
+      <button type="button">fake citations sanctions</button><button type="button">what does reasonable mean to an LLM</button><button type="button">who is liable when AI fails</button><button type="button">anonymous data GDPR</button><button type="button">copyright fair use training</button><button type="button">census differential privacy court</button>
+    </div>
+    <div class="ask-out" id="askOut" aria-live="polite"></div>
+    <div class="ask-foot">Searches only the sources on this board, ranks them and cites them. It doesn't write new claims.</div>
+  </div>
+</div>
+
+<div class="tour" id="tour" hidden role="dialog" aria-label="Guided tour">
+  <div class="st" id="tourStep"></div>
+  <h4 id="tourTitle"></h4>
+  <p id="tourText"></p>
+  <div class="row"><button class="btn" type="button" id="tourBack">Back</button><span class="bar"><i id="tourBar"></i></span><button class="btn" type="button" id="tourNext" aria-pressed="true">Next</button><button class="iconbtn" type="button" id="tourEnd">End</button></div>
+</div>
+<div class="tour-ring" id="tourRing" hidden></div>
+
+<div class="helpk" id="helpk" hidden>
+  <h4>Keyboard shortcuts</h4>
+  <div><span>Ask the board</span><span><kbd>/</kbd> or <kbd>⌘</kbd><kbd>K</kbd></span></div>
+  <div><span>Next / previous topic</span><span><kbd>→</kbd> <kbd>←</kbd></span></div>
+  <div><span>Back to the map</span><span><kbd>Esc</kbd> or <kbd>M</kbd></span></div>
+  <div><span>Guided tour</span><span><kbd>T</kbd></span></div>
+  <div><span>Show these shortcuts</span><span><kbd>?</kbd></span></div>
+</div>

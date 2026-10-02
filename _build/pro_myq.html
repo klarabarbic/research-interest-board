@@ -1,0 +1,94 @@
+
+<section class="myq" id="myq">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--lang)"></span>My question</div>
+    <h2>Can we trust AI to interpret and be used in law?</h2>
+    <p class="lede">In the last three years AI has advanced rapidly and made countless headlines. September 2026 alone showed both sides of it.</p>
+
+    <div class="hooks">
+      <div class="hook" style="--c:var(--ai)">
+        <div class="d">8 Sep 2026 <span class="tag ai">Breakthrough</span></div>
+        <p>OpenAI announced a proof resolving the Navier–Stokes existence and smoothness problem, a Millennium Prize Problem open for roughly 90 years. The proof was produced by an internal AI system and formalized in Lean.</p>
+        <span class="src"><a href="https://openai.com/index/navier-stokes-solution/">OpenAI</a></span>
+      </div>
+      <div class="hook" style="--c:var(--law)">
+        <div class="d">23 Sep 2026 <span class="tag law">Risk</span></div>
+        <p>News broke that an OpenAI agent, working on an ordinary data task, had broken into Services Australia's Medicare statistics portal in June. CNN called it the first known AI hack of a government system.</p>
+        <span class="src"><a href="https://www.cnn.com/2026/09/23/business/australia-openai-agent-hack-intl-hnk">CNN</a><a href="https://www.cnbc.com/2026/09/24/openai-agent-hacked-australian-government-website-.html">CNBC</a><a href="https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074">ABC Australia</a><span class="vs">◦ search-confirmed</span></span>
+      </div>
+      <div class="hook" style="--c:var(--warn)">
+        <div class="d">29 Sep 2026 <span class="tag warn">Response</span></div>
+        <p>Many of the world's most powerful tech executives met at the White House and signed a voluntary agreement on AI safety, including outside auditing and oversight of their systems.</p>
+        <span class="src"><a href="https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html">CNBC</a><a href="https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988">ABC News</a><a href="https://www.nytimes.com/2026/09/29/briefing/trump-ai-ice-hiring-surge.html?unlocked_article_code=1.FFE.KW5P.QPIEgHbpiA3A&amp;smid=url-share">NYT</a><span class="vs">◦ search-confirmed</span></span>
+      </div>
+    </div>
+
+    <div class="problem">
+      <div>
+        <div class="bigterm"><small>The core problem: vagueness</small>“Reasonable doubt”</div>
+        <button class="jump" type="button" data-open-node="meaning" style="--c:var(--lang)">See the research on vagueness</button>
+      </div>
+      <div class="prose">
+        <p>Legal language is full of vague terms. Take a simple example: “reasonable doubt.” It is purposely left to interpretation. It sounds “reasonable” to a human expert, but how do we quantify it, turn it into code, or translate it into a next-token distribution?</p>
+        <p>Subjectivity in legal judgment isn't a problem to be solved. It's a <a href="https://scholarship.law.duke.edu/cgi/viewcontent.cgi?article=1207&amp;context=faculty_scholarship">necessity that keeps human judgment and ethical analysis irreplaceable</a>. Experts learn to navigate nuance, context and the specifics of each case through their education and experience.</p>
+        <p>But what happens when we ask an AI model to do the same?</p>
+        <p class="pullq">Can we define “reasonable doubt” precisely enough to code it? Can we quantify interpretation itself? And if we could, would we lose something essential in the translation?</p>
+      </div>
+    </div>
+
+    <h3 class="mt" style="font-size:24px">Even if we could define it: three harder questions</h3>
+    <p class="note">Imagine we perfectly define these vague terms and train a model to handle them. Each question leads into the next.</p>
+    <div class="flow">
+      <div class="step" style="--c:var(--ai)">
+        <span class="n">01 · Verification</span>
+        <h4>How do we know it works “well enough”?</h4>
+        <p>How do we design a test strong enough to prove a model is reliable enough to make decisions that affect someone's freedom? What does “reliable enough” even mean in a legal context?</p>
+        <button class="jump" type="button" data-open-node="s-evid" style="--c:var(--lang)">Benchmarks &amp; evidence</button>
+      </div>
+      <div class="step" style="--c:var(--lang)">
+        <span class="n">02 · Boundaries</span>
+        <h4>Where do we draw the line?</h4>
+        <p>Which legal issues are unambiguous enough for a model to resolve, and which need irreducibly human interpretation? How do we justify that line? And once the tools make the system more efficient, could they quietly break something it depended on?</p>
+        <button class="jump" type="button" data-open-node="s-judg" style="--c:var(--law)">Judges &amp; courts</button>
+      </div>
+      <div class="step" style="--c:var(--law)">
+        <span class="n">03 · Liability &amp; privacy</span>
+        <h4>Who is responsible when it fails?</h4>
+        <p>Who answers for an unjust legal decision: the developers, the institution using it, or the model itself? And who gets access to the sensitive data the model processes? The Australia breach reached a government health-statistics system. Officials found no evidence personal information was compromised, but the question is already real.</p>
+        <button class="jump" type="button" data-open-node="privacy" style="--c:var(--priv)">Data privacy</button>
+      </div>
+    </div>
+
+    <div class="keych">
+      <div class="panel">
+        <h3>The key challenge: an interdisciplinary one</h3>
+        <p>The real bottleneck in AI development isn't technical. It's incentives, governance and collaboration. The question is not whether we can build the models, but whether we should, how, and under what conditions. Building trustworthy models for legal systems needs experts in law, policy and technology working together, for efficient and secure human-AI collaboration on such sensitive issues.</p>
+      </div>
+      <div class="panel">
+        <h3>Why Professor Ash's work speaks to me</h3>
+        <p>Ash, Galletta &amp; Giommoni, “A Machine Learning Approach to Analyze and Support Anticorruption Policy,” <em>American Economic Journal: Economic Policy</em> 17(2), May 2025. A model trained on municipal budget data predicts corruption in Brazil, and machine-guided audits could catch almost twice as many corrupt municipalities at the same audit rate.</p>
+        <p class="mts">It asks the questions that concern me. How do we build accountability? How do we design systems whose incentives align with the public good? How do we govern tools that blur the line between human and algorithmic decisions?</p>
+        <span class="src"><a href="https://www.aeaweb.org/articles?id=10.1257/pol.20210618">AEA</a></span>
+      </div>
+    </div>
+
+    <div class="closing">
+      <div class="eyebrow"><span class="dot" style="--c:var(--ai)"></span>The next three years</div>
+      <p>Here is the irony: even the questions I've asked are vague, and I don't have the answer to any of them today. But I do know that I want to pursue this PhD to be at the forefront of developing this technology, to build good things with it, and to help control how it is used so it prevents harm.</p>
+      <p>In three years, I might be able to answer some of these questions.</p>
+      <p class="last">The future of AI will be shaped by the people who ask hard questions today. I want to be one of them.</p>
+    </div>
+
+    <div class="panel srclist">
+      <h3>Sources for this section</h3>
+      <ul class="items">
+        <li class="item"><div class="d">8 Sep 2026</div><div class="t"><p>OpenAI, “On the Navier–Stokes Millennium Prize Problem.” <span class="chk ok">opened</span></p><span class="src"><a href="https://openai.com/index/navier-stokes-solution/">openai.com</a></span></div></li>
+        <li class="item"><div class="d">23 Sep 2026</div><div class="t"><p>CNN, “Medicare Australia: ‘Extreme concern’ over OpenAI breach of health database, first known AI hack of a government system.” <span class="chk part">headline via search; CNN blocked in my region</span></p><span class="src"><a href="https://www.cnn.com/2026/09/23/business/australia-openai-agent-hack-intl-hnk">cnn.com</a><a href="https://techcrunch.com/2026/09/29/openai-apologizes-to-australia-after-its-ai-agents-breached-government-sites/">TechCrunch follow-up</a></span></div></li>
+        <li class="item"><div class="d">29 Sep 2026</div><div class="t"><p>The New York Times briefing on the White House AI meeting. <span class="chk part">could not open; see CNBC and ABC above</span></p><span class="src"><a href="https://www.nytimes.com/2026/09/29/briefing/trump-ai-ice-hiring-surge.html?unlocked_article_code=1.FFE.KW5P.QPIEgHbpiA3A&amp;smid=url-share">nytimes.com</a></span></div></li>
+        <li class="item"><div class="d">Duke Law</div><div class="t"><p>Duke Law faculty scholarship repository, article 1207, on human judgment in law. <span class="chk part">behind a bot check; title to confirm</span></p><span class="src"><a href="https://scholarship.law.duke.edu/cgi/viewcontent.cgi?article=1207&amp;context=faculty_scholarship">scholarship.law.duke.edu</a></span></div></li>
+        <li class="item"><div class="d">20 Jan 2026</div><div class="t"><p>Vanderbilt Law School, “How Is AI Impacting the Legal Profession?” <span class="chk ok">opened</span></p><span class="src"><a href="https://law.vanderbilt.edu/master-legal-studies/articles/how-is-ai-impacting-the-legal-profession/">law.vanderbilt.edu</a></span></div></li>
+        <li class="item"><div class="d">May 2025</div><div class="t"><p>Ash, Galletta &amp; Giommoni, <em>AEJ: Economic Policy</em> 17(2). <span class="chk ok">opened</span></p><span class="src"><a href="https://www.aeaweb.org/articles?id=10.1257/pol.20210618">aeaweb.org</a></span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>

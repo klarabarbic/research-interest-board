@@ -1,0 +1,192 @@
+{
+ "updated": "2026-09-30",
+ "label": "September 2026",
+ "items": [
+  {
+   "d": "28–29 Sep",
+   "k": [
+    "ai",
+    "AI & safety"
+   ],
+   "h": "OpenAI cancels the release of GPT-6.1 “Astra” after it failed internal safety tests",
+   "src": [
+    [
+     "Al Jazeera",
+     "https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns"
+    ],
+    [
+     "CNBC",
+     "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html"
+    ]
+   ],
+   "cover": "https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-28T223038Z_1656552687_RC29LNAECGOF_RTRMADP_3_AI-SAFETY-OPENAI-1790641403_cd656d-1790642721.jpg?resize=1200%2C630&quality=80"
+  },
+  {
+   "d": "29–30 Sep",
+   "k": [
+    "law",
+    "Copyright"
+   ],
+   "h": "Third Circuit affirms Thomson Reuters v. ROSS, the first federal appeals ruling on fair use in AI training",
+   "src": [
+    [
+     "IPWatchdog",
+     "https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"
+    ]
+   ],
+   "cover": "https://ipwatchdog.com/wp-content/uploads/2018/04/fairuseMarkerRed.jpg"
+  },
+  {
+   "d": "29 Sep",
+   "k": [
+    "ai",
+    "Policy"
+   ],
+   "h": "President Trump says top AI leaders signed a voluntary, “morally binding” superintelligence accord",
+   "src": [
+    [
+     "CNBC",
+     "https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"
+    ],
+    [
+     "ABC News",
+     "https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988"
+    ]
+   ],
+   "vs": 1,
+   "cover": "https://image.cnbcfm.com/api/v1/image/108369794-1790713950915-108369794-1790711674658-gettyimages-2297244120-AFP_C9Q83W4_1.jpeg?v=1790713979&w=1920&h=1080"
+  },
+  {
+   "d": "29 Sep",
+   "k": [
+    "ai",
+    "Industry"
+   ],
+   "h": "Anthropic's leaked IPO prospectus shows a $42B loss for 2025 and a target valuation above $2T",
+   "src": [
+    [
+     "Fortune",
+     "https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/"
+    ]
+   ],
+   "cover": "https://fortune.com/img-assets/wp-content/uploads/2026/09/gettyimages-1554653087-594x594-1.jpg?resize=1200,600"
+  },
+  {
+   "d": "26 Sep",
+   "k": [
+    "ai",
+    "AI & safety"
+   ],
+   "h": "OpenAI pauses training after its agents probed US government websites in unexpected ways",
+   "src": [
+    [
+     "AP via WTOP",
+     "https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/"
+    ]
+   ],
+   "cover": "https://wtop.com/wp-content/uploads/2026/09/Open_AI_Safety__4766-scaled.jpg"
+  },
+  {
+   "d": "25 Sep",
+   "k": [
+    "priv",
+    "Privacy"
+   ],
+   "h": "Ireland's data protection regulator publishes its AI Insights Report, covering about 180 AI products",
+   "src": [
+    [
+     "Irish DPC",
+     "https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"
+    ]
+   ]
+  },
+  {
+   "d": "25 Sep",
+   "k": [
+    "law",
+    "Courts"
+   ],
+   "h": "DC Circuit (2–1) lets the Pentagon keep its “supply chain risk” label on Anthropic for now",
+   "src": [
+    [
+     "ABC News",
+     "https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690"
+    ]
+   ],
+   "cover": "https://i.abcnewsfe.com/a/6adb6243-fb82-448a-9655-149edbd68943/Anthropic-gty-sn-260910_1789083503772_hpMain_16x9.jpg?w=1600"
+  },
+  {
+   "d": "23 Sep",
+   "k": [
+    "ai",
+    "AI & safety"
+   ],
+   "h": "An OpenAI agent broke into Services Australia's Medicare statistics portal during an ordinary data task, described as the first known AI hack of a government system",
+   "src": [
+    [
+     "ABC Australia",
+     "https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074"
+    ],
+    [
+     "CNN",
+     "https://www.cnn.com/2026/09/23/business/australia-openai-agent-hack-intl-hnk"
+    ],
+    [
+     "CNBC",
+     "https://www.cnbc.com/2026/09/24/openai-agent-hacked-australian-government-website-.html"
+    ]
+   ],
+   "vs": 1,
+   "cover": "https://live-production.wcms.abc-cdn.net.au/fb0c1157d8e49c704f33ce3a5a676e77?impolicy=wcms_watermark_news&cropH=2812&cropW=5000&xPos=0&yPos=261&width=862&height=485&imformat=generic"
+  },
+  {
+   "d": "23 Sep",
+   "k": [
+    "ai",
+    "Policy"
+   ],
+   "h": "Sam Altman and Dario Amodei ask the UN Security Council for international AI safety standards",
+   "src": [
+    [
+     "CNN",
+     "https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council"
+    ]
+   ],
+   "vs": 1,
+   "cover": "https://media.cnn.com/api/v1/images/stellar/prod/2026-09-23t195301z-1785342310-rc27pna296tc-rtrmadp-3-ai-un.jpg?c=16x9&q=w_800,c_fill"
+  },
+  {
+   "d": "21–22 Sep",
+   "k": [
+    "law",
+    "Litigation"
+   ],
+   "h": "British Columbia sues OpenAI and Sam Altman over the Tumbler Ridge school shooting",
+   "src": [
+    [
+     "Al Jazeera",
+     "https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"
+    ],
+    [
+     "CBC",
+     "https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395"
+    ]
+   ],
+   "cover": "https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-21T215939Z_2033624676_RC2KKJALN6OJ_RTRMADP_3_OPENAI-CANADA-LAWSUIT-1790032747.jpg?resize=1920%2C1440"
+  },
+  {
+   "d": "8 Sep",
+   "k": [
+    "ai",
+    "Research"
+   ],
+   "h": "OpenAI announces an AI-produced proof resolving the Navier–Stokes Millennium Prize Problem, with a Lean formalization",
+   "src": [
+    [
+     "OpenAI",
+     "https://openai.com/index/navier-stokes-solution/"
+    ]
+   ]
+  }
+ ]
+}
