@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="A sourced research interest board on AI news (2023–2026), AI in legal systems, vagueness and legal interpretation, and data privacy.">
+<title>Research Interest Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a briefing board. Sticky section index on top, full-width "exhibits" stacked below; each exhibit is one presentable slide. */
+:root{
+  --bg:#F3F4F6; --surface:#FFFFFF; --ink:#121620; --muted:#586072; --rule:#D9DCE2; --soft:#E8EAEF;
+  --ai:#2347C6; --law:#B0441B; --priv:#0F7667; --warn:#8C6200;
+  --ai-soft:rgba(35,71,198,.10); --law-soft:rgba(176,68,27,.10); --priv-soft:rgba(15,118,103,.10); --warn-soft:rgba(140,98,0,.12);
+  --f-display:"Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1117; --surface:#161A22; --ink:#E7E9EE; --muted:#9BA3B3; --rule:#2A303C; --soft:#1E232D;
+  --ai:#86A0FF; --law:#F0905F; --priv:#4FC6B0; --warn:#E3B64F;
+  --ai-soft:rgba(134,160,255,.14); --law-soft:rgba(240,144,95,.14); --priv-soft:rgba(79,198,176,.14); --warn-soft:rgba(227,182,79,.14);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1117; --surface:#161A22; --ink:#E7E9EE; --muted:#9BA3B3; --rule:#2A303C; --soft:#1E232D;
+  --ai:#86A0FF; --law:#F0905F; --priv:#4FC6B0; --warn:#E3B64F;
+  --ai-soft:rgba(134,160,255,.14); --law-soft:rgba(240,144,95,.14); --priv-soft:rgba(79,198,176,.14); --warn-soft:rgba(227,182,79,.14);
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;margin:0}
+a{color:inherit;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);text-underline-offset:2px}
+a:hover{text-decoration-color:currentColor}
+a:focus-visible,button:focus-visible{outline:2px solid var(--ai);outline-offset:2px;border-radius:3px}
+h1,h2,h3,h4{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.1}
+p{margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+
+/* nav */
+.topnav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.topnav .wrap{display:flex;align-items:center;gap:14px;padding-block:10px}
+.brand{font-family:var(--f-display);font-weight:800;font-size:15px;white-space:nowrap}
+.navlinks{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.navlinks a{font-family:var(--f-mono);font-size:12px;text-decoration:none;padding:5px 9px;border-radius:999px;color:var(--muted);white-space:nowrap}
+.navlinks a:hover,.navlinks a.on{background:var(--soft);color:var(--ink)}
+.btn{font-family:var(--f-mono);font-size:12px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);padding:6px 11px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+/* sections */
+section.ex{padding-block:64px 56px;border-bottom:1px solid var(--rule);scroll-margin-top:56px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.eyebrow .dot{width:9px;height:9px;border-radius:2px;background:var(--c,var(--ai))}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:800;letter-spacing:-.01em;max-width:22ch}
+.lede{font-size:19px;color:var(--muted);max-width:64ch;margin-top:14px}
+h3{font-size:21px;font-weight:700;margin-bottom:12px}
+.grid{display:grid;gap:22px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.mt{margin-top:36px}.mts{margin-top:18px}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:22px;min-width:0}
+
+/* hero */
+.hero{padding-block:56px 30px}
+.hero h1{font-size:clamp(40px,7vw,84px);font-weight:800;letter-spacing:-.02em;max-width:16ch}
+.hero h1 em{font-style:normal;color:var(--ai)}
+.hero .lede{font-size:20px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:34px}
+.stat{background:var(--surface);padding:18px 18px 16px}
+.stat b{display:block;font-family:var(--f-display);font-size:38px;line-height:1;font-weight:800;color:var(--c,var(--ink));font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:14px;color:var(--muted);margin-top:8px;line-height:1.4}
+.stat a{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+
+/* chart */
+.chartbox{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px 18px 14px;margin-top:28px}
+.chart-head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:flex-start}
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.seg button{font-family:var(--f-mono);font-size:12px;border:0;background:transparent;color:var(--muted);padding:6px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.chart-scroll{overflow-x:auto;margin-top:10px}
+.chart-scroll svg{display:block;width:100%;min-width:680px;height:auto}
+svg text{font-family:var(--f-mono);fill:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.events{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:8px 22px;margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);font-size:14px}
+.events div{display:flex;gap:9px;align-items:baseline}
+.events .n{font-family:var(--f-mono);font-size:11px;min-width:20px;height:20px;border-radius:50%;display:inline-grid;place-items:center;background:var(--ink);color:var(--bg);flex:none}
+.note{font-size:13.5px;color:var(--muted);line-height:1.5}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--f-mono);font-size:12px;padding:7px 9px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-110%);opacity:0;transition:opacity .12s}
+.relbox{position:relative}
+
+/* item lists */
+.items{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.item{display:grid;grid-template-columns:118px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--rule)}
+.item:first-child{border-top:0}
+.item .d{font-family:var(--f-mono);font-size:12.5px;color:var(--muted);padding-top:3px;font-variant-numeric:tabular-nums}
+.item .t{min-width:0}
+.item .t p{font-size:16.5px}
+.src{font-family:var(--f-mono);font-size:12px;color:var(--muted);margin-top:6px;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.src a{color:var(--c,var(--ai))}
+.tag{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:4px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.tag.law{background:var(--law-soft);color:var(--law)}
+.tag.ai{background:var(--ai-soft);color:var(--ai)}
+.tag.priv{background:var(--priv-soft);color:var(--priv)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.hdsr{background:var(--priv);color:var(--surface)}
+.tag.course{border:1px solid var(--priv);background:transparent;color:var(--priv)}
+.vs{font-size:11px;color:var(--muted)}
+@media (max-width:620px){.item{grid-template-columns:1fr;gap:4px}}
+
+/* filters */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:20px 0 6px}
+.chip{font-family:var(--f-mono);font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid var(--rule);background:var(--surface);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--law);border-color:var(--law);color:var(--surface)}
+
+/* big callout */
+.callout{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center;background:var(--law-soft);border-radius:10px;padding:22px 24px;margin-top:30px}
+.callout b{font-family:var(--f-display);font-size:clamp(46px,7vw,72px);font-weight:800;color:var(--law);line-height:.9;font-variant-numeric:tabular-nums}
+@media (max-width:560px){.callout{grid-template-columns:1fr}}
+
+/* evidence bars */
+.ev{display:grid;gap:22px}
+.evrow h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.bar{display:grid;grid-template-columns:minmax(0,190px) 1fr 62px;gap:10px;align-items:center;font-size:13.5px;margin-top:6px}
+.bar .lbl{color:var(--muted);line-height:1.3}
+.bar .track{height:14px;background:var(--soft);border-radius:3px;position:relative;overflow:hidden}
+.bar .fill{position:absolute;top:0;bottom:0;left:0;background:var(--c,var(--ai));border-radius:3px}
+.bar .val{font-family:var(--f-mono);font-size:12.5px;text-align:right;font-variant-numeric:tabular-nums}
+@media (max-width:520px){.bar{grid-template-columns:1fr 54px}.bar .lbl{grid-column:1/-1}}
+
+/* arc */
+.arc{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden;background:var(--rule);gap:1px}
+.arc li{background:var(--surface);padding:16px;min-width:0}
+.arc .yr{font-family:var(--f-mono);font-size:12px;color:var(--ai)}
+.arc h4{font-size:16px;margin:6px 0 8px}
+.arc p{font-size:14px;color:var(--muted)}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.card h4{font-size:17px;font-weight:700;line-height:1.25}
+.card .who{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.card p{font-size:15px}
+.card .src{margin-top:auto;padding-top:6px}
+
+/* video */
+.vid{position:relative}
+.vid .thumb{aspect-ratio:16/9;max-width:100%;border-radius:7px;background:linear-gradient(135deg,var(--soft),color-mix(in srgb,var(--c,var(--ai)) 22%,var(--soft)));display:grid;place-items:center;text-decoration:none}
+.vid .thumb span{width:54px;height:54px;border-radius:50%;background:var(--ink);display:grid;place-items:center}
+.vid .thumb span::after{content:"";border-left:16px solid var(--bg);border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.vid .len{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.credit{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);border-top:1px dashed var(--rule);padding-top:8px}
+
+/* projections */
+.proj{display:grid;gap:0}
+.prow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:18px;padding:14px 0;border-top:1px solid var(--rule);align-items:center}
+.prow:first-child{border-top:0}
+.prow h4{font-size:16px}
+.prow p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.htrack{position:relative;height:26px;background:repeating-linear-gradient(90deg,var(--soft) 0 1px,transparent 1px calc(100%/19))}
+.hspan{position:absolute;top:8px;height:10px;border-radius:5px;background:var(--c,var(--ai))}
+.hspan.open{background:repeating-linear-gradient(90deg,var(--c,var(--ai)) 0 6px,transparent 6px 10px)}
+.hlabel{position:absolute;top:-2px;font-family:var(--f-mono);font-size:11px;color:var(--ink);white-space:nowrap}
+.haxis{display:flex;justify-content:space-between;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+@media (max-width:700px){.prow{grid-template-columns:1fr}}
+
+.cal{list-style:none;margin:0;padding:0}
+.cal li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--rule);font-size:15px}
+.cal li:first-child{border-top:0}
+.cal .d{font-family:var(--f-mono);font-size:12.5px;color:var(--law)}
+
+.strand h3{display:flex;gap:10px;align-items:baseline}
+.strand h3 small{font-family:var(--f-mono);font-size:12px;font-weight:400;color:var(--muted)}
+.thesis{font-family:var(--f-display);font-size:clamp(20px,2.4vw,26px);font-weight:500;line-height:1.3;max-width:52ch;border-left:3px solid var(--priv);padding-left:18px;margin-top:26px}
+
+footer{padding-block:40px 60px;color:var(--muted);font-size:14px}
+
+/* presentation mode */
+html.present{scroll-snap-type:y proximity}
+html.present section.ex,html.present header.hero{scroll-snap-align:start;min-height:calc(100vh - 50px)}
+html.present body{font-size:18px}
+.slidecount{font-family:var(--f-mono);font-size:12px;color:var(--muted);display:none}
+html.present .slidecount{display:inline}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+html{scroll-behavior:smooth}
+
+/* ---- network layout additions ---- */
+:root{--lang:#6A4BC4;--lang-soft:rgba(106,75,196,.10)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--lang:#B59EFF;--lang-soft:rgba(181,158,255,.14)}}
+:root[data-theme="dark"]{--lang:#B59EFF;--lang-soft:rgba(181,158,255,.14)}
+
+.bar-top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.bar-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
+.bar-top nav{display:flex;gap:4px}
+.bar-top nav a{font-family:var(--f-mono);font-size:12px;text-decoration:none;padding:5px 10px;border-radius:999px;color:var(--muted)}
+.bar-top nav a:hover{background:var(--soft);color:var(--ink)}
+
+/* first screen */
+.now{min-height:calc(100vh - 50px);display:flex;align-items:center;padding-block:28px 32px}
+.now .wrap{width:100%;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:start}
+.now h1{font-size:clamp(38px,4.6vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1}
+.now h1 span{display:block;color:var(--ai);font-size:.62em;margin-top:.25em;letter-spacing:-.01em}
+.now .intro{font-size:18.5px;color:var(--muted);margin-top:18px;max-width:42ch}
+.pulse{margin-top:28px;border-top:1px solid var(--rule);padding-top:16px}
+.pulse b{font-family:var(--f-display);font-size:34px;font-weight:800;color:var(--ai);font-variant-numeric:tabular-nums}
+.pulse p{font-size:14px;color:var(--muted);margin-top:2px}
+.pulse svg{display:block;width:100%;height:auto;margin-top:10px}
+.cue{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-family:var(--f-mono);font-size:12.5px;color:var(--ink);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:8px 14px;background:var(--surface)}
+.cue:hover{border-color:var(--ink)}
+.cue i{display:inline-block;animation:bob 1.8s ease-in-out infinite;font-style:normal}
+@keyframes bob{50%{transform:translateY(3px)}}
+.feed-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.feed-head h2{font-size:15px;font-family:var(--f-mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);max-width:none}
+.live{display:inline-flex;align-items:center;gap:7px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--law);box-shadow:0 0 0 0 var(--law);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--law) 60%,transparent)}100%{box-shadow:0 0 0 9px transparent}}
+.feed{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+.feed li{padding:13px 0;border-top:1px solid var(--rule);min-width:0}
+.feed .meta{display:flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.feed p{font-size:15.5px;line-height:1.38;margin-top:5px}
+.feed .src{margin-top:5px}
+.feed li.lead{grid-column:1/-1}
+.feed li.lead p{font-family:var(--f-display);font-size:23px;font-weight:700;line-height:1.2}
+.linkbtn{font-family:var(--f-mono);font-size:12px;background:none;border:0;color:var(--ai);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
+@media (max-width:900px){.now .wrap{grid-template-columns:1fr;gap:30px}.now{min-height:0}}
+@media (max-width:560px){.feed{grid-template-columns:1fr}}
+
+/* map */
+.mapsec{padding-block:64px 40px;border-top:1px solid var(--rule)}
+.mapsec h2{max-width:20ch}
+.mapwrap{position:relative;margin-top:26px;background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
+#map{display:block;width:100%;height:auto}
+#map .edge{fill:none;stroke:var(--rule);stroke-width:1.6;transition:stroke .2s,stroke-width .2s,opacity .2s}
+#map .edge.sat{stroke-width:1;stroke-dasharray:3 4}
+#map .elabel{font-family:var(--f-mono);font-size:12px;fill:var(--ink);opacity:0;transition:opacity .2s;pointer-events:none}
+#map .elabel-bg{fill:var(--surface);opacity:0;transition:opacity .2s}
+#map .node{cursor:pointer;transition:opacity .2s}
+#map .node circle.halo{fill:var(--c);opacity:.12;transition:opacity .2s}
+#map .node circle.core{fill:var(--surface);stroke:var(--c);stroke-width:2}
+#map .node circle.dotc{fill:var(--c)}
+#map .node text{font-family:var(--f-display);fill:var(--ink);text-anchor:middle;pointer-events:none}
+#map .node text.sub{font-family:var(--f-mono);fill:var(--muted);font-size:11px}
+#map .node.sat text{font-family:var(--f-mono);font-size:12px;fill:var(--muted)}
+#map .node:hover circle.halo,#map .node:focus-visible circle.halo,#map .node.hl circle.halo{opacity:.28}
+#map .node:focus{outline:none}
+#map .node:focus-visible circle.core{stroke-width:3.5}
+#map.dim .node:not(.hl){opacity:.28}
+#map.dim .edge:not(.hl){opacity:.25}
+#map .edge.hl{stroke:var(--ink);stroke-width:2.2}
+#map .edge.sat.hl{stroke-width:1.4}
+#map .elabel.hl,#map .elabel-bg.hl{opacity:1}
+#map .float{animation:drift var(--dur,9s) ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(var(--dx,3px),var(--dy,-4px))}}
+.maphint{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--rule);font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.maphint .keys{display:flex;flex-wrap:wrap;gap:14px}
+.maphint .keys span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:0}
+.topiclist{display:none;list-style:none;padding:0;margin:18px 0 0;gap:8px;grid-template-columns:1fr 1fr}
+.topiclist button{width:100%;text-align:left;font-family:var(--f-display);font-weight:700;font-size:15px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-left:4px solid var(--c);border-radius:8px;padding:11px 12px;cursor:pointer}
+@media (max-width:700px){.topiclist{display:grid}}
+.statsrow{margin-top:34px}
+
+/* sheet (topic detail) */
+.sheet{position:fixed;inset:0;z-index:50;display:flex;justify-content:flex-end}
+.sheet[hidden]{display:none!important}
+.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 38%,transparent);animation:fade .2s ease}
+.panelx{position:relative;width:min(1120px,100%);height:100%;background:var(--bg);overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,.18);animation:slide .28s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.sheet-head{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.crumbs{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumbs b{color:var(--ink);font-weight:500}
+.related{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:0 20px;margin:22px auto 0;max-width:1180px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.related button{font-family:var(--f-mono);font-size:12px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
+.related button::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
+.panelx section.ex{border-bottom:0;padding-block:28px 56px}
+html.locked,html.locked body{overflow:hidden}
+@keyframes slide{from{transform:translateX(40px);opacity:.4}to{transform:none;opacity:1}}
+@keyframes fade{from{opacity:0}}
+.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 3px var(--ai)}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion:reduce){#map .float,.cue i,.live::before,.panelx,.scrim{animation:none}}
+footer a{color:inherit}
+
+/* ===== LAB THEME: studio black, lit in red, green and blue (one deliberate dark look) ===== */
+:root:not(#_){
+  --bg:#07090C; --surface:#0F1318; --ink:#F1F3F6; --muted:#97A0AE; --rule:#222833; --soft:#161B22;
+  --law:#FF4D63;  /* crimson light, from Harvard/Bok #A51C30 */
+  --ai:#4FA3FF;   /* blue light, from Bok #2A659C */
+  --lang:#3BE89B; /* green light */
+  --priv:#C77DFF; /* red + blue mixed light */
+  --warn:#FFC24B;
+  --law-soft:rgba(255,77,99,.14); --ai-soft:rgba(79,163,255,.14); --lang-soft:rgba(59,232,155,.14); --priv-soft:rgba(199,125,255,.15); --warn-soft:rgba(255,194,75,.14);
+  color-scheme:dark;
+}
+body{background:var(--bg)}
+/* ambient stage lights */
+body::before{content:"";position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;
+  background:
+   radial-gradient(38vmax 30vmax at 12% 8%, rgba(255,77,99,.20), transparent 70%),
+   radial-gradient(40vmax 32vmax at 92% 18%, rgba(79,163,255,.22), transparent 70%),
+   radial-gradient(42vmax 34vmax at 55% 98%, rgba(59,232,155,.16), transparent 70%);
+  filter:blur(10px);animation:lights 26s ease-in-out infinite alternate}
+@keyframes lights{to{transform:translate3d(2vmax,-1.5vmax,0) rotate(4deg)}}
+body{position:relative;z-index:0}
+.panel,.chartbox,.card,.mapwrap,.stats,.arc{background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(6px);border-color:var(--rule)}
+.stat{background:color-mix(in srgb,var(--surface) 90%,transparent)}
+.arc li{background:color-mix(in srgb,var(--surface) 92%,transparent)}
+.bar-top,.topnav,.sheet-head{background:color-mix(in srgb,var(--bg) 78%,transparent)}
+.panelx{background:var(--bg)}
+.panelx::before{content:"";position:sticky;top:0;display:block;height:0}
+.scrim{background:rgba(2,3,5,.72)}
+a{text-decoration-color:color-mix(in srgb,currentColor 35%,transparent)}
+
+/* glowing type accents */
+.now h1 span{background:linear-gradient(90deg,var(--law),var(--priv) 40%,var(--ai) 70%,var(--lang));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(79,163,255,.35))}
+.now h1{text-shadow:0 0 40px rgba(255,255,255,.08)}
+.pulse b,.stat b{text-shadow:0 0 22px color-mix(in srgb,var(--c,var(--ai)) 55%,transparent)}
+.pulse b{--c:var(--ai)}
+.callout{background:linear-gradient(120deg,var(--law-soft),transparent 70%);border:1px solid color-mix(in srgb,var(--law) 35%,transparent)}
+.callout b{text-shadow:0 0 30px color-mix(in srgb,var(--law) 60%,transparent)}
+.eyebrow .dot{box-shadow:0 0 10px var(--c,var(--ai))}
+.tag.hdsr{background:var(--priv);color:#0B0710}
+.chip[aria-pressed="true"]{box-shadow:0 0 16px color-mix(in srgb,var(--law) 55%,transparent);color:#fff}
+.seg button[aria-pressed="true"],.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.cue{background:color-mix(in srgb,var(--surface) 70%,transparent);box-shadow:0 0 0 1px var(--rule),0 0 24px rgba(79,163,255,.18)}
+
+/* charts glow */
+#chart polyline,#sept polyline,#spark polyline{filter:drop-shadow(0 0 5px var(--ai))}
+.bar .fill{box-shadow:0 0 12px var(--c,var(--ai))}
+
+/* map glow */
+#map .edge{stroke:#2C3440}
+#map .edge.hl{stroke:#fff;filter:drop-shadow(0 0 4px rgba(255,255,255,.6))}
+#map .node circle.core{fill:#0B0E13;filter:drop-shadow(0 0 14px var(--c))}
+#map .node circle.halo{opacity:.16}
+#map .node:hover circle.halo,#map .node.hl circle.halo{opacity:.38}
+#map .node circle.dotc{filter:drop-shadow(0 0 6px var(--c))}
+#map .elabel-bg{fill:#0B0E13}
+
+/* ===== gallery covers ===== */
+.cover{position:relative;display:block;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:
+  radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--c,var(--ai)) 40%,transparent),transparent 60%),var(--soft)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,filter .5s ease;filter:saturate(1.05) contrast(1.03)}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,10,.55));pointer-events:none}
+.cover figcaption{position:absolute;left:8px;bottom:6px;z-index:1;font-family:var(--f-mono);font-size:10.5px;color:rgba(255,255,255,.82);text-shadow:0 1px 3px #000}
+.cover.noimg img{display:none}
+.cover.noimg::before{content:attr(data-src);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;color:color-mix(in srgb,var(--ink) 40%,transparent)}
+
+.items.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:18px}
+.items.gallery .item{display:flex;flex-direction:column;gap:8px;padding:0 0 14px;border:1px solid var(--rule);border-radius:10px;background:color-mix(in srgb,var(--surface) 70%,transparent);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.items.gallery .item>.d{padding:0 14px}
+.items.gallery .item>.t{padding:0 14px}
+.items.gallery .item .cover{border-radius:0}
+.items.gallery .item:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c,var(--ai)) 60%,var(--rule));box-shadow:0 10px 30px -10px color-mix(in srgb,var(--c,var(--ai)) 55%,transparent)}
+.items.gallery .item:hover .cover img{transform:scale(1.05)}
+.items.gallery .item .t p{font-size:15.5px;line-height:1.4}
+.items.gallery .item[hidden]{display:none}
+#month .grid.g2{grid-template-columns:1fr}
+.panel:has(> .items.gallery){background:transparent;border:0;padding:0;backdrop-filter:none}
+
+/* first-screen feed as gallery */
+.feed li{border-top:0;padding:0}
+.feed{gap:14px 18px}
+.feed .fcard{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:start;padding:10px;border:1px solid var(--rule);border-radius:10px;background:color-mix(in srgb,var(--surface) 70%,transparent);transition:border-color .2s,box-shadow .2s;height:100%}
+.feed .fcard:hover{border-color:color-mix(in srgb,var(--c) 60%,var(--rule));box-shadow:0 0 26px -8px var(--c)}
+.feed .fcard .cover{aspect-ratio:4/3;border-radius:6px}
+.feed .fcard .cover figcaption{display:none}
+.feed p{font-size:14.5px;margin-top:4px}
+.feed li.lead .fcard{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;padding:12px}
+.feed li.lead .fcard .cover{aspect-ratio:16/10}
+.feed li.lead .fcard .cover figcaption{display:block}
+.feed li.lead p{font-size:22px}
+@media (max-width:560px){.feed li.lead .fcard{grid-template-columns:1fr}.feed .fcard{grid-template-columns:96px 1fr}}
+
+/* ===== video previews ===== */
+.vid .thumb{position:relative;overflow:hidden;background:#000}
+.vid .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s}
+.vid .thumb iframe{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);border:0;pointer-events:none;opacity:0;transition:opacity .6s}
+.vid .thumb.playing iframe{opacity:1}
+.vid .thumb span{position:relative;z-index:2;background:rgba(7,9,12,.7);box-shadow:0 0 0 1px rgba(255,255,255,.25),0 0 24px var(--c);transition:opacity .3s}
+.vid .thumb.playing span{opacity:0}
+.vid .thumb span::after{border-left-color:#fff}
+.vid .live-badge{font-style:normal;position:absolute;top:8px;left:8px;z-index:3;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(7,9,12,.7);padding:3px 7px;border-radius:4px;opacity:0;transition:opacity .3s}
+.vid .thumb.playing .live-badge{opacity:1}
+.vid{transition:box-shadow .25s,border-color .25s}
+.vid:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--rule));box-shadow:0 0 30px -10px var(--c)}
+@media (prefers-reduced-motion:reduce){body::before{animation:none}}
+
+figure.cover{margin:0}
+#lawList,#monthLegal{--c:var(--law)} #landmarkList,#monthGeneral,#feed{--c:var(--ai)}
+
+/* ===== draggable impact mosaic ===== */
+.mosaic{position:relative;margin-top:14px;border-radius:14px;border:1px solid var(--rule);background:color-mix(in srgb,var(--surface) 55%,transparent);overflow:hidden}
+.mosaic-vp{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y;cursor:grab;scrollbar-width:none;overscroll-behavior-x:contain;overscroll-behavior-y:auto;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%)}
+.mosaic-vp::-webkit-scrollbar{display:none}
+.mosaic-vp.grabbing{cursor:grabbing}
+.mosaic-vp.grabbing .tile{transition:none}
+.items.gallery.board{position:relative;display:block;padding:0;margin:0;user-select:none;-webkit-user-select:none}
+.mosaic-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding:10px 16px;border-top:1px solid var(--rule);font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
+.mosaic-bar button{font-family:var(--f-mono);font-size:11.5px;background:none;border:1px solid var(--rule);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer}
+.drag-hint{position:absolute;top:12px;right:14px;z-index:6;pointer-events:none;font-family:var(--f-mono);font-size:11px;color:var(--ink);background:rgba(7,9,12,.7);border:1px solid var(--rule);padding:5px 10px;border-radius:999px;transition:opacity .6s}
+.mosaic.touched .drag-hint{opacity:0}
+
+.tile{position:absolute;list-style:none;border-radius:12px;overflow:hidden;background:var(--soft);border:1px solid var(--rule);
+  transition:transform .28s cubic-bezier(.2,.9,.3,1.3),box-shadow .28s,border-color .28s;transform-origin:center;will-change:transform;min-width:0}
+.items.gallery .tile{padding:0;display:block;gap:0}
+.tile:hover,.tile:focus-within{transform:scale(1.13);z-index:5;border-color:color-mix(in srgb,var(--c,var(--ai)) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--c,var(--ai)) 50%,transparent),0 18px 50px -12px color-mix(in srgb,var(--c,var(--ai)) 70%,transparent)}
+.tile.t4:hover,.tile.t5:hover{transform:scale(1.06)}
+.tile .cover,.tile .thumb{position:absolute!important;inset:0;aspect-ratio:auto!important;border-radius:0!important;margin:0}
+.tile .cover figcaption{top:8px;bottom:auto;left:auto;right:10px;opacity:.75}
+.tile .cover::after{background:linear-gradient(180deg,rgba(5,7,10,.05) 20%,rgba(5,7,10,.55) 55%,rgba(5,7,10,.94))}
+.tile:hover .cover img{transform:scale(1.06)}
+.tile-body{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:12px 13px 11px;display:flex;flex-direction:column;gap:5px;pointer-events:none}
+.tile-body a,.tile-body button{pointer-events:auto}
+.tile-body .d{padding:0!important;font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,.75);display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.tile-body p{margin:0;color:#fff;font-family:var(--f-display);font-weight:700;line-height:1.18;text-shadow:0 1px 8px rgba(0,0,0,.6);display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
+.tile.t1 .tile-body p{font-size:13.5px;-webkit-line-clamp:4}
+.tile.t2 .tile-body p{font-size:15px;-webkit-line-clamp:3}
+.tile.t3 .tile-body p{font-size:17px;-webkit-line-clamp:5}
+.tile.t4 .tile-body p{font-size:20px;-webkit-line-clamp:5}
+.tile.t5 .tile-body p{font-size:25px;-webkit-line-clamp:6}
+.tile-body .src{margin-top:2px}
+.tile-body .src a{color:#fff;text-decoration-color:rgba(255,255,255,.4)}
+.tile-body .vs{color:rgba(255,255,255,.6)}
+.tile.t1 .tile-body .src{display:none}
+.tile:hover.t1 .tile-body .src{display:flex}
+.imp{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.03em;color:#fff;background:color-mix(in srgb,var(--c,var(--ai)) 38%,rgba(7,9,12,.7));border:1px solid color-mix(in srgb,var(--c,var(--ai)) 60%,transparent);border-radius:999px;padding:2px 8px;align-self:flex-start;pointer-events:auto}
+.imp::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c,var(--ai));box-shadow:0 0 8px var(--c,var(--ai))}
+.tile .tag{background:rgba(7,9,12,.6);color:#fff;border:1px solid color-mix(in srgb,var(--c,var(--ai)) 60%,transparent)}
+.tile[hidden]{display:none!important}
+.tile.vid .thumb span{width:44px;height:44px}
+.tile.vid .tile-body{background:linear-gradient(180deg,transparent,rgba(5,7,10,.9) 45%)}
+.tile.vid .thumb{z-index:1}
+.tile.vid .tile-body{z-index:3}
+.tile.vid .credit{border:0;padding:0;color:rgba(255,255,255,.75)}
+.tile.vid .credit a{color:#fff}
+.panel:has(.mosaic){background:transparent;border:0;padding:0;backdrop-filter:none}
+#watch .grid.g3,#watch h3.mt{display:none}
+#now .mosaic{margin-top:8px}
+
+@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="bar-top">
+  <div class="wrap">
+    <span class="brand">Research Interest Board</span>
+    <nav aria-label="Page"><a href="#now">Now</a><a href="#mapsec">Map</a><a href="#" data-open="sources">Method</a></nav>
+  </div>
+</div>
+
+<header class="now" id="now">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>My research interest board · updated 30 Sep 2026</div>
+      <h1>Research Interest Board <span>AI, law &amp; language</span></h1>
+      <p class="intro">I'm interested in how AI is entering legal systems: the courts, the rules, the language law is written in, and the privacy of the people it touches. Every claim on this board links to its source.</p>
+      <div class="pulse">
+        <b>4.94%</b>
+        <p>of all news articles GDELT monitored on 24 Sep 2026 mentioned “artificial intelligence,” the month's peak among full days of data (30 Sep was partial).</p>
+        <svg id="spark" viewBox="0 0 420 70" role="img" aria-label="Daily share of news mentioning AI in September 2026"></svg>
+        <p class="note">AI's daily share of news, 1–30 Sep 2026. Gaps are days with no GDELT data. Source: <a href="https://api.gdeltproject.org/api/v2/doc/doc?query=%22artificial%20intelligence%22&mode=timelinevolraw&timelinesmooth=0&startdatetime=20231001000000&enddatetime=20260930000000">GDELT DOC 2.0</a></p>
+      </div>
+      <a class="cue" href="#mapsec"><i>↓</i> Explore how my topics connect</a>
+    </div>
+    <div>
+      <div class="feed-head"><h2 class="live">Trending now · September 2026</h2><button class="linkbtn" data-open="month">All September stories →</button></div>
+      <ul class="items gallery" id="feed"></ul>
+    </div>
+  </div>
+</header>
+
+<section class="mapsec" id="mapsec">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>The map</div>
+    <h2>How my interests connect</h2>
+    <p class="lede">At the centre is my core question, AI in legal systems. Each topic around it opens its sources, charts and videos. Hover over a topic to see why it links to its neighbours.</p>
+    <div class="mapwrap">
+      <svg id="map" viewBox="-70 -10 1150 680" role="group" aria-label="Network of research topics"></svg>
+      <div class="maphint">
+        <span class="keys">
+          <span style="--c:var(--law)">Law</span><span style="--c:var(--ai)">AI &amp; news</span><span style="--c:var(--lang)">Language</span><span style="--c:var(--priv)">Privacy</span><span style="--c:var(--warn)">Outlook</span>
+        </span>
+        <span>Click a topic to open it · Esc to close</span>
+      </div>
+    </div>
+    <ul class="topiclist" id="topiclist"></ul>
+    <div class="stats statsrow" id="heroStats"></div>
+  </div>
+</section>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="scrim" data-close></div>
+  <div class="panelx" role="dialog" aria-modal="true" aria-labelledby="sheetCrumb" tabindex="-1" id="panelx">
+    <div class="sheet-head">
+      <span class="crumbs" id="sheetCrumb"></span>
+      <button class="btn" data-close>← Back to map</button>
+    </div>
+    <div class="related" id="related"></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<div id="library" hidden>
+<!-- 1 COVERAGE -->
+<section class="ex" id="pulse">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--ai)"></span>Exhibit 1 · Coverage volume</div>
+    <h2>How much of the news is about AI, month by month</h2>
+    <p class="lede">Online news articles mentioning “artificial intelligence,” counted by the GDELT Project across the outlets it monitors worldwide. The line shows AI's share of all articles that month. That share is the fairest measure, because GDELT's total coverage changes from month to month.</p>
+
+    <div class="chartbox relbox">
+      <div class="chart-head">
+        <div>
+          <h3 id="chartTitle" style="margin:0">All AI coverage</h3>
+          <p class="note" id="chartSub">Articles mentioning “artificial intelligence”</p>
+        </div>
+        <div class="seg" role="group" aria-label="Series">
+          <button aria-pressed="true" data-series="all">All AI news</button>
+          <button aria-pressed="false" data-series="legal">AI + law</button>
+        </div>
+      </div>
+      <div class="chart-scroll"><svg id="chart" viewBox="0 0 920 380" role="img" aria-label="Monthly AI news coverage chart"></svg></div>
+      <div class="tip" id="tip"></div>
+      <div class="legend">
+        <span><i style="background:var(--soft);border:1px solid var(--rule)"></i>Articles per month (left axis)</span>
+        <span><i id="lgLine" style="background:var(--ai);height:3px"></i>Share of all monitored articles (right axis)</span>
+        <span><i style="background:repeating-linear-gradient(45deg,var(--rule) 0 2px,transparent 2px 5px)"></i>Month with missing days in GDELT's data</span>
+      </div>
+      <div class="events" id="events"></div>
+      <p class="note mts">Numbered markers show major stories from the same month (see Exhibit 2). They are context, not proof that the story caused the rise. Source: <a href="https://api.gdeltproject.org/api/v2/doc/doc?query=%22artificial%20intelligence%22&mode=timelinevolraw&timelinesmooth=0&startdatetime=20231001000000&enddatetime=20260930000000">GDELT DOC 2.0 API, timelinevolraw</a>, retrieved 30 Sep 2026. Missing data: 15–30 June 2025 and 14–19 and 26 September 2026. The AI + law series adds (court OR lawyer OR judge OR lawsuit) to the query: <a href="https://api.gdeltproject.org/api/v2/doc/doc?query=%22artificial%20intelligence%22%20(court%20OR%20lawyer%20OR%20judge%20OR%20lawsuit)&mode=timelinevolraw&timelinesmooth=0&startdatetime=20231001000000&enddatetime=20260930000000">query link</a>.</p>
+    </div>
+
+    <div class="chartbox relbox">
+      <div class="chart-head">
+        <div><h3 style="margin:0">Zoom: September 2026, day by day</h3>
+        <p class="note">Same measure, daily. Gaps are days GDELT has no data for.</p></div>
+      </div>
+      <div class="chart-scroll"><svg id="sept" viewBox="0 0 920 260" role="img" aria-label="Daily AI coverage in September 2026"></svg></div>
+      <div class="tip" id="tip2"></div>
+      <p class="note mts">The highest share came on 23–24 September, the week Sam Altman and Dario Amodei addressed the UN Security Council (23 Sep) and OpenAI's training pause was reported (26 Sep). See Exhibit 3. 13 and 30 September are partial days, so their share is less reliable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 LANDMARKS -->
+<section class="ex" id="landmarks">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--ai)"></span>Exhibit 2 · Three years of headlines</div>
+    <h2>The AI stories that defined Oct 2023 – Sep 2026</h2>
+    <p class="lede">News outlets don't publish reliable “most read” rankings for single AI stories, so this board doesn't claim any. Below is what audience data does show, followed by the landmark stories.</p>
+
+    <div class="grid g2 mt">
+      <div class="panel">
+        <h3>What attention data actually shows</h3>
+        <ul class="items" id="attention"></ul>
+      </div>
+      <div class="panel">
+        <h3>Takeaway for the room</h3>
+        <p style="font-size:18px">People <strong>look up</strong> AI constantly. ChatGPT was Wikipedia's most-viewed article of 2023, and Gemini was Google's top trending search of 2025. Yet AI stories don't appear in Chartbeat's lists of the <strong>most-engaged</strong> news stories, and only 8% of Americans read an article that was mainly about AI, even though 52% visited a news page that mentioned it.</p>
+        <p class="note mts">Sources are linked in the list to the left.</p>
+      </div>
+    </div>
+
+    <div class="panel mt">
+      <h3>Landmark stories</h3>
+      <ul class="items gallery" id="landmarkList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- 3 MONTH -->
+<section class="ex" id="month">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--warn)"></span>Exhibit 3 · The past month</div>
+    <h2>September 2026: safety pauses, lawsuits and a White House accord</h2>
+    <p class="lede">Major AI headlines from 1–30 September 2026. Legal items are tagged and also appear in Exhibit 4.</p>
+    <div class="grid g2 mt">
+      <div class="panel"><h3>Industry, safety &amp; policy</h3><ul class="items gallery" id="monthGeneral"></ul></div>
+      <div class="panel"><h3>Law &amp; courts this month</h3><ul class="items gallery" id="monthLegal"></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 LAW -->
+<section class="ex" id="law">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>Exhibit 4 · Special section</div>
+    <h2>AI in the legal world</h2>
+    <p class="lede">Fake citations, new court rules, copyright battles, regulation and a fast-growing legal-AI industry. Filter by theme.</p>
+
+    <div class="callout">
+      <b>2,097</b>
+      <div>
+        <p style="font-size:18px"><strong>court decisions worldwide involving AI-hallucinated content</strong>, as of 30 September 2026. The count began with lawyers who filed ChatGPT-invented cases in <em>Mata v. Avianca</em> (S.D.N.Y., June 2023).</p>
+        <p class="src" style="--c:var(--law)"><a href="https://www.damiencharlotin.com/hallucinations/">Damien Charlotin, AI Hallucination Cases database</a><a href="https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.">Mata v. Avianca (overview)</a></p>
+      </div>
+    </div>
+
+    <div class="chips" id="lawChips" role="group" aria-label="Filter legal timeline"></div>
+    <div class="panel"><ul class="items gallery" id="lawList"></ul></div>
+  </div>
+</section>
+
+<!-- 5 MEANING -->
+<section class="ex" id="meaning">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--ai)"></span>Exhibit 5 · Language, vagueness &amp; machines</div>
+    <h2>Can AI read vague law? What the experts found</h2>
+    <p class="lede">Legal language is vague on purpose: “reasonable,” “vehicle,” “landscaping.” Since 2024, judges have asked chatbots what such words mean, and researchers have tested whether the answers hold up.</p>
+
+    <h3 class="mt">The foundations</h3>
+    <div class="grid g3" id="foundations"></div>
+
+    <h3 class="mt">How the picture changed, 2023 → 2026</h3>
+    <ol class="arc" id="arc"></ol>
+
+    <div class="grid g2 mt">
+      <div class="panel">
+        <h3>The evidence in numbers</h3>
+        <div class="ev" id="evidence"></div>
+        <p class="note mts">The LegalBench scores come from different test setups (HELM Lite in 2024, Vals AI in 2026), so read them as a trend, not an exact comparison. Vals now calls LegalBench “largely saturated.”</p>
+      </div>
+      <div class="panel">
+        <h3>Key papers on LLMs as interpreters</h3>
+        <ul class="items" id="papers"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PRIVACY -->
+<section class="ex" id="privacy">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--priv)"></span>Exhibit 6 · Data privacy in legal systems</div>
+    <h2>Privacy is where AI meets confidentiality, evidence and the law's meaning of “anonymous”</h2>
+    <p class="thesis">Courts now order AI chat logs to be produced, regulators are testing whether a trained model counts as “personal data,” and the law's vague word “anonymous” keeps colliding with the mathematical definition of privacy. Much of the scholarship comes from the <em>Harvard Data Science Review</em>.</p>
+    <p class="note mts"><span class="tag hdsr">HDSR</span> Harvard Data Science Review &nbsp; <span class="tag course">Course reading</span> paper from my ETH course file &nbsp; <span class="tag priv">News</span> regulator or court action</p>
+
+    <div class="grid g2 mt">
+      <div class="panel strand"><h3>① Courts vs. confidentiality <small>privilege, discovery, ethics</small></h3><ul class="items" id="pCourts"></ul></div>
+      <div class="panel strand"><h3>② Regulators vs. AI models <small>GDPR, AI Act, US state law</small></h3><ul class="items" id="pReg"></ul></div>
+      <div class="panel strand"><h3>③ When is data legally “anonymous”? <small>vague legal standards vs. formal privacy</small></h3><ul class="items" id="pAnon"></ul></div>
+      <div class="panel strand"><h3>④ What AI models leak <small>research on memorization and inference</small></h3><ul class="items" id="pLeak"></ul></div>
+    </div>
+
+    <div class="grid g2 mt">
+      <div class="panel"><h3>More from Harvard Data Science Review</h3><ul class="items" id="pHdsr"></ul></div>
+      <div class="panel">
+        <h3>Public opinion</h3>
+        <div class="ev" id="pOpinion"></div>
+        <h3 class="mt">Governance frameworks</h3>
+        <ul class="items" id="pGov"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 WATCH -->
+<section class="ex" id="watch">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>Exhibit 7 · Watch</div>
+    <h2>Video clips to show, with credit to their makers</h2>
+    <p class="lede">Every video was checked against YouTube's own record of its title, channel and publish date. All rights belong to the channels named. Each card links to the original on YouTube.</p>
+    <ul class="items gallery" id="vAll"></ul>
+    <h3 class="mt">Landmark AI news</h3><div class="grid g3" id="vNews"></div>
+    <h3 class="mt">AI in courts and legal practice</h3><div class="grid g3" id="vLaw"></div>
+    <h3 class="mt">Meaning, language and how LLMs work</h3><div class="grid g3" id="vLang"></div>
+  </div>
+</section>
+
+<!-- 8 NEXT -->
+<section class="ex" id="next">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--warn)"></span>Exhibit 8 · Projections</div>
+    <h2>What comes next: forecasts and the legal calendar</h2>
+    <p class="lede">Published forecasts with their time horizons, followed by legal deadlines that are already on the calendar. These are forecasts, not facts. Each one is attributed to whoever made it.</p>
+    <div class="panel mt">
+      <h3>Published forecasts, by horizon</h3>
+      <div class="haxis" style="margin-left:calc(52% + 18px)" id="haxisTop"></div>
+      <div class="proj" id="proj"></div>
+      <p class="note mts">Solid bar: dated horizon. Dashed bar: horizon given only as “medium term” or a range of years.</p>
+    </div>
+    <div class="grid g2 mt">
+      <div class="panel"><h3>Legal calendar: dates already set</h3><ul class="cal" id="cal"></ul></div>
+      <div class="panel">
+        <h3>Where interpretation research points</h3>
+        <p>By 2026 the expert consensus had shifted toward caution. Using LLMs to settle what a word means is “at most one tool among several” (Waldon et al., Georgetown Law Journal 2025). Their answers can flip with small changes to the prompt (Purushothama et al., FAccT 2026), and they may “collapse” real ambiguity into a single confident answer (Gur-Arieh et al., 2026).</p>
+        <p class="mts">Meanwhile courts are moving to require <strong>human verification</strong> rather than ban AI outright. Examples: the Tenth Circuit's proposed rule, California SB 574 and the Sixth Circuit in <em>Whiting</em>.</p>
+        <p class="src">Sources linked in Exhibits 4 and 5.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 SOURCES -->
+<section class="ex" id="sources">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot" style="--c:var(--muted)"></span>Method &amp; sourcing</div>
+    <h2>How this board was built</h2>
+    <div class="grid g2 mt">
+      <div class="panel">
+        <h3>Verification labels</h3>
+        <p>Each source was either opened and read, or confirmed through several matching search results when the site blocked automated reading. Items in the second group carry a small <span class="vs">◦ search-confirmed</span> mark. Items marked <span class="tag warn">Pending</span> were still undecided on 30 September 2026 and should be re-checked before I present.</p>
+        <p class="mts">Reuters, AP, BBC and the Guardian block automated access, so some stories link to AP copy republished by other outlets, to NPR, CNBC or TechCrunch, or to the primary document (court, regulator or company page).</p>
+      </div>
+      <div class="panel">
+        <h3>The coverage chart</h3>
+        <p>GDELT's DOC 2.0 API returns daily counts of matching articles plus the total number of articles it monitored that day. Daily values were summed into months, and the share is matched articles ÷ all monitored articles. GDELT counts articles whose text matches the query. That is broader than headlines alone, so the chart measures how much AI shows up in the news, not the number of front-page headlines.</p>
+        <p class="mts">Dropped for low confidence: a 1 Sep 2026 model-release item found only on aggregator sites.</p>
+      </div>
+    </div>
+    <div class="panel mt">
+      <h3>Before I present, re-check these</h3>
+      <ul class="items" id="recheck"></ul>
+    </div>
+  </div>
+</section>
+
+</div>
+<footer class="wrap">Compiled 30 September 2026. Video rights belong to the channels credited. Paper summaries are paraphrased from the cited works.</footer>
+
+<script>
+const MONTHLY=[["2023-10",46699,1.034,3187,0.071],["2023-11",59068,1.258,3868,0.082],["2023-12",50982,1.063,4331,0.09],["2024-01",55260,1.219,4337,0.096],["2024-02",60159,1.243,4109,0.085],["2024-03",61970,1.18,5365,0.102],["2024-04",63118,1.211,4561,0.088],["2024-05",69361,1.425,4785,0.098],["2024-06",74745,1.452,5305,0.103],["2024-07",57590,1.115,3688,0.071],["2024-08",53848,1.125,4975,0.104],["2024-09",66207,1.272,4530,0.087],["2024-10",63430,1.269,4719,0.094],["2024-11",60219,1.227,4744,0.097],["2024-12",63024,1.294,5618,0.115],["2025-01",74492,1.62,6442,0.14],["2025-02",71559,1.652,5929,0.137],["2025-03",65741,1.356,4919,0.101],["2025-04",69257,1.418,6108,0.125],["2025-05",76020,1.576,6581,0.136],["2025-06",35957,1.566,3019,0.131],["2025-07",79824,1.6,5686,0.114],["2025-08",80649,1.591,7224,0.142],["2025-09",91699,1.833,8424,0.168],["2025-10",102579,1.993,7408,0.144],["2025-11",98697,1.992,7051,0.142],["2025-12",97060,1.913,6900,0.136],["2026-01",90815,1.94,7294,0.156],["2026-02",78146,2.225,6041,0.172],["2026-03",90264,1.944,8056,0.173],["2026-04",92003,2.059,8153,0.183],["2026-05",109923,2.488,10269,0.232],["2026-06",115613,2.668,8082,0.187],["2026-07",103632,2.623,8305,0.21],["2026-08",98341,2.38,9266,0.224],["2026-09",85566,3.32,6867,0.266]];
+const SEPT=[["01",3192,2.74],["02",2997,2.85],["03",3385,2.81],["04",4022,2.57],["05",2184,2.13],["06",2026,2.05],["07",3157,2.67],["08",2264,2.93],["09",5258,3.31],["10",4964,3.2],["11",5041,3.27],["12",3408,2.82],["13",965,3.3],["20",3327,3.15],["21",4441,4.09],["22",4335,4.1],["23",6356,4.24],["24",7696,4.94],["25",2617,4.45],["27",2358,3.05],["28",4246,3.51],["29",4955,3.67],["30",2372,5.22]];
+const GAPS=["2025-06","2026-09"];
+
+const EVENTS_ALL=[["2023-11","OpenAI board fires, then rehires, Sam Altman"],["2024-03","European Parliament passes the AI Act"],["2024-06","Nvidia becomes world's most valuable company"],["2024-10","Nobel Prizes for AI work (Hinton, Hassabis)"],["2025-01","Stargate announced; DeepSeek sell-off"],["2025-08","GPT-5 released to all ChatGPT users"],["2025-10","Nvidia first company worth $5T"],["2026-03","Pentagon labels Anthropic a supply-chain risk"],["2026-06","OpenAI files confidentially for IPO"],["2026-09","UN Security Council session; GPT-6.1 cancelled"]];
+const EVENTS_LEGAL=[["2023-12","UK judiciary issues first AI guidance for judges"],["2024-05","Judge Newsom asks LLMs what “landscaping” means"],["2024-07","ABA Formal Opinion 512 on generative AI"],["2025-06","Bartz v. Anthropic fair-use ruling; Kadrey v. Meta"],["2025-09","Anthropic's $1.5B authors settlement"],["2025-12","Executive order targets state AI laws"],["2026-03","Sixth Circuit sanctions in Whiting v. City of Athens"],["2026-05","Colorado AI Act replaced; EU AI Act deadlines delayed"],["2026-09","Third Circuit affirms against ROSS; DOJ backs OpenAI"]];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+function srcHTML(src,vs){return `<span class="src">${src.map(([n,u])=>`<a href="${u}">${esc(n)}</a>`).join("")}${vs?'<span class="vs">◦ search-confirmed</span>':''}</span>`}
+const COVERS={"https://wikimediafoundation.org/news/2023/12/05/announcing-wikipedias-most-popular-articles-of-2023/":"https://wikimediafoundation.org/wp-content/uploads/2023/12/mostpopular_1200x630.png","https://techcrunch.com/2025/12/04/gemini-was-googles-top-trending-search-term-in-2025":"https://techcrunch.com/wp-content/uploads/2025/08/GettyImages-2198713751.jpg?w=1024","https://chartbeat.com/resources/articles/most-engaging-stories-2025/":"https://chartbeat.com/wp-content/uploads/2025/12/Hero-Chartbeat-2025-Most-Engaging-Stories@2x.png","https://www.pewresearch.org/data-labs/2025/05/23/what-web-browsing-data-tells-us-about-how-ai-appears-online/":"https://www.pewresearch.org/wp-content/uploads/sites/20/2025/05/PL_25.04.25_AmericansAI_feature.jpg?w=1200&h=628&crop=1","https://www.pewresearch.org/short-reads/2026/03/12/key-findings-about-how-americans-view-artificial-intelligence/":"https://www.pewresearch.org/wp-content/uploads/sites/20/2026/03/SR_26.03.12_ai_featured.jpg?w=1200&h=628&crop=1","https://www.npr.org/2023/10/30/1209343819/ai-biden-oversight-executive-order":"https://media.npr.org/assets/img/2023/10/30/gettyimages-1765585110_wide-8e0eaba5c893b0c55ab8ae9c28baa916158b796c.jpg?s=1400&c=85&f=jpeg","https://techcrunch.com/2023/11/17/sam-altman-is-out-as-openais-ceo/":"https://techcrunch.com/wp-content/uploads/2019/10/Sam-Altman-OpenAI-DSC02874.jpg?resize=1200,800","https://www.cnbc.com/2024/02/22/google-pauses-gemini-ai-image-generator-after-inaccuracies.html":"https://image.cnbcfm.com/api/v1/image/107374413-1708024437471-gettyimages-1992338676-AA_10022024_1525083.jpeg?v=1741831934&w=1920&h=1080","https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20240314-the-european-parliament-adopts-the-ai-act":"https://www.wilmerhale.com/-/media/bdd83daaf0cd4e21855eab95d8bdbf0e.jpg","https://www.cnbc.com/amp/2024/05/20/scarlett-johansson-says-openai-ripped-off-her-voice-.html":"https://image.cnbcfm.com/api/v1/image/107328179-1698960970836-gettyimages-187583808-187705550AZ00033_Her_Premie.jpeg?v=1716248470","https://www.aljazeera.com/economy/2024/6/19/nvidia-becomes-worlds-most-valuable-company-dethroning-microsoft":"https://www.aljazeera.com/wp-content/uploads/2024/06/AP24143482649627-1718755214_f0ad7b-1718763006.jpg?resize=1200%2C630&quality=80","https://www.pbs.org/newshour/science/watch-live-the-winner-of-the-2024-nobel-prize-in-chemistry-is":"https://d3i6fh83elv35t.cloudfront.net/static/2024/10/GettyImages-2176876715-1024x683.jpg","https://www.business-standard.com/markets/news/deepseek-sparks-ai-stock-selloff-nvidia-loses-record-593-bn-in-mcap-125012800095_1.html":"https://bsmedia.business-standard.com/_media/bs/img/article/2025-01/15/thumb/featurecrop/1200X630/1736943239-9551.jpg","https://www.cnbc.com/2025/07/09/nvidia-4-trillion.html":"https://image.cnbcfm.com/api/v1/image/108148694-1748377244940-108148694-1747838033473-gettyimages-2215609342-AFP_47HG7CG.jpeg?v=1755832628&w=1920&h=1080","https://www.aljazeera.com/economy/2025/7/23/trump-administration-unveils-wide-ranging-ai-action-plan":"https://www.aljazeera.com/wp-content/uploads/2025/07/AP25199698581532-1753293017.jpg?resize=1920%2C1440","https://www.cnbc.com/2025/08/07/openai-launches-gpt-5-model-for-all-chatgpt-users.html":"https://image.cnbcfm.com/api/v1/image/108163566-1750813219176-gettyimages-2197366846-dsc00553_qmdcp7an.jpeg?v=1761664550&w=1920&h=1080","https://www.npr.org/2025/09/05/nx-s1-5529404/anthropic-settlement-authors-copyright-ai":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/3967x2231+0+207/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fed%2F6b%2F4221fe0e4eccbcbea7f0c49d1a7b%2Fgettyimages-2227254922.jpg","https://techcrunch.com/2025/10/29/nvidia-becomes-first-public-company-worth-5-trillion/":"https://techcrunch.com/wp-content/uploads/2025/05/GettyImages-2216028442.jpg?w=1024","https://techcrunch.com/2025/11/18/google-launches-gemini-3-with-new-coding-app-and-record-benchmark-scores/":"https://techcrunch.com/wp-content/uploads/2025/10/gemini.jpg?resize=1200,800","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting":"https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-21T215939Z_2033624676_RC2KKJALN6OJ_RTRMADP_3_OPENAI-CANADA-LAWSUIT-1790032747.jpg?resize=1920%2C1440","https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/5000x2813+0+262/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fd2%2Fb8%2Fdbc551884e5ab396b5f7ce397e94%2Fap26057633664886.jpg","https://variety.com/2026/digital/news/openai-shutting-down-sora-video-disney-1236698277/":"https://variety.com/wp-content/uploads/2026/03/OpenAI-Sora.png?w=901&h=563&crop=1","https://www.anthropic.com/glasswing":"https://www-cdn.anthropic.com/images/4zrzovbb/website/65641e7846f10255c4a3415a10bbf5793ae87b13-1200x630.jpg","https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/":"https://techcrunch.com/wp-content/uploads/2026/02/modi-openai-anthropic-2261854815.jpg?resize=1200,800","https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/":"https://fortune.com/img-assets/wp-content/uploads/2026/07/GettyImages-2279684900-e1784662826633.jpg?resize=1200,600","https://darioamodei.com/post/we-must-pace-the-frontier":"https://cdn.prod.website-files.com/67ecbba31246a69e485fdd4b/6aa5311897ee19af5d9f2cd9_og_we-must-pace-the-frontier.jpg","https://www.semafor.com/article/09/14/2026/ai-slowdown-calls-prompt-chip-selloff":"https://img.semafor.com/8e83075f12fa7cfe564600bf23e44f2ed4e4a7bf-6495x4425.jpg?rect=0,508,6495,3410&w=1200&h=630&q=75&auto=format","https://www.macrumors.com/2026/09/22/anthropic-claude-opus-5-5/":"https://images.macrumors.com/t/miP5cemYnLJaXuUhVtW0LMDZCJQ=/1782x/article-new/2025/09/anthopic-claude.jpg","https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council":"https://media.cnn.com/api/v1/images/stellar/prod/2026-09-23t195301z-1785342310-rc27pna296tc-rtrmadp-3-ai-un.jpg?c=16x9&q=w_800,c_fill","https://9to5google.com/2026/09/24/google-says-gemini-4-release-is-coming-as-soon-as-possible/":"https://9to5google.com/wp-content/uploads/sites/4/2026/03/gemini-logo.jpg?quality=82&strip=all&resize=1200,628","https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/":"https://wtop.com/wp-content/uploads/2026/09/Open_AI_Safety__4766-scaled.jpg","https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns":"https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-28T223038Z_1656552687_RC29LNAECGOF_RTRMADP_3_AI-SAFETY-OPENAI-1790641403_cd656d-1790642721.jpg?resize=1200%2C630&quality=80","https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/":"https://fortune.com/img-assets/wp-content/uploads/2026/09/gettyimages-1554653087-594x594-1.jpg?resize=1200,600","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html":"https://image.cnbcfm.com/api/v1/image/108369794-1790713950915-108369794-1790711674658-gettyimages-2297244120-AFP_C9Q83W4_1.jpeg?v=1790713979&w=1920&h=1080","https://techcrunch.com/2026/09/09/harvey-hits-15-5b-valuation-months-after-reaching-11b/":"https://techcrunch.com/wp-content/uploads/2025/11/Screenshot-2025-11-14-at-11.50.31-AM.png?resize=1200,863","https://lawcommentary.com/articles/tenth-circuit-ai-court-filings-human-review-rule":"https://lawcommentary.sfo3.cdn.digitaloceanspaces.com/.cache/articles/01M35ZX46DSYWCYXDFSH5Q0N14.png/a47fe4a9db502842","https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690":"https://i.abcnewsfe.com/a/6adb6243-fb82-448a-9655-149edbd68943/Anthropic-gty-sn-260910_1789083503772_hpMain_16x9.jpg?w=1600","http://thedailyrecord.com/2026/09/25/ai-hallucinations-lawyers-quinn-patton/":"https://thedailyrecord.com/files/2026/04/7-JUDGES-wp-040626-Depositphotos.jpg","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/":"https://ipwatchdog.com/wp-content/uploads/2018/04/fairuseMarkerRed.jpg","https://www.artificiallawyer.com/2026/09/30/clio-buys-learned-hand-as-judiciary-strategy-expands/":"https://www.artificiallawyer.com/wp-content/uploads/2026/09/Screenshot-2026-09-30-at-14.40.35.png","https://www.lawnext.com/2024/06/in-redo-of-its-study-stanford-finds-westlaws-ai-hallucinates-at-double-the-rate-of-lexisnexis.html":"https://www.lawnext.com/wp-content/uploads/2024/06/StanfordStudy-v2-hallucinationchart-169.png","https://www.pbs.org/newshour/arts/judge-tosses-authors-ai-training-copyright-lawsuit-against-meta":"https://d3i6fh83elv35t.cloudfront.net/static/2025/06/2025-06-13T164044Z_482018431_RC25H3APV49U_RTRMADP_3_USA-M-A-AI-DEALS-1024x683.jpg","https://www.law360.com/articles/2368805/butler-snow-attys-dq-d-for-fake-ai-citations-in-prisoner-case":"https://assets.law360news.com/2368000/2368805/06d2e67869fc545e5e6343f3617a298eaa8abd9f-butler.jpg","https://www.thomsonreuters.com/en/press-releases/2025/august/thomson-reuters-launches-cocounsel-legal-transforming-legal-work-with-agentic-ai-and-deep-research":"https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/reuters/rtr1zkvu-luke-macgregor-tr.jpg.transform/rect-768/q90/image.jpg","https://www.npr.org/2025/09/05/g-s1-87367/anthropic-authors-settlement-pirated-chatbot-training-material":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/7105x3998+0+289/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F46%2Fe5%2Fc6e9104144d6a1b47d8b31133e11%2Fap25247699422658.jpg","https://www.abajournal.com/news/article/2-federal-judges-reveal-ai-use-by-staff-members-led-to-error-riddled-opinions":"https://www.abajournal.com/images/main_images/Neals_Wingate_headshots.png","https://www.sidley.com/en/insights/newsupdates/2025/12/unpacking-the-december-11-2025-executive-order":"https://www.sidley.com/-/media/update-images/unpacking-the-december-11-2025-executive-order-ensuring-a-national-policy-framework-for-artificial-i.png?rev=146c53ef206f4eaa8df7ac8f7b7ad357","https://www.cnbc.com/2026/03/25/legal-ai-startup-harvey-raises-200-million-at-11-billion-valuation.html":"https://image.cnbcfm.com/api/v1/image/108282726-1774438079827-StellaKalinina_Founders.jpg?v=1774438132&w=1920&h=1080","https://natlawreview.com/article/sixth-circuit-sanctions-attorneys-fake-citations-what-does-mean-use-ai":"https://natlawreview.com/sites/default/files/styles/article_image/public/2026-03/AI%20artificial%20intelligence%20legislation%20laws%20bigstock%20477629147_0.jpg.webp?itok=GT7zSxf1","https://www.lawandtheworkplace.com/2026/05/major-developments-put-colorados-ai-law-on-ice-ahead-of-implementation/":"https://images.bannerbear.com/direct/y0aJ23zRDdqMxX4OGl/requests/000/145/225/548/w0gWbdEPaYaBPXvJzrVklOA5j/99f20b38c08d4745b183ecb3d7783b5b229c2e55.png","https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/":"https://www.gibsondunn.com/wp-content/uploads/2024/09/A.jpg"};
+function coverHTML(src){if(!src||!src[0])return "";const [n,u]=src[0],img=COVERS[u];
+  return `<figure class="cover${img?"":" noimg"}" data-src="${esc(n.replace(/&amp;/g,"&"))}">${img?`<img src="${img}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg')">`:""}<figcaption>Image: ${n}</figcaption></figure>`;}
+function itemHTML(it,gal){
+  const tags=(it.tags||[]).map(([c,l])=>`<span class="tag ${c}">${esc(l)}</span>`).join(" ");
+  return `<li class="item" ${it.cat?`data-cat="${it.cat}"`:""}>${gal?coverHTML(it.src):""}<div class="d">${esc(it.d)}</div><div class="t"><p>${it.h}</p>${srcHTML(it.src||[],it.vs)}${tags?`<div class="src" style="margin-top:6px">${tags}</div>`:""}</div></li>`;
+}
+const VIEWS={"qrvK_KuIeJk":4530019,"I19ezZcyB6w":47490,"XDE9DjpcSdI":97340,"WEBiebbeNCA":5968921,"aAPpQC-3EyE":1254298,"GL5ZSWQUbeM":239,"oqSYljRYDEM":5991984,"wiNHGXyVY58":49423,"7KqrfwGeCko":31336,"MvBdRF3zw5k":3774,"rfxgovgpWcM":3067,"qRaq-3BZfNg":1502,"eMlx5fFNoYc":4686173,"6iO8TtCs_Cw":59736,"LPZh9BOjkQs":7882029,"gG5R-TdfXhw":404};
+
+/* ---------- mosaic: a treemap that always fills its frame ---------- */
+const fmtN=v=>v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+"M":v>=1e3?(v/1e3).toFixed(v>=1e4?0:1)+"k":String(Math.round(v));
+function tileHTML(it){
+  const tags=(it.tags||[]).map(([c,l])=>`<span class="tag ${c}">${esc(l)}</span>`).join(" ");
+  const tc=((it.tags||[]).find(t=>["law","ai","priv","warn"].includes(t[0]))||[])[0];
+  return `<li class="item tile" ${it.cat?`data-cat="${it.cat}"`:""} ${tc?`style="--c:var(--${tc})"`:""}>${coverHTML(it.src)}<div class="tile-body"><div class="d">${esc(it.d)} ${tags}</div><p>${it.h}</p>${srcHTML(it.src||[],it.vs)}</div></li>`;
+}
+/* squarified treemap (Bruls, Huizing & van Wijk 2000): areas proportional to weights, no gaps */
+function squarify(ws,W,H){
+  const total=ws.reduce((a,b)=>a+b,0),items=ws.map((w,i)=>({i,a:w/total*W*H})).sort((p,q)=>q.a-p.a);
+  const out=[];let x=0,y=0,w=W,h=H,row=[];
+  const worst=(r,len)=>{const s=r.reduce((a,b)=>a+b.a,0),mx=Math.max(...r.map(o=>o.a)),mn=Math.min(...r.map(o=>o.a));return Math.max(len*len*mx/(s*s),(s*s)/(len*len*mn));};
+  const place=r=>{const s=r.reduce((a,b)=>a+b.a,0);
+    if(w>=h){const cw=s/h;let cy=y;r.forEach(o=>{const ch=o.a/cw;out[o.i]={x,y:cy,w:cw,h:ch};cy+=ch});x+=cw;w-=cw;}
+    else{const rh=s/w;let cx=x;r.forEach(o=>{const cw=o.a/rh;out[o.i]={x:cx,y,w:cw,h:rh};cx+=cw});y+=rh;h-=rh;}};
+  items.forEach(o=>{const len=Math.min(w,h);if(!row.length||worst([...row,o],len)<=worst(row,len))row.push(o);else{place(row);row=[o];}});
+  if(row.length)place(row);
+  return out;
+}
+const MOSAICS=new Set();
+function layoutMosaic(ul,opts){
+  if(opts)ul._opts=opts;opts=ul._opts||{};
+  ul.classList.add("board");
+  if(!ul.parentNode.classList.contains("mosaic-vp")){
+    const wrap=document.createElement("div");wrap.className="mosaic";
+    const vp=document.createElement("div");vp.className="mosaic-vp";vp.tabIndex=0;vp.setAttribute("aria-label","Mosaic. Drag or scroll to explore.");
+    ul.parentNode.insertBefore(wrap,ul);vp.appendChild(ul);wrap.appendChild(vp);
+    wrap.insertAdjacentHTML("afterbegin",`<span class="drag-hint">✥ Drag to explore</span>`);
+    wrap.insertAdjacentHTML("beforeend",`<div class="mosaic-bar"><span>${esc(opts.legend||"Drag, scroll or swipe to see every story")}</span><button type="button" data-recenter>Recenter</button></div>`);
+    dragify(vp);
+    wrap.querySelector("[data-recenter]").addEventListener("click",()=>vp.scrollTo({left:0,top:0,behavior:"smooth"}));
+    MOSAICS.add(ul);
+    if("ResizeObserver" in window)new ResizeObserver(()=>positionTiles(ul)).observe(vp);
+  }
+  positionTiles(ul);
+}
+function positionTiles(ul){
+  const vp=ul.parentNode,vw=vp.clientWidth;if(!vw)return;
+  const opts=ul._opts||{},tiles=[...ul.children].filter(t=>!t.hidden);if(!tiles.length){ul.style.height="0px";return;}
+  const ws=tiles.map(t=>opts.weight?opts.weight(t):1);
+  const H=Math.min(opts.height||560,Math.max(360,innerHeight*.72));
+  const minA=opts.minArea||52000, wmin=Math.min(...ws), sum=ws.reduce((a,b)=>a+b,0);
+  const W=Math.max(vw,Math.ceil(minA*sum/(H*wmin)));
+  ul.style.width=W+"px";ul.style.height=H+"px";
+  const rects=squarify(ws,W,H), G=6;
+  tiles.forEach((t,k)=>{const r=rects[k];
+    Object.assign(t.style,{left:(r.x+G/2)+"px",top:(r.y+G/2)+"px",width:(r.w-G)+"px",height:(r.h-G)+"px"});
+    const s=Math.sqrt(r.w*r.h);t.classList.remove("t1","t2","t3","t4","t5");
+    t.classList.add(s<200?"t1":s<250?"t2":s<320?"t3":s<400?"t4":"t5");});
+}
+let _rz;addEventListener("resize",()=>{clearTimeout(_rz);_rz=setTimeout(()=>relayoutIn(document.body),150)});
+function relayoutIn(root){MOSAICS.forEach(ul=>{if(root.contains(ul))positionTiles(ul)})}
+function dragify(vp){
+  let sx,sy,sl,st,down=false,moved=false;
+  vp.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.button!==0)return;down=true;moved=false;sx=e.clientX;sy=e.clientY;sl=vp.scrollLeft;st=vp.scrollTop;});
+  window.addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx,dy=e.clientY-sy;
+    if(!moved&&Math.hypot(dx,dy)>5){moved=true;vp.classList.add("grabbing");vp.closest(".mosaic").classList.add("touched");}
+    if(moved){vp.scrollLeft=sl-dx;}});
+  window.addEventListener("pointerup",()=>{if(!down)return;down=false;setTimeout(()=>vp.classList.remove("grabbing"),0);});
+  vp.addEventListener("click",e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
+  vp.addEventListener("scroll",()=>vp.closest(".mosaic").classList.add("touched"),{once:true});
+  vp.addEventListener("dragstart",e=>e.preventDefault());
+  vp.addEventListener("wheel",e=>{
+    const dx=e.shiftKey&&!e.deltaX?e.deltaY:e.deltaX;
+    if(Math.abs(dx)<=Math.abs(e.shiftKey?0:e.deltaY))return;            /* mostly vertical: let the page scroll */
+    const max=vp.scrollWidth-vp.clientWidth;
+    if((dx<0&&vp.scrollLeft<=0)||(dx>0&&vp.scrollLeft>=max-1))return;   /* at an edge: don't trap the gesture */
+    e.preventDefault();vp.scrollLeft+=dx;vp.closest(".mosaic").classList.add("touched");
+  },{passive:false});
+}
+function fill(id,arr){const el=$(id),g=el.classList.contains("gallery");el.innerHTML=arr.map(it=>g?tileHTML(it):itemHTML(it,false)).join("");if(g)layoutMosaic(el)}
+
+/* ---------- hero stats ---------- */
+const total=MONTHLY.reduce((a,r)=>a+r[1],0), totalL=MONTHLY.reduce((a,r)=>a+r[3],0);
+$("#heroStats").innerHTML=[
+ [total.toLocaleString("en-US"),"news articles mentioning “artificial intelligence” in GDELT, Oct 2023 – Sep 2026","var(--ai)"],
+ ["2.3×","growth in AI's share of all news, from 1.03% (Oct 2023) to 2.38% (Aug 2026)","var(--ai)"],
+ ["3.2×","growth in AI-and-law coverage share over the same period (0.071% → 0.224%)","var(--law)"],
+ ["2,097","court decisions worldwide involving AI-hallucinated content (30 Sep 2026)","var(--law)"]
+].map(([b,s,c])=>`<div class="stat" style="--c:${c}"><b>${b}</b><span>${s}</span></div>`).join("");
+
+/* ---------- monthly chart ---------- */
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function drawMonthly(series){
+  const svg=$("#chart"), W=920,H=380, m={l:62,r:58,t:22,b:46};
+  const iw=W-m.l-m.r, ih=H-m.t-m.b, n=MONTHLY.length, bw=iw/n;
+  const ci=series==="all"?1:3, si=series==="all"?2:4;
+  const color=series==="all"?"var(--ai)":"var(--law)";
+  const mx=Math.max(...MONTHLY.map(r=>r[ci])), unit=Math.pow(10,Math.floor(Math.log10(mx)))/4;
+  const cMax=Math.ceil(mx*1.08/unit)*unit;
+  const sMax=series==="all"?3.5:0.3;
+  const y1=v=>m.t+ih-v/cMax*ih, y2=v=>m.t+ih-v/sMax*ih, x=i=>m.l+i*bw+bw/2;
+  let g=`<defs><pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="var(--soft)"/><line x1="0" y1="0" x2="0" y2="5" stroke="var(--rule)" stroke-width="3"/></pattern></defs>`;
+  for(let k=0;k<=5;k++){const v=cMax*k/5,yy=y1(v);
+    g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy}" y2="${yy}" stroke="var(--rule)" stroke-width="${k?0.6:1}"/>`;
+    g+=`<text x="${m.l-8}" y="${yy+4}" text-anchor="end" font-size="11">${v>=1000?(+(v/1000).toFixed(1))+"k":v}</text>`;
+    const sv=sMax*k/5;g+=`<text x="${W-m.r+8}" y="${yy+4}" font-size="11" style="fill:${color}">${sv.toFixed(series==="all"?1:2)}%</text>`;}
+  MONTHLY.forEach((r,i)=>{const gap=GAPS.includes(r[0]);
+    g+=`<rect x="${m.l+i*bw+2}" y="${y1(r[ci])}" width="${bw-4}" height="${m.t+ih-y1(r[ci])}" rx="2" fill="${gap?"url(#hatch)":"var(--soft)"}" stroke="var(--rule)" stroke-width=".6"/>`;
+    const [yr,mo]=r[0].split("-");
+    if(+mo%3===1||i===0) g+=`<text x="${x(i)}" y="${H-m.b+16}" text-anchor="middle" font-size="11">${MON[+mo-1]}</text>`;
+    if(+mo===1||i===0) g+=`<text x="${x(i)}" y="${H-m.b+31}" text-anchor="middle" font-size="11" style="fill:var(--ink)">${yr}</text>`;
+  });
+  const pts=MONTHLY.map((r,i)=>`${x(i)},${y2(r[si])}`).join(" ");
+  g+=`<polygon points="${x(0)},${m.t+ih} ${pts} ${x(n-1)},${m.t+ih}" fill="${color}" opacity=".07"/>`;
+  g+=`<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2.6" stroke-linejoin="round"/>`;
+  const ev=series==="all"?EVENTS_ALL:EVENTS_LEGAL;
+  ev.forEach(([mo,t],k)=>{const i=MONTHLY.findIndex(r=>r[0]===mo);if(i<0)return;const yy=y2(MONTHLY[i][si]);
+    g+=`<line x1="${x(i)}" x2="${x(i)}" y1="${yy-6}" y2="${yy-18}" stroke="var(--ink)" stroke-width="1"/><circle cx="${x(i)}" cy="${yy-27}" r="9" fill="var(--ink)"/><text x="${x(i)}" y="${yy-23.5}" text-anchor="middle" font-size="10" style="fill:var(--bg)">${k+1}</text>`;});
+  MONTHLY.forEach((r,i)=>{g+=`<circle cx="${x(i)}" cy="${y2(r[si])}" r="${i===n-1?4.5:2.6}" fill="${i===n-1?color:"var(--surface)"}" stroke="${color}" stroke-width="1.6"/>`;
+    g+=`<rect class="hit" data-i="${i}" x="${m.l+i*bw}" y="${m.t}" width="${bw}" height="${ih}" fill="transparent"/>`;});
+  g+=`<text x="${m.l}" y="12" font-size="11">articles / month</text><text x="${W-m.r}" y="12" text-anchor="end" font-size="11" style="fill:${color}">share of all news</text>`;
+  svg.innerHTML=g;
+  $("#events").innerHTML=ev.map(([mo,t],k)=>{const [y,mm]=mo.split("-");return `<div><span class="n">${k+1}</span><span><span class="vs" style="font-family:var(--f-mono)">${MON[+mm-1]} ${y}</span> · ${esc(t)}</span></div>`}).join("");
+  $("#chartTitle").textContent=series==="all"?"All AI coverage":"AI coverage that mentions courts, lawyers, judges or lawsuits";
+  $("#chartSub").textContent=series==="all"?"Articles mentioning “artificial intelligence”":"“artificial intelligence” AND (court OR lawyer OR judge OR lawsuit)";
+  $("#lgLine").style.background=color;
+  const tip=$("#tip");
+  svg.querySelectorAll(".hit").forEach(h=>{
+    h.addEventListener("mousemove",e=>{const r=MONTHLY[+h.dataset.i];const [y,mm]=r[0].split("-");
+      const box=svg.closest(".chartbox").getBoundingClientRect();
+      tip.innerHTML=`${MON[+mm-1]} ${y} · ${r[ci].toLocaleString("en-US")} articles · ${r[si].toFixed(series==="all"?2:3)}%${GAPS.includes(r[0])?" · partial month":""}`;
+      tip.style.left=(e.clientX-box.left)+"px";tip.style.top=(e.clientY-box.top)+"px";tip.style.opacity=1;});
+    h.addEventListener("mouseleave",()=>tip.style.opacity=0);});
+}
+document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".seg button").forEach(o=>o.setAttribute("aria-pressed",o===b));drawMonthly(b.dataset.series);}));
+drawMonthly("all");
+
+function drawSept(){
+  const svg=$("#sept"),W=920,H=260,m={l:62,r:58,t:18,b:34},iw=W-m.l-m.r,ih=H-m.t-m.b,bw=iw/30;
+  const cMax=8000,sMax=6;const x=d=>m.l+(d-1)*bw+bw/2,y1=v=>m.t+ih-v/cMax*ih,y2=v=>m.t+ih-v/sMax*ih;
+  let g="";
+  for(let k=0;k<=4;k++){const yy=m.t+ih-ih*k/4;g+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy}" y2="${yy}" stroke="var(--rule)" stroke-width="${k?0.6:1}"/><text x="${m.l-8}" y="${yy+4}" text-anchor="end" font-size="11">${cMax*k/4/1000}k</text><text x="${W-m.r+8}" y="${yy+4}" font-size="11" style="fill:var(--ai)">${(sMax*k/4).toFixed(1)}%</text>`;}
+  const have=new Set(SEPT.map(r=>+r[0]));
+  for(let d=1;d<=30;d++){ if(!have.has(d)) g+=`<rect x="${m.l+(d-1)*bw+2}" y="${m.t}" width="${bw-4}" height="${ih}" fill="url(#hatch2)" opacity=".7"/>`;
+    if(d%3===1||d===30) g+=`<text x="${x(d)}" y="${H-m.b+16}" text-anchor="middle" font-size="11">${d}</text>`;}
+  g=`<defs><pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="var(--rule)" stroke-width="2"/></pattern></defs>`+g;
+  SEPT.forEach(r=>{const d=+r[0];g+=`<rect x="${m.l+(d-1)*bw+3}" y="${y1(r[1])}" width="${bw-6}" height="${m.t+ih-y1(r[1])}" rx="2" fill="var(--soft)" stroke="var(--rule)" stroke-width=".6"/>`;});
+  // line segments broken at gaps
+  let seg=[],segs=[];SEPT.forEach((r,i)=>{const d=+r[0];if(i&&d!==+SEPT[i-1][0]+1){segs.push(seg);seg=[]}seg.push(`${x(d)},${y2(r[2])}`)});segs.push(seg);
+  segs.forEach(s=>g+=`<polyline points="${s.join(" ")}" fill="none" stroke="var(--ai)" stroke-width="2.4" stroke-linejoin="round"/>`);
+  SEPT.forEach(r=>{const d=+r[0];g+=`<circle cx="${x(d)}" cy="${y2(r[2])}" r="${d===24?4.5:2.6}" fill="${d===24?"var(--ai)":"var(--surface)"}" stroke="var(--ai)" stroke-width="1.6"/><rect class="hit" data-d="${d}" x="${m.l+(d-1)*bw}" y="${m.t}" width="${bw}" height="${ih}" fill="transparent"/>`;});
+  g+=`<text x="${x(24)}" y="${y2(4.94)-12}" text-anchor="middle" font-size="11" style="fill:var(--ink)">24 Sep · 4.94%</text>`;
+  g+=`<text x="${x(16.5)}" y="${m.t+14}" text-anchor="middle" font-size="11">no data 14–19</text>`;
+  svg.innerHTML=g;
+  const tip=$("#tip2");
+  svg.querySelectorAll(".hit").forEach(h=>{h.addEventListener("mousemove",e=>{const r=SEPT.find(z=>+z[0]===+h.dataset.d);const box=svg.closest(".chartbox").getBoundingClientRect();
+    tip.innerHTML=`${h.dataset.d} Sep · ${r[1].toLocaleString("en-US")} articles · ${r[2]}%`;tip.style.left=(e.clientX-box.left)+"px";tip.style.top=(e.clientY-box.top)+"px";tip.style.opacity=1;});
+    h.addEventListener("mouseleave",()=>tip.style.opacity=0);});
+}
+drawSept();
+
+/* ---------- Exhibit 2 ---------- */
+fill("#attention",[
+ {d:"Dec 2023",h:"ChatGPT was English Wikipedia's most-viewed article of 2023 (about 52.6M views).",src:[["Wikimedia Foundation","https://wikimediafoundation.org/news/2023/12/05/announcing-wikipedias-most-popular-articles-of-2023/"]]},
+ {d:"Dec 2025",h:"“Gemini” was Google's #1 trending search worldwide in 2025, and “DeepSeek” was #7. Trending measures spikes compared with the year before.",src:[["TechCrunch","https://techcrunch.com/2025/12/04/gemini-was-googles-top-trending-search-term-in-2025"]]},
+ {d:"2024–2025",h:"Chartbeat's lists of the most-engaging news stories of 2024 and 2025 contain no AI stories.",src:[["Chartbeat 2025","https://chartbeat.com/resources/articles/most-engaging-stories-2025/"],["Chartbeat 2024","https://chartbeat.com/resources/articles/the-most-engaging-stories-of-2024/"]]},
+ {d:"May 2025",h:"Browsing data: 52% of Americans visited a news page that mentioned AI, but only 8% read an article mainly about AI.",src:[["Pew Research Center","https://www.pewresearch.org/data-labs/2025/05/23/what-web-browsing-data-tells-us-about-how-ai-appears-online/"]],vs:1},
+ {d:"Jun 2025",h:"47% of Americans had heard “a lot” about AI, up from 26% in 2022.",src:[["Pew Research Center","https://www.pewresearch.org/short-reads/2026/03/12/key-findings-about-how-americans-view-artificial-intelligence/"]],vs:1}
+]);
+fill("#landmarkList",[
+ {d:"30 Oct 2023",h:"President Biden signs a sweeping AI executive order requiring developers of powerful models to share safety test results with the government.",src:[["NPR","https://www.npr.org/2023/10/30/1209343819/ai-biden-oversight-executive-order"]],vs:1},
+ {d:"17–21 Nov 2023",h:"OpenAI's board fires CEO Sam Altman. After more than 700 staff threaten to quit, he returns within days.",src:[["TechCrunch","https://techcrunch.com/2023/11/17/sam-altman-is-out-as-openais-ceo/"],["Axios timeline","https://www.axios.com/2023/11/18/sam-altman-greg-brockman-openai-board-timeline"]],vs:1},
+ {d:"15 Feb 2024",h:"OpenAI previews Sora, a model that turns text prompts into realistic videos up to a minute long.",src:[["Fast Company","https://www.fastcompany.com/91030446/openai-unveils-an-impressive-looking-text-to-video-tool-called-sora"]],vs:1},
+ {d:"22 Feb 2024",h:"Google stops Gemini from generating images of people after it produced historically inaccurate pictures.",src:[["CNBC","https://www.cnbc.com/2024/02/22/google-pauses-gemini-ai-image-generator-after-inaccuracies.html"]],vs:1},
+ {d:"13 Mar 2024",h:"The European Parliament passes the AI Act 523–46, the first comprehensive AI law.",src:[["WilmerHale","https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20240314-the-european-parliament-adopts-the-ai-act"]],vs:1,tags:[["law","Law"]]},
+ {d:"20 May 2024",h:"Scarlett Johansson accuses OpenAI of imitating her voice for ChatGPT's “Sky.” OpenAI pulls the voice.",src:[["CNBC","https://www.cnbc.com/amp/2024/05/20/scarlett-johansson-says-openai-ripped-off-her-voice-.html"]],vs:1},
+ {d:"18 Jun 2024",h:"Nvidia passes Microsoft to become the world's most valuable company, at about $3.34 trillion.",src:[["Al Jazeera","https://www.aljazeera.com/economy/2024/6/19/nvidia-becomes-worlds-most-valuable-company-dethroning-microsoft"]],vs:1},
+ {d:"8–9 Oct 2024",h:"Nobel Prizes for AI work: physics to Hopfield and Hinton for neural networks, chemistry to Baker, Hassabis and Jumper for protein structure (AlphaFold).",src:[["PBS NewsHour","https://www.pbs.org/newshour/science/watch-live-the-winner-of-the-2024-nobel-prize-in-chemistry-is"],["Nature Machine Intelligence","https://www.nature.com/articles/s42256-024-00945-0"]],vs:1},
+ {d:"21 Jan 2025",h:"President Trump announces “Stargate,” a plan by OpenAI, SoftBank and Oracle to invest up to $500B in US AI infrastructure.",src:[["Washington Post","https://www.washingtonpost.com/technology/2025/01/21/stargate-500-billion-trump-ai/"],["TIME","https://time.com/7209167/stargate-openai-donald-trump/"]],vs:1},
+ {d:"27 Jan 2025",h:"DeepSeek's low-cost model tops the US App Store. Nvidia loses about $593B in market value in one day, a record for any company.",src:[["Business Standard","https://www.business-standard.com/markets/news/deepseek-sparks-ai-stock-selloff-nvidia-loses-record-593-bn-in-mcap-125012800095_1.html"]],vs:1,tags:[["ai","Top-7 Google trend 2025"]]},
+ {d:"9 Jul 2025",h:"Nvidia becomes the first company to reach a $4 trillion market value.",src:[["CNBC","https://www.cnbc.com/2025/07/09/nvidia-4-trillion.html"]],vs:1},
+ {d:"23 Jul 2025",h:"The White House publishes “America's AI Action Plan,” focused on deregulation, data centres and exports.",src:[["Al Jazeera","https://www.aljazeera.com/economy/2025/7/23/trump-administration-unveils-wide-ranging-ai-action-plan"]],vs:1},
+ {d:"7 Aug 2025",h:"OpenAI releases GPT-5 to all ChatGPT users, free users included.",src:[["CNBC","https://www.cnbc.com/2025/08/07/openai-launches-gpt-5-model-for-all-chatgpt-users.html"],["CNN","https://www.cnn.com/2025/08/07/tech/openai-gpt-5-chatgpt-launch"]],vs:1},
+ {d:"5 Sep 2025",h:"Anthropic agrees to pay authors $1.5B over pirated books, the largest reported copyright recovery.",src:[["NPR","https://www.npr.org/2025/09/05/nx-s1-5529404/anthropic-settlement-authors-copyright-ai"]],vs:1,tags:[["law","Law"]]},
+ {d:"29 Oct 2025",h:"Nvidia becomes the first public company worth $5 trillion.",src:[["TechCrunch","https://techcrunch.com/2025/10/29/nvidia-becomes-first-public-company-worth-5-trillion/"],["Al Jazeera","https://www.aljazeera.com/economy/2025/10/29/chipmaker-nvidia-hits-5-trillion-valuation"]],vs:1},
+ {d:"18 Nov 2025",h:"Google launches Gemini 3 and builds it into Search on launch day.",src:[["TechCrunch","https://techcrunch.com/2025/11/18/google-launches-gemini-3-with-new-coding-app-and-record-benchmark-scores/"]],vs:1,tags:[["ai","#1 Google trend 2025"]]},
+ {d:"10 Feb 2026",h:"The Tumbler Ridge, B.C. school shooting kills 8. OpenAI had flagged the shooter's ChatGPT activity but did not alert police, and more than 30 lawsuits followed.",src:[["Al Jazeera","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"]],tags:[["law","Law"]]},
+ {d:"6 Mar 2026",h:"The Pentagon labels Anthropic a “supply chain risk” after the company refuses to allow Claude's use for mass surveillance or fully autonomous weapons.",src:[["NPR","https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk"]],vs:1},
+ {d:"24 Mar 2026",h:"OpenAI announces it will shut down the Sora video app, and Disney's planned $1B investment falls through.",src:[["Variety","https://variety.com/2026/digital/news/openai-shutting-down-sora-video-disney-1236698277/"],["Axios","https://www.axios.com/2026/03/24/openai-discontinue-sora-video-app"]],vs:1},
+ {d:"7 Apr 2026",h:"Anthropic previews Claude Mythos to a limited group only, citing its hacking ability, and launches the Project Glasswing cyber-defence coalition.",src:[["Anthropic","https://www.anthropic.com/glasswing"],["Fortune","https://www.fortune.com/2026/04/07/anthropic-claude-mythos-model-project-glasswing-cybersecurity"]],vs:1},
+ {d:"8 Jun 2026",h:"OpenAI files confidentially for an IPO. It was last valued at $852B.",src:[["TechCrunch","https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/"]],vs:1},
+ {d:"21 Jul 2026",h:"OpenAI says its AI agents escaped a test sandbox and hacked Hugging Face to cheat on an evaluation.",src:[["Fortune","https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/"],["CNBC","https://www.cnbc.com/2026/07/22/open-ai-cyber-models-hack-hugging-face.html"]],vs:1}
+]);
+
+/* ---------- Exhibit 3 ---------- */
+fill("#monthGeneral",[
+ {d:"12 Sep",h:"Dario Amodei publishes “We Must Pace the Frontier,” calling on labs to slow capability gains.",src:[["darioamodei.com","https://darioamodei.com/post/we-must-pace-the-frontier"]],vs:1},
+ {d:"14 Sep",h:"Chip stocks sell off after the calls to slow down. The semiconductor index falls 5.9%.",src:[["Semafor","https://www.semafor.com/article/09/14/2026/ai-slowdown-calls-prompt-chip-selloff"]]},
+ {d:"22 Sep",h:"Anthropic launches Claude Opus 5.5.",src:[["MacRumors","https://www.macrumors.com/2026/09/22/anthropic-claude-opus-5-5/"]],vs:1},
+ {d:"23 Sep",h:"Sam Altman and Dario Amodei ask the UN Security Council for international AI safety standards.",src:[["CNN","https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council"],["CNBC","https://www.cnbc.com/2026/09/23/altman-amodei-un-ai-safety.html"]],vs:1},
+ {d:"24 Sep",h:"Google says Gemini 4 is in post-training and coming “as soon as possible.”",src:[["9to5Google","https://9to5google.com/2026/09/24/google-says-gemini-4-release-is-coming-as-soon-as-possible/"]],vs:1},
+ {d:"24 Sep",h:"OpenAI switches off the Sora API, ending the product entirely.",src:[["OpenAI Help Center","https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation"]],vs:1},
+ {d:"26 Sep",h:"OpenAI pauses training of its newest models after its agents probed US government websites in unexpected ways. It is the company's second pause in three months.",src:[["AP via WTOP","https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/"]]},
+ {d:"28–29 Sep",h:"OpenAI cancels the release of GPT-6.1 “Astra” after it failed internal safety tests.",src:[["Al Jazeera","https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns"],["CNBC","https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html"]]},
+ {d:"29 Sep",h:"A leaked Anthropic IPO prospectus is reported: a 2025 net loss of $42B, a target valuation above $2T, and a listing expected after the November midterms.",src:[["Fortune","https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/"]]},
+ {d:"29 Sep",h:"After a White House lunch, President Trump says leaders of OpenAI, Anthropic, Google, Meta, xAI and Nvidia signed a voluntary, “morally binding” superintelligence accord.",src:[["CNBC","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"],["ABC News","https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988"]],vs:1}
+]);
+fill("#monthLegal",[
+ {d:"1–2 Sep",h:"The US Justice Department files a statement of interest in NYT v. OpenAI arguing that training LLMs is fair use. It is the federal government's first formal filing in the AI copyright cases.",src:[["GV Wire (NYT report)","https://gvwire.com/2026/09/02/justice-dept-sides-with-openai-in-new-york-times-copyright-suit/"]],tags:[["law","Copyright"]]},
+ {d:"9 Sep",h:"Legal-AI startup Harvey raises $550M at a $15.5B valuation, nearly double its valuation nine months earlier.",src:[["TechCrunch","https://techcrunch.com/2026/09/09/harvey-hits-15-5b-valuation-months-after-reaching-11b/"]],tags:[["law","Industry"]]},
+ {d:"18 Sep",h:"The Tenth Circuit proposes a rule requiring certification that a human reviewed any filing prepared with generative AI. Comments are due 18 Oct.",src:[["Law Commentary","https://lawcommentary.com/articles/tenth-circuit-ai-court-filings-human-review-rule"]],tags:[["law","Courts"]]},
+ {d:"21–22 Sep",h:"British Columbia sues OpenAI and Sam Altman in San Francisco federal court over the Tumbler Ridge shooting.",src:[["Al Jazeera","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"],["CBC","https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395"]],tags:[["law","Litigation"]]},
+ {d:"25 Sep",h:"The DC Circuit (2–1) lets the Pentagon keep its “supply chain risk” label on Anthropic for now.",src:[["ABC News","https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690"]],tags:[["law","Courts"]]},
+ {d:"25 Sep",h:"A D.D.C. judge orders a Maryland lawyer to explain a brief “littered” with false citations.",src:[["Maryland Daily Record","http://thedailyrecord.com/2026/09/25/ai-hallucinations-lawyers-quinn-patton/"]],tags:[["law","Sanctions"]]},
+ {d:"25 Sep",h:"Ireland's Data Protection Commission publishes an AI Insights Report covering about 180 AI products it dealt with from 2021 to 2025.",src:[["Irish DPC","https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"]],tags:[["priv","Privacy"]]},
+ {d:"29–30 Sep",h:"The Third Circuit affirms Thomson Reuters v. ROSS: copying Westlaw headnotes to train AI was not fair use. It is the first federal appeals ruling on fair use in AI training.",src:[["IPWatchdog","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"]],tags:[["law","Copyright"]]},
+ {d:"30 Sep",h:"Clio acquires Learned Hand, an AI drafting tool for judges, marking its first direct move into the judiciary.",src:[["Artificial Lawyer","https://www.artificiallawyer.com/2026/09/30/clio-buys-learned-hand-as-judiciary-strategy-expands/"]],tags:[["law","Industry"]]},
+ {d:"by 30 Sep",h:"California SB 574 passed the Legislature unanimously. It would require lawyers to personally verify every citation and keep client confidences out of public AI tools. The governor's deadline was 30 Sep.",src:[["Farella Braun + Martel","https://www.fbm.com/publications/sb-574-advances-california-ai-rules-for-lawyers-arbitrators-near-enactment/"]],tags:[["law","Regulation"],["warn","Pending"]]}
+]);
+
+/* ---------- Exhibit 4 ---------- */
+const LAW=[
+ {cat:"Judges",d:"Dec 2023",h:"The England &amp; Wales judiciary issues AI guidance for judges. It was updated in April and October 2025 with more on hallucinations and on not entering private information into public AI tools.",src:[["Courts and Tribunals Judiciary","https://www.judiciary.uk/guidance-and-resources/artificial-intelligence-ai-judicial-guidance-october-2025/"]]},
+ {cat:"Industry",d:"May–Jun 2024",h:"Stanford RegLab/HAI finds that commercial legal AI tools still hallucinate: about 17% for Lexis+ AI and about 33% for Westlaw AI-Assisted Research, despite “hallucination-free” marketing.",src:[["LawNext","https://www.lawnext.com/2024/06/in-redo-of-its-study-stanford-finds-westlaws-ai-hallucinates-at-double-the-rate-of-lexisnexis.html"],["arXiv paper","https://arxiv.org/abs/2405.20362"]]},
+ {cat:"Judges",d:"28 May 2024",h:"In <em>Snell v. United Specialty Ins.</em> (11th Cir.), Judge Kevin Newsom's concurrence proposes using LLMs as one input for the “ordinary meaning” of “landscaping.”",src:[["11th Cir. opinion (PDF)","https://media.ca11.uscourts.gov/opinions/pub/files/202212581.pdf"]]},
+ {cat:"Regulation",d:"29 Jul 2024",h:"ABA Formal Opinion 512, the ABA's first formal ethics opinion on generative AI, covers competence, confidentiality, candor and fees. Boilerplate consent is not enough to share client confidences with AI tools.",src:[["ABA (PDF)","https://www.americanbar.org/content/dam/aba/administrative/professional_responsibility/ethics-opinions/aba-formal-opinion-512.pdf"]],vs:1},
+ {cat:"Regulation",d:"1 Aug 2024",h:"The EU AI Act enters into force. Obligations for general-purpose AI models apply from 2 August 2025.",src:[["AI Act summary","https://artificialintelligenceact.eu/high-level-summary/"]],vs:1},
+ {cat:"Judges",d:"5 Sep 2024",h:"In <em>United States v. Deleon</em>, Newsom asks ChatGPT, Claude and Gemini ten times each what “physically restrained” means. The answers varied in wording but agreed in substance.",src:[["11th Cir. opinion (PDF)","https://media.ca11.uscourts.gov/opinions/pub/files/202310478.pdf"]]},
+ {cat:"Copyright",d:"23 Jun 2025",h:"In <em>Bartz v. Anthropic</em>, Judge Alsup rules that training on books is fair use, but downloading and keeping pirated copies is not.",src:[["Goodwin","https://www.goodwinlaw.com/en/insights/publications/2025/06/alerts-practices-aiml-district-court-issues-ai-fair-use-decision"]],vs:1},
+ {cat:"Copyright",d:"26 Jun 2025",h:"In <em>Kadrey v. Meta</em>, Judge Chhabria rules for Meta because the authors “made the wrong arguments.” He stresses this does not make Meta's training lawful.",src:[["PBS NewsHour (AP)","https://www.pbs.org/newshour/arts/judge-tosses-authors-ai-training-copyright-lawsuit-against-meta"]]},
+ {cat:"Sanctions",d:"23 Jul 2025",h:"In <em>Johnson v. Dunn</em> (N.D. Ala.), three Butler Snow lawyers are reprimanded and removed from the case over ChatGPT-invented citations, even though their firm had an AI policy.",src:[["Law360","https://www.law360.com/articles/2368805/butler-snow-attys-dq-d-for-fake-ai-citations-in-prisoner-case"]],vs:1},
+ {cat:"Industry",d:"5 Aug 2025",h:"Thomson Reuters launches CoCounsel Legal, an agentic “Deep Research” tool built on Westlaw.",src:[["Thomson Reuters","https://www.thomsonreuters.com/en/press-releases/2025/august/thomson-reuters-launches-cocounsel-legal-transforming-legal-work-with-agentic-ai-and-deep-research"]],vs:1},
+ {cat:"Copyright",d:"5 Sep 2025",h:"Anthropic agrees to pay $1.5B to settle the authors' class action. Final approval came on 20 July 2026, at about $3,000 per work.",src:[["NPR","https://www.npr.org/2025/09/05/g-s1-87367/anthropic-authors-settlement-pirated-chatbot-training-material"],["Authors Guild","https://authorsguild.org/news/court-grants-final-approval-anthropic-copyright-settlement/"]]},
+ {cat:"Sanctions",d:"12 Sep 2025",h:"In <em>Noland v. Land of the Free</em>, California's first published appellate opinion on AI hallucinations, counsel is fined $10,000: 21 of 23 quotations were fabricated.",src:[["McGuireWoods","https://www.mcguirewoods.com/client-resources/alerts/2025/9/california-appellate-court-issues-10k-sanctions-in-states-first-published-opinion-on-ai-hallucinated-case-citations/"]],vs:1},
+ {cat:"Judges",d:"24 Oct 2025",h:"Two federal judges tell Senator Grassley that staff use of AI produced error-filled opinions, which they withdrew.",src:[["ABA Journal","https://www.abajournal.com/news/article/2-federal-judges-reveal-ai-use-by-staff-members-led-to-error-riddled-opinions"]]},
+ {cat:"Copyright",d:"4 Nov 2025",h:"<em>Getty Images v. Stability AI</em> (UK High Court): Getty's copyright claims largely fail, with limited trade-mark wins over watermarks. An appeal has been permitted.",src:[["DLA Piper","https://www.dlapiper.com/en-us/insights/publications/2025/11/getty-images-v-stability-ai-the-uk-high-court-decision-offers-guidance-but-critical-questions-on-ai"],["IPKat","https://ipkitten.blogspot.com/2026/01/permission-to-appeal-granted-in-getty.html"]],vs:1},
+ {cat:"Regulation",d:"11 Dec 2025",h:"An executive order directs the Justice Department to set up an AI Litigation Task Force to challenge “onerous” state AI laws.",src:[["Sidley","https://www.sidley.com/en/insights/newsupdates/2025/12/unpacking-the-december-11-2025-executive-order"]],vs:1},
+ {cat:"Regulation",d:"2025–2026",h:"Proposed Federal Rule of Evidence 707 would hold machine-generated evidence to expert-reliability standards. In May 2026 it was sent back for more study, alongside a possible deepfake rule.",src:[["US Courts (PDF)","https://www.uscourts.gov/sites/default/files/document/advisory_committee_on_evidence_rules_may_2026.pdf"]],vs:1,tags:[["warn","Pending"]]},
+ {cat:"Industry",d:"25 Mar 2026",h:"Harvey raises $200M at an $11B valuation.",src:[["CNBC","https://www.cnbc.com/2026/03/25/legal-ai-startup-harvey-raises-200-million-at-11-billion-valuation.html"]],vs:1},
+ {cat:"Sanctions",d:"27 Mar 2026",h:"In <em>Whiting v. City of Athens</em>, the Sixth Circuit fines two lawyers $15,000 each for more than 24 fake or misrepresented citations. It also holds that a court can order lawyers to disclose AI use.",src:[["National Law Review","https://natlawreview.com/article/sixth-circuit-sanctions-attorneys-fake-citations-what-does-mean-use-ai"]]},
+ {cat:"Regulation",d:"Apr–May 2026",h:"Colorado's AI Act is put on hold by a court, then replaced by a narrower transparency law (SB 26-189) taking effect 1 January 2027.",src:[["Proskauer","https://www.lawandtheworkplace.com/2026/05/major-developments-put-colorados-ai-law-on-ice-ahead-of-implementation/"],["Holland &amp; Knight","https://www.hklaw.com/en/insights/publications/2026/05/colorado-governor-signs-sb-189"]]},
+ {cat:"Regulation",d:"6 May 2026",h:"The EU's “Digital Omnibus” deal delays the AI Act's high-risk obligations to December 2027 and August 2028. Transparency duties still started 2 August 2026.",src:[["Gibson Dunn","https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/"]]},
+ {cat:"Copyright",d:"1–2 Sep 2026",h:"The Justice Department sides with OpenAI in NYT v. OpenAI, arguing that training is fair use.",src:[["GV Wire (NYT report)","https://gvwire.com/2026/09/02/justice-dept-sides-with-openai-in-new-york-times-copyright-suit/"]]},
+ {cat:"Industry",d:"9 Sep 2026",h:"Harvey raises $550M at a $15.5B valuation.",src:[["TechCrunch","https://techcrunch.com/2026/09/09/harvey-hits-15-5b-valuation-months-after-reaching-11b/"]]},
+ {cat:"Sanctions",d:"18 Sep 2026",h:"The Tenth Circuit proposes requiring certification that a human reviewed any AI-assisted filing, effective 1 January 2027.",src:[["Law Commentary","https://lawcommentary.com/articles/tenth-circuit-ai-court-filings-human-review-rule"]]},
+ {cat:"Copyright",d:"29–30 Sep 2026",h:"The Third Circuit affirms against ROSS Intelligence in the first federal appellate ruling on fair use in AI training. The opinion is sealed pending redactions.",src:[["IPWatchdog","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"]]},
+ {cat:"Judges",d:"30 Sep 2026",h:"Clio buys Learned Hand, an AI drafting and research tool already used by courts including LA Superior Court.",src:[["Artificial Lawyer","https://www.artificiallawyer.com/2026/09/30/clio-buys-learned-hand-as-judiciary-strategy-expands/"]]}
+];
+LAW.forEach(i=>i.tags=[...(i.tags||[]),["law",i.cat]]);
+const CATS=["All","Sanctions","Judges","Regulation","Copyright","Industry"];
+const CATNAME={Sanctions:"Courts &amp; sanctions",Judges:"Judges &amp; courts",Regulation:"Rules &amp; regulation",Copyright:"Copyright",Industry:"Legal-AI industry",All:"All"};
+$("#lawChips").innerHTML=CATS.map((c,i)=>`<button class="chip" aria-pressed="${!i}" data-c="${c}">${CATNAME[c]}</button>`).join("");
+fill("#lawList",LAW);
+$("#lawChips").addEventListener("click",e=>{const b=e.target.closest(".chip");if(!b)return;
+  $("#lawChips").querySelectorAll(".chip").forEach(o=>o.setAttribute("aria-pressed",o===b));
+  document.querySelectorAll("#lawList .item").forEach(li=>li.hidden=!(b.dataset.c==="All"||li.dataset.cat===b.dataset.c));});
+
+/* ---------- Exhibit 5 ---------- */
+const card=(c)=>`<div class="card"><span class="who">${c.who}</span><h4>${c.t}</h4><p>${c.p}</p>${srcHTML(c.src,c.vs)}</div>`;
+$("#foundations").innerHTML=[
+ {who:"H.L.A. Hart · Harvard Law Review · 1958",t:"Core and penumbra: “No vehicles in the park”",p:"General terms have a settled core of clear cases and a “penumbra” of debatable ones. Bicycles and roller skates are Hart's open questions, and deciding them takes judgment.",src:[["Article (PDF)","https://people.brandeis.edu/~teuber/H.%20L.%20A.%20Hart%20Positivism%20and%20the%20Separation%20of%20Law%20and%20Morals.pdf"]]},
+ {who:"Jeremy Waldron · California Law Review · 1994",t:"Vagueness in Law and Language",p:"Examines how vague legal terms make legal rights and duties indeterminate, and what the philosophy of vagueness implies for legal theory.",src:[["PhilPapers record","https://philpapers.org/rec/WALVIL"]]},
+ {who:"Timothy Endicott · Oxford University Press · 2000",t:"Vagueness in Law",p:"Vagueness is part of law itself, so judges can't always decide from existing rights. The rule of law has to make room for courts settling what the law leaves open.",src:[["PhilPapers record","https://philpapers.org/rec/ENDVIT"]]},
+ {who:"Roy Sorensen · Stanford Encyclopedia of Philosophy · rev. 2022",t:"Vagueness",p:"A term is vague when it has borderline cases that no further inquiry can settle (the sorites paradox). The entry discusses how judges use vague language to create discretion.",src:[["SEP entry","https://plato.stanford.edu/entries/vagueness/"]]},
+ {who:"U.S. Supreme Court · 2015 · CRS 2025",t:"Void for vagueness",p:"Due process requires criminal laws to give fair notice and limit arbitrary enforcement. <em>Johnson v. United States</em> struck down the ACCA residual clause as too indeterminate.",src:[["Johnson v. US","https://www.law.cornell.edu/supremecourt/text/13-7120"],["CRS report","https://www.everycrsreport.com/reports/IF13091.html"]]},
+ {who:"Andrei Marmor · Stanford Encyclopedia of Philosophy · 2021",t:"Legal Interpretation",p:"Maps the goals of legal interpretation and its main methods: textualism, intentionalism and originalism. Useful background on method.",src:[["SEP entry","https://plato.stanford.edu/entries/legal-interpretation/"]]}
+].map(card).join("");
+
+$("#arc").innerHTML=[
+ ["Late 2023","Big claims, weak on ambiguity","GPT-4 is reported to pass the bar exam, but human raters judge only 32% of its disambiguations correct (AmbiEnt)."],
+ ["2024","Hype meets checks","The bar-exam percentile is revised down to the 48th–62nd. General LLMs hallucinate 58–88% of the time on case-law questions."],
+ ["Mid-2024","LLMs reach the bench","Judge Newsom consults chatbots on “landscaping” and “physically restrained.” Arbel and Hoffman propose “generative interpretation.”"],
+ ["2025–early 2026","The backlash","Studies show answers swing with prompt wording and track human judgment only moderately. Critics name the “reliability” and “epistemic” gaps."],
+ ["2025–2026","Higher scores, same doubts","Reasoning models top 87% on LegalBench, but interpreting the law and staying grounded in the documents provided still lag."],
+ ["2026","New concept: ambiguity collapse","Researchers warn that LLMs pick one reading of a genuinely ambiguous term, cutting short the human debate over its meaning."]
+].map(([y,h,p])=>`<li><span class="yr">${y}</span><h4>${h}</h4><p>${p}</p></li>`).join("");
+
+const bar=(lbl,v,max,txt,c)=>`<div class="bar"><span class="lbl">${lbl}</span><span class="track"><span class="fill" style="width:${v/max*100}%;--c:${c}"></span></span><span class="val">${txt}</span></div>`;
+$("#evidence").innerHTML=`
+<div class="evrow"><h4>Resolving ambiguity: AmbiEnt benchmark, 2023</h4>
+ ${bar("Human-written disambiguations",90,100,"90%","var(--muted)")}${bar("GPT-4 disambiguations",32,100,"32%","var(--ai)")}
+ ${srcHTML([["Liu et al., EMNLP 2023","https://arxiv.org/abs/2304.14399"]])}</div>
+<div class="evrow"><h4>Hallucination on legal questions (share of answers)</h4>
+ ${bar("General LLMs on federal case law, 2024",88,100,"58–88%","var(--law)")}${bar("Commercial legal research tools, 2024",33,100,"17–33%","var(--law)")}${bar("Legal retrieval systems, 2026 preprint",50,100,"<10–~50%","var(--law)")}
+ ${srcHTML([["Dahl et al. 2024","https://arxiv.org/abs/2401.01301"],["Magesh et al. 2024","https://arxiv.org/abs/2405.20362"],["Das et al. 2026","https://arxiv.org/abs/2608.14210"]])}</div>
+<div class="evrow"><h4>Top LegalBench score</h4>
+ ${bar("Jan 2024 · GPT-4 (HELM Lite)",71,100,"71%","var(--ai)")}${bar("Early 2026 · Gemini 3.1 Pro (AI Index)",87.4,100,"87.4%","var(--ai)")}${bar("27 Sep 2026 · top model (Vals AI)",88.56,100,"88.6%","var(--ai)")}
+ ${srcHTML([["AI Index 2024 ch. 2","https://hai.stanford.edu/assets/files/hai_ai-index-report-2024_chapter2.pdf"],["AI Index 2026 ch. 2","https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_2_technical.pdf"],["Vals AI","https://www.vals.ai/benchmarks/legal_bench"]])}</div>
+<div class="evrow"><h4>GPT-4 on the bar exam: the percentile claim, revisited</h4>
+ ${bar("Claimed (vs. Feb exam takers)",90,100,"~90th","var(--muted)")}${bar("Re-evaluated vs. first-time takers",62,100,"~62nd","var(--ai)")}${bar("Re-evaluated vs. those who passed",48,100,"~48th","var(--ai)")}
+ ${srcHTML([["Katz et al. 2024","https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4389233"],["Martínez 2024","https://dspace.mit.edu/handle/1721.1/153986"]])}</div>`;
+
+fill("#papers",[
+ {d:"May 2024",h:"<strong>Arbel &amp; Hoffman, “Generative Interpretation”</strong> (NYU Law Review). LLMs can estimate ordinary meaning in context and <em>quantify ambiguity</em> in contracts.",src:[["NYU L. Rev. (PDF)","https://www.nyulawreview.org/wp-content/uploads/2024/05/99-NYU-L-Rev-451-1.pdf"]],tags:[["ai","Pro"]]},
+ {d:"Jan 2024",h:"<strong>Choi, “Measuring Clarity in Legal Text”</strong> (U. Chicago Law Review). Uses NLP to measure how clear legal text is, and finds it often indeterminate in real cases.",src:[["SSRN","https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4151849"]],vs:1,tags:[["ai","Method"]]},
+ {d:"2024",h:"<strong>Engel &amp; McAdams, “Asking GPT for the Ordinary Meaning of Statutory Terms.”</strong> Compares GPT with more than 2,800 people on what counts as a “vehicle.” Promising but mixed results.",src:[["Chicago Unbound","https://chicagounbound.uchicago.edu/public_law_and_legal_theory/918/"]],tags:[["ai","Mixed"]]},
+ {d:"Sep 2025",h:"<strong>He et al., “Statutory Construction and Interpretation for AI.”</strong> The same rule read in different ways makes AI behave inconsistently. Legal tools such as canons of construction reduce disagreement.",src:[["arXiv","https://arxiv.org/abs/2509.01186"]],tags:[["ai","Method"]]},
+ {d:"Nov 2025",h:"<strong>Waldon, Schneider, Wilcox, Zeldes &amp; Tobia, “Don't Take Their Word for It”</strong> (Georgetown Law Journal). A direct response to Newsom: use LLMs at most as one tool among several.",src:[["Georgetown L.J. (PDF)","https://www.law.georgetown.edu/georgetown-law-journal/wp-content/uploads/sites/26/2026/02/Waldon_Schneider_Wilcox_Zeldes_Tobia_Large-Language-Models-for-Legal-Interpretation-Dont-Take-Their-Word-for-It.pdf"]],tags:[["warn","Critique"]]},
+ {d:"2025",h:"<strong>Choi, “Off-the-Shelf LLMs Are Unreliable Judges.”</strong> Ordinary-meaning answers shift with the prompt, the model and the post-processing.",src:[["SSRN","https://doi.org/10.2139/ssrn.5188865"]],vs:1,tags:[["warn","Critique"]]},
+ {d:"Oct 2025",h:"<strong>Purushothama, Min, Waldon &amp; Schneider, “Prompting from the bench”</strong> (FAccT 2026). Small format changes flip conclusions. Agreement with human judgments is only moderate.",src:[["arXiv","https://arxiv.org/abs/2510.25356"]],tags:[["warn","Critique"]]},
+ {d:"Jan 2026",h:"<strong>Grimmelmann, Sobel &amp; Stein, “Generative Misinterpretation”</strong> (Harvard J. on Legislation). Identifies a reliability gap and an epistemic gap: LLMs produce law-like rhetoric without legal reasoning.",src:[["Harvard JOL","https://journals.law.harvard.edu/jol/2026/01/24/generative-misinterpretation/"]],tags:[["warn","Critique"]]},
+ {d:"Mar 2026",h:"<strong>Gur-Arieh, Wang &amp; Fazelpour, “Ambiguity Collapse by LLMs.”</strong> When a term has several valid readings, the model outputs one and skips the human debate over meaning.",src:[["arXiv","https://arxiv.org/abs/2603.05801"]],tags:[["warn","Critique"]]},
+ {d:"2025–2026",h:"<strong>Reasoning models on legal tasks:</strong> o1 and DeepSeek-R1 show promise but limited ability to interpret law (Findings of EMNLP 2025). LEXam (ICLR 2026) finds models struggle with open-ended, multi-step legal reasoning.",src:[["Hu et al.","https://aclanthology.org/2025.findings-emnlp.742/"],["LEXam","https://arxiv.org/abs/2505.12864"]],tags:[["ai","Benchmark"]]}
+]);
+
+/* ---------- Exhibit 6 ---------- */
+const H=["hdsr","HDSR"],C=["course","Course reading"],N=["priv","News"],R=["priv","Research"];
+fill("#pCourts",[
+ {d:"Jul 2024",h:"ABA Opinion 512: lawyers need informed client consent before putting confidential information into AI tools. Boilerplate consent is not enough.",src:[["ABA (PDF)","https://www.americanbar.org/content/dam/aba/administrative/professional_responsibility/ethics-opinions/aba-formal-opinion-512.pdf"]],vs:1,tags:[N]},
+ {d:"May–Dec 2025",h:"In <em>NYT v. OpenAI</em>, a magistrate judge orders OpenAI to preserve all ChatGPT output logs, deleted chats included, and later to produce 20 million de-identified logs. It is the clearest case of litigation overriding promises made to users.",src:[["OpenAI statement","https://openai.com/index/response-to-nyt-data-demands/"],["eWeek","https://www.eweek.com/news/openai-chatgpt-logs-new-york-times-copyright-mdl/"]],tags:[N]},
+ {d:"Oct 2025",h:"UK judicial guidance warns judges not to enter private or confidential information into public AI chatbots.",src:[["Courts and Tribunals Judiciary","https://www.judiciary.uk/guidance-and-resources/artificial-intelligence-ai-judicial-guidance-october-2025/"]],tags:[N]},
+ {d:"Feb 2026",h:"In <em>United States v. Heppner</em> (S.D.N.Y., Judge Rakoff), a defendant's chats with Claude are held not protected by attorney-client privilege, partly because of the consumer privacy policy. Lawfare's authors criticise the reasoning.",src:[["Lawfare","https://www.lawfaremedia.org/article/ai-and-privilege-after-united-states-v.-heppner"]],tags:[N]},
+ {d:"Mar 2026",h:"In <em>Whiting</em>, the Sixth Circuit holds that a court-ordered disclosure of AI use does not violate privilege or work product.",src:[["National Law Review","https://natlawreview.com/article/sixth-circuit-sanctions-attorneys-fake-citations-what-does-mean-use-ai"]],tags:[N]},
+ {d:"Sep 2026",h:"California SB 574 would bar lawyers from entering client confidences into public AI tools.",src:[["Farella Braun + Martel","https://www.fbm.com/publications/sb-574-advances-california-ai-rules-for-lawyers-arbitrators-near-enactment/"]],tags:[N,["warn","Pending"]]}
+]);
+fill("#pReg",[
+ {d:"19 Dec 2023",h:"The FTC bans Rite Aid from using AI facial recognition for five years and orders it to delete the images and the algorithms built from them (“algorithmic disgorgement”).",src:[["FTC","https://www.ftc.gov/news-events/news/press-releases/2023/12/rite-aid-banned-using-ai-facial-recognition-after-ftc-says-retailer-deployed-technology-without"]],tags:[N]},
+ {d:"3 Sep 2024",h:"The Dutch data protection authority fines Clearview AI €30.5M for its database of more than 30 billion scraped faces, and warns that using Clearview is also illegal.",src:[["Autoriteit Persoonsgegevens","https://www.autoriteitpersoonsgegevens.nl/en/current/dutch-dpa-imposes-a-fine-on-clearview-because-of-illegal-data-collection-for-facial-recognition"]],tags:[N]},
+ {d:"18 Dec 2024",h:"EDPB Opinion 28/2024: whether an AI model is “anonymous” is decided case by case, and a model trained on unlawfully processed data may be unlawful to deploy.",src:[["EDPB","https://www.edpb.europa.eu/news/news/2024/edpb-opinion-ai-models-gdpr-principles-support-responsible-ai_en"]],tags:[N]},
+ {d:"Dec 2024 → Mar 2026",h:"Italy's Garante fines OpenAI €15M, the first GDPR fine on a generative-AI developer. A Rome court annuls it in March 2026, showing that enforcement can be undone on judicial review.",src:[["Garante","https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10085432"],["Reuters via Yahoo","https://finance.yahoo.com/sectors/technology/articles/italian-court-scraps-15-million-125926950.html"]],tags:[N]},
+ {d:"30 Jan 2025",h:"The Garante orders DeepSeek to stop processing Italian users' data and rejects its claim that EU law does not apply.",src:[["Security Affairs","https://securityaffairs.com/173680/security/italys-data-protection-authority-garante-blocked-deepseek.html"]],tags:[N]},
+ {d:"2 Feb 2025",h:"The EU AI Act's bans take effect, including on untargeted scraping of facial images and on emotion recognition at work and school.",src:[["European Commission","https://digital-strategy.ec.europa.eu/en/library/commission-publishes-guidelines-prohibited-artificial-intelligence-ai-practices-defined-ai-act"]],vs:1,tags:[N]},
+ {d:"2024–2025",h:"Meta pauses EU AI training on public posts after Irish DPC concerns, then resumes in May 2025 with notices and opt-out forms.",src:[["Irish DPC","https://www.dataprotection.ie/en/news-media/latest-news/dpc-statement-meta-ai"]],tags:[N]},
+ {d:"23 Sep 2025",h:"California approves CCPA rules on automated decision-making. Duties for significant decisions apply from 1 January 2027.",src:[["CPPA","https://cppa.ca.gov/announcements/2025/20250923.html"]],tags:[N]},
+ {d:"25 Sep 2026",h:"The Irish DPC's AI Insights Report: about 180 AI products reviewed between 2021 and 2025. The main issues were whether “legitimate interest” justifies training and whether users are told enough.",src:[["Irish DPC","https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"]],tags:[N]}
+]);
+fill("#pAnon",[
+ {d:"2018",h:"<strong>Wood, Altman, Bembenek, Bun, Gaboardi et al., “Differential Privacy: A Primer for a Non-Technical Audience”</strong> (Vanderbilt J. Ent. &amp; Tech. Law). Explains how differential privacy could meet legal de-identification requirements, linking vague legal standards to a precise mathematical one.",src:[["Journal page","http://www.jetlaw.org/journal-archives/volume-21/volume-21-issue-1/differential-privacy-a-primer-for-a-non-technical-audience/"]],tags:[C]},
+ {d:"2019",h:"<strong>Gadotti et al., “When the Signal is in the Noise”</strong> (USENIX Security). Diffix was marketed as meeting the EU's legal anonymization standard, yet attacks inferred private attributes with 89.4% accuracy.",src:[["USENIX","https://www.usenix.org/conference/usenixsecurity19/presentation/gadotti"]],tags:[C]},
+ {d:"2021",h:"<strong>Kenny, Kuriwaki, McCartan, Rosenman, Simko &amp; Imai</strong> (Science Advances). Census differential privacy adds biases that may conflict with “One Person, One Vote” as currently interpreted, and the paper cites redistricting case law.",src:[["Science Advances (DOI)","https://doi.org/10.1126/sciadv.abk3283"]],tags:[C]},
+ {d:"Jun 2022",h:"<strong>Hotz &amp; Salvo, “A Chronicle of the Application of Differential Privacy to the 2020 Census.”</strong> Covers <em>Alabama v. Department of Commerce</em>, the lawsuit claiming the privacy noise distorted redistricting data.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/ql9z7ehf"]],tags:[H]},
+ {d:"Jun 2022",h:"<strong>Cohen, Duchin, Matthews &amp; Suwal, “Private Numbers in Public Policy.”</strong> In nine Texas and Arizona localities, protected data still supported Voting Rights Act analysis.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/954ycugm"]],tags:[H]},
+ {d:"Jun 2022",h:"<strong>boyd &amp; Sarathy, “Differential Perspectives.”</strong> The fight over the Census was really about uncertainty, trust and legitimacy, which is why it ended up in court.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/3vj5j6i0"]],tags:[H,C]},
+ {d:"Jun 2022",h:"<strong>Gong, “Transparent Privacy is Principled Privacy.”</strong> A publicly known privacy mechanism allows valid inference and accountability, which courts need when weighing protected data.",src:[["HDSR (DOI)","https://doi.org/10.1162/99608f92.b5d3faaa"]],tags:[H,C]},
+ {d:"Aug 2025",h:"<strong>Abowd et al., “A Simulated Reconstruction and Reidentification Attack on the 2010 U.S. Census”</strong> (Census Bureau CES 25-57). Records were perfectly rebuilt for 70% of blocks (97M people). This is the Bureau's case under its Title 13 confidentiality duty.",src:[["Census Bureau CES","https://www.census.gov/library/working-papers/series/ces-wp.html"]],tags:[C]},
+ {d:"Aug 2025",h:"<strong>Steed, Qing &amp; Wu</strong> show that public statistics could expose subsidized-housing households breaking occupancy rules, a real legal harm (eviction). Swapping failed to protect them and differential privacy worked.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/eb9hacc7"]],tags:[H]},
+ {d:"Feb 2026",h:"<strong>Bailie, Gong &amp; Meng, “A Refreshment Stirred, Not Shaken.”</strong> Comparing privacy budgets without accounting for invariants misleads, and “mathematical assurances do not automatically ensure real-world privacy.”",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/a1bpffpz"]],tags:[H,C]}
+]);
+fill("#pLeak",[
+ {d:"2008",h:"<strong>Narayanan &amp; Shmatikov, “Robust De-anonymization of Large Sparse Datasets.”</strong> A little outside knowledge re-identified Netflix Prize users, so removing names did not make the data anonymous.",src:[["arXiv (earlier version)","https://arxiv.org/abs/cs/0610105"]],tags:[C]},
+ {d:"2008",h:"<strong>Homer et al.</strong> (PLoS Genetics). Aggregate DNA statistics can reveal whether a person is in a study, with both forensic and privacy implications.",src:[["PLoS Genetics (DOI)","https://doi.org/10.1371/journal.pgen.1000167"]],tags:[C]},
+ {d:"2017",h:"<strong>Dwork, Smith, Steinke &amp; Ullman, “Exposed! A Survey of Attacks on Private Data.”</strong> Releasing only aggregates is not automatically safe, which challenges legal assumptions about aggregate data.",src:[["Annual Reviews (DOI)","https://doi.org/10.1146/annurev-statistics-060116-054123"]],tags:[C]},
+ {d:"Dec 2023",h:"<strong>Morris, Kuleshov, Shmatikov &amp; Rush, “Text Embeddings Reveal (Almost) As Much As Text”</strong> (EMNLP 2023). 92% of short inputs were rebuilt exactly, including 89% of full names in clinical notes. Legal AI search tools built over sealed or privileged files face the same risk.",src:[["ACL Anthology","https://aclanthology.org/2023.emnlp-main.765/"]],tags:[C]},
+ {d:"Nov 2023",h:"<strong>Nasr, Carlini et al., “Scalable Extraction of Training Data from (Production) Language Models.”</strong> A divergence attack made ChatGPT emit memorized training data, supporting the EDPB's view that models are not automatically anonymous.",src:[["arXiv","https://arxiv.org/abs/2311.17035"]],tags:[R]},
+ {d:"2024",h:"<strong>Staab, Vero, Balunović &amp; Vechev, “Beyond Memorization”</strong> (ICLR 2024). LLMs inferred location, income and sex from Reddit text with up to 85% accuracy, creating personal data no one disclosed.",src:[["arXiv","https://arxiv.org/abs/2310.07298"]],vs:1,tags:[R]}
+]);
+fill("#pHdsr",[
+ {d:"May 2024",h:"<strong>Special Issue 5, “Future Shock: Grappling With the Generative AI Revolution”</strong> (eds. Leslie &amp; Meng), on governing generative AI.",src:[["HDSR","https://hdsr.mitpress.mit.edu/specialissue5"]],tags:[H]},
+ {d:"May 2024",h:"<strong>Hardinges, Simperl &amp; Shadbolt.</strong> Undocumented training data prevents regulators from knowing whether models took in personal data, and the authors call for mandatory transparency.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/xau9dza3"]],tags:[H]},
+ {d:"Dec 2024",h:"<strong>Garrido, “Data Protection and Generative AI: Inconclusive Answers to Unresolved Questions.”</strong> Treats GDPR-style data protection law as a working tool for regulating generative AI.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/150vm8ft/release/1"]],tags:[H]},
+ {d:"Dec 2024",h:"<strong>Chaudhary &amp; Penn, “Beware the Intention Economy.”</strong> LLMs could collect and sell signals of users' intentions, a gap in consumer-protection and data-protection law.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/ujvharkk"]],tags:[H]},
+ {d:"Nov 2023",h:"<strong>McCartan, Simko &amp; Imai, “Making Differential Privacy Work for Census Data Users.”</strong> Redistricting experts in court need usable access to the noisy measurement file.",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/y6oilhhe"]],tags:[H]},
+ {d:"Aug 2025",h:"<strong>Special Issue 6, “Data Privacy for Social Sciences”</strong> (Aug 2025 – Feb 2026). Data custodians are legally bound to protect confidentiality, while linking with commercial data makes re-identification easier.",src:[["HDSR","https://hdsr.mitpress.mit.edu/specialissue6"]],tags:[H]},
+ {d:"Feb 2026",h:"<strong>Neunhoeffer, Seeman &amp; Drechsler</strong> on synthetic data: when can it count as formally private, and so possibly as legally anonymized?",src:[["HDSR","https://hdsr.mitpress.mit.edu/pub/j9p0axa5"]],tags:[H]},
+ {d:"Podcast",h:"<strong>HDSR Podcast, “Differential Privacy for the 2020 U.S. Census,”</strong> Parts 1–2 (2022), with Groshen, Gong, Vadhan, Abowd and boyd.",src:[["HDSR Podcast","https://hdsr.mitpress.mit.edu/podcast"],["Part 2","https://hdsr.podbean.com/e/differential-privacy-for-the-2020-us-census-can-we-make-data-both-private-and-useful-part-2/"]],tags:[H]}
+]);
+$("#pOpinion").innerHTML=`
+<div class="evrow"><h4>Americans who think more AI will make their personal information less secure (Feb 2026)</h4>
+ ${bar("Less secure",71,100,"71%","var(--priv)")}${bar("More secure",3,100,"3%","var(--priv)")}
+ ${srcHTML([["Pew Research Center, Jun 2026","https://www.pewresearch.org/chart/americans-largely-think-ai-will-make-their-personal-information-less-secure/"]])}</div>
+<div class="evrow"><h4>Americans aware of AI who have little or no trust in companies to use it responsibly (May 2023)</h4>
+ ${bar("Little or no trust",70,100,"70%","var(--priv)")}
+ ${srcHTML([["Pew Research Center, Oct 2023","https://www.pewresearch.org/short-reads/2023/10/18/key-findings-about-americans-and-data-privacy/"]])}</div>`;
+fill("#pGov",[
+ {d:"2019",h:"<strong>Nissenbaum, “Contextual Integrity Up and Down the Data Food Chain”</strong> (Theoretical Inquiries in Law). Privacy norms govern information flows. AI inference from low-level data strains them, so asking only whether data is anonymous misses harms.",src:[["Theoretical Inquiries in Law (DOI)","https://doi.org/10.1515/til-2019-0008"]],tags:[C]},
+ {d:"2020",h:"<strong>Culnane, Rubinstein &amp; Watts, “Not fit for Purpose: A critical analysis of the ‘Five Safes’.”</strong> A data-sharing framework written into Australian law but, the authors argue, disconnected from legal protections.",src:[["arXiv","https://arxiv.org/abs/2011.02142"]],tags:[C]},
+ {d:"2019",h:"<strong>Leonelli; Wing; Borgman</strong> in HDSR 1.1. Data governance shapes interpretation, privacy matters at every stage of the data life cycle, and what to keep and for how long relates to legal retention and erasure rules.",src:[["Leonelli","https://doi.org/10.1162/99608f92.17405bb6"],["Wing","https://doi.org/10.1162/99608f92.e26845b4"],["Borgman","https://doi.org/10.1162/99608f92.9a36bdb6"]],tags:[H,C]}
+]);
+
+/* ---------- Exhibit 7 videos ---------- */
+const V=(t,ch,chu,id,date,len,desc,c)=>`<li class="item tile vid" data-v="${VIEWS[id]||""}" style="--c:${c}" title="${esc(desc.replace(/<[^>]+>/g,""))}"><a class="thumb" href="https://www.youtube.com/watch?v=${id}" aria-label="Watch ${esc(t)} on YouTube"><span></span></a><div class="tile-body"><div class="d">${date} · ${len}</div><p>${t}</p><span class="credit">Video by <a href="${chu}">${ch}</a> · <a href="https://www.youtube.com/watch?v=${id}">Watch on YouTube ↗</a></span>${VIEWS[id]?`<span class="imp">${fmtN(VIEWS[id])} views</span>`:""}</div></li>`;
+$("#vNews").innerHTML=[
+ V("“Godfather of AI” Geoffrey Hinton: The 60 Minutes Interview","60 Minutes","https://www.youtube.com/@60minutes","qrvK_KuIeJk","9 Oct 2023","13 min","Scott Pelley interviews Hinton about what AI can do and why he says no path to safety is guaranteed.","var(--ai)"),
+ V("The EU agrees on AI regulations: What will it mean for people and businesses in the EU?","DW News","https://www.youtube.com/@dwnews","I19ezZcyB6w","9 Dec 2023","4 min","Reports the provisional deal on the EU AI Act, including rules for ChatGPT-style systems and biometric surveillance.","var(--ai)"),
+ V("Nobel Prize lecture: Geoffrey Hinton, Nobel Prize in Physics","Nobel Prize","https://www.youtube.com/@NobelPrize","XDE9DjpcSdI","31 Jan 2025","31 min","Hinton's official Nobel lecture, “Boltzmann Machines,” delivered 8 December 2024.","var(--ai)"),
+ V("How China's New AI Model DeepSeek Is Threatening U.S. Dominance","CNBC","https://www.youtube.com/@CNBC","WEBiebbeNCA","24 Jan 2025","40 min","A documentary on how DeepSeek built a competitive open model cheaply, and what that means for US AI leadership.","var(--ai)"),
+ V("Anthropic CEO warns that without guardrails, AI could be on dangerous path","60 Minutes","https://www.youtube.com/@60minutes","aAPpQC-3EyE","16 Nov 2025","13 min","Dario Amodei on the risks of fast-moving, unregulated AI.","var(--ai)"),
+ V("AI moves fast. Here's how the law can keep up | Kirsten Rulf | TED@BCG 2025","TED Institute","https://www.youtube.com/@TEDInstitute","GL5ZSWQUbeM","14 Aug 2026","TED talk","A speaker who co-negotiated the EU AI Act on how law can keep pace with AI.","var(--ai)")
+].join("");
+$("#vLaw").innerHTML=[
+ V("How to Use ChatGPT to Ruin Your Legal Career","LegalEagle","https://www.youtube.com/@LegalEagle","oqSYljRYDEM","10 Jun 2023","28 min","A practicing lawyer breaks down <em>Mata v. Avianca</em>, where ChatGPT-invented citations were filed in federal court. It predates the window but is the origin story.","var(--law)"),
+ V("New York judge blasts man for using AI avatar to argue case","Global News","https://www.youtube.com/@globalnews","wiNHGXyVY58","7 Apr 2025","~2 min","A New York appellate panel stops a litigant who tried to argue through an AI-generated avatar.","var(--law)"),
+ V("AI is on trial as generated evidence finds its way into the courtroom","NBC News","https://www.youtube.com/@NBCNews","7KqrfwGeCko","19 Nov 2025","4 min","Laura Jarrett reports on AI-fabricated evidence and deepfakes reaching courtrooms.","var(--law)"),
+ V("Harvard Law School Library Book Talk | Cass Sunstein, ‘Imperfect Oracle: What AI Can and Cannot Do’","Harvard Law School","https://www.youtube.com/@HarvardLawSchool","MvBdRF3zw5k","19 Nov 2025","53 min","Sunstein discusses his book on the limits of AI.","var(--law)"),
+ V("Georgia Supreme Court justice asks attorney about fake AI citations","11Alive","https://www.youtube.com/@11Alive","rfxgovgpWcM","2 Apr 2026","~2 min","A state supreme court justice questions counsel about fake AI citations during oral argument.","var(--law)"),
+ V("AI Initiative Speaker Series: Legal Risks with GenAI with Professor Mark Lemley","Stanford Law School","https://www.youtube.com/@StanfordLawSchool","qRaq-3BZfNg","1 Jun 2026","Talk","Mark Lemley on generative AI, copyright and legal risk.","var(--law)")
+].join("");
+$("#vLang").innerHTML=[
+ V("Attention in transformers, step-by-step | Deep Learning Chapter 6","3Blue1Brown","https://www.youtube.com/@3blue1brown","eMlx5fFNoYc","7 Apr 2024","26 min","A visual explanation of how a word's meaning shifts with the words around it. This is how models handle ambiguity.","var(--priv)"),
+ V("Can LLMs Understand Meaning?","Quanta Magazine","https://www.youtube.com/@QuantaScienceChannel","6iO8TtCs_Cw","29 Apr 2024","4 min","Ellie Pavlick (Brown University) on turning philosophical ideas of “meaning” into tests for LLMs.","var(--priv)"),
+ V("Large Language Models explained briefly","3Blue1Brown","https://www.youtube.com/@3blue1brown","LPZh9BOjkQs","20 Nov 2024","8 min","A short animated explainer of LLMs as next-word predictors, made for the Computer History Museum.","var(--priv)"),
+ V("Critical Legal AI Literacies: Emily Bender on “LLMs and the Lawyer's Search for Meaning”","Yale Law Library","https://www.youtube.com/@yalelawlibrary","gG5R-TdfXhw","10 Oct 2025","20 min","Computational linguist Emily Bender on why LLMs may be ill-suited to the lawyer's search for meaning. This video links Exhibits 4 and 5.","var(--priv)")
+].join("");
+["#vNews","#vLaw","#vLang"].forEach(q=>[...$(q).children].forEach(t=>$("#vAll").appendChild(t)));
+layoutMosaic($("#vAll"),{legend:"Tile area grows with YouTube views (log scale), checked 1 Oct 2026",weight:t=>Math.pow(Math.log10(+t.dataset.v||10),1.5),minArea:32000,height:680});
+$("#lawChips").addEventListener("click",()=>setTimeout(()=>positionTiles($("#lawList")),0));
+/* video previews: official YouTube thumbnail, then a muted embedded preview while the card is on screen */
+const VSTART={qrvK_KuIeJk:180,I19ezZcyB6w:45,XDE9DjpcSdI:300,WEBiebbeNCA:420,"aAPpQC-3EyE":180,GL5ZSWQUbeM:90,oqSYljRYDEM:300,wiNHGXyVY58:15,"7KqrfwGeCko":40,MvBdRF3zw5k:600,rfxgovgpWcM:15,"qRaq-3BZfNg":300,eMlx5fFNoYc:240,"6iO8TtCs_Cw":30,LPZh9BOjkQs:90,"gG5R-TdfXhw":180};
+document.querySelectorAll(".vid .thumb").forEach(a=>{const id=new URL(a.href).searchParams.get("v");a.dataset.vid=id;
+  a.insertAdjacentHTML("afterbegin",`<img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><em class="live-badge">Muted preview</em>`);});
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function playPrev(a){if(a.querySelector("iframe"))return;const id=a.dataset.vid,st=VSTART[id]||30;
+  const f=document.createElement("iframe");f.title="Muted preview";f.allow="autoplay; encrypted-media; picture-in-picture";f.tabIndex=-1;f.setAttribute("aria-hidden","true");
+  f.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&start=${st}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&cc_load_policy=0`;
+  f.addEventListener("load",()=>setTimeout(()=>a.classList.add("playing"),900));a.appendChild(f);}
+function stopPrev(a){const f=a.querySelector("iframe");if(f)f.remove();a.classList.remove("playing");}
+let vio=null;
+if(!reduceMotion&&"IntersectionObserver" in window){
+  vio=new IntersectionObserver(es=>es.forEach(e=>{const a=e.target;if(e.isIntersecting&&!a.closest("#library"))playPrev(a);else stopPrev(a);}),{threshold:.6});
+  document.querySelectorAll(".vid .thumb").forEach(a=>vio.observe(a));
+}
+
+
+/* ---------- Exhibit 8 ---------- */
+const Y0=2026,Y1=2045,pos=y=>((y-Y0)/(Y1-Y0)*100);
+$("#haxisTop").innerHTML=[2026,2030,2035,2040,2045].map(y=>`<span>${y}</span>`).join("");
+const P=[
+ {w:"Gartner (2025; update Sep 2026)",p:"More than 40% of agentic-AI projects cancelled by end-2027, and 15% of daily work decisions made autonomously by 2028.",a:2026.7,b:2028,src:[["Gartner","https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"],["The Register","https://www.theregister.com/ai-and-ml/2026/09/30/7-in-10-enterprises-expected-to-abandon-vendor-built-agentic-ai-by-2028/5300021"]],vs:1,c:"var(--ai)"},
+ {w:"AI 2027 (Kokotajlo et al., 2025)",p:"Scenario: a superhuman coder by March 2027 and superintelligence by the end of 2027. In November 2025 the authors pushed their median estimates back about 1.5 years.",a:2026.7,b:2029,src:[["ai-2027.com","https://ai-2027.com/"]],c:"var(--warn)",open:1},
+ {w:"International AI Safety Report 2026 (chair: Yoshua Bengio)",p:"Four scenarios to 2030, from stagnation to sharp acceleration. Current trends are consistent with continued improvement.",a:2026.7,b:2030,src:[["Report","https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026"]],c:"var(--ai)"},
+ {w:"Epoch AI (2024)",p:"Training runs about 10,000 times larger than GPT-4 are likely technically feasible by 2030. Power supply is the tightest limit.",a:2026.7,b:2030,src:[["Epoch AI","https://epoch.ai/publications/can-ai-scaling-continue-through-2030"]],c:"var(--ai)"},
+ {w:"International Energy Agency (2025)",p:"Data-centre electricity use more than doubles, to about 945 TWh, by 2030.",a:2026.7,b:2030,src:[["IEA","https://www.iea.org/reports/energy-and-ai/executive-summary"]],vs:1,c:"var(--ai)"},
+ {w:"Metaculus forecasting community",p:"Median forecast for the first “general AI” system is around 2033. The figure changes often, and the exact current value was not verified.",a:2026.7,b:2033,src:[["Metaculus","https://www.metaculus.com/questions/5121/when-will-the-first-general-ai-system-be-devised-tested-and-publicly-announced/"]],c:"var(--warn)",open:1},
+ {w:"IMF (Jan 2024)",p:"About 40% of jobs worldwide are exposed to AI (about 60% in advanced economies). AI is likely to worsen inequality in most scenarios. Horizon: “medium term.”",a:2026.7,b:2035,src:[["Bloomberg","https://www.bloomberg.com/news/articles/2024-01-14/artificial-intelligence-will-affect-almost-40-of-jobs-imf-says"]],vs:1,c:"var(--law)",open:1},
+ {w:"McKinsey (2023)",p:"Generative AI could add $2.6–4.4 trillion a year in value, with large-scale work automation arriving mostly between 2030 and 2040.",a:2030,b:2040,src:[["McKinsey","https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier"]],vs:1,c:"var(--law)",open:1},
+ {w:"Pew Research: experts vs. public (Apr 2025)",p:"Over the next 20 years, 56% of AI experts expect a positive impact on the US, compared with 17% of the public. 64% of the public expect fewer jobs.",a:2026.7,b:2045,src:[["Pew Research Center","https://www.pewresearch.org/internet/2025/04/03/how-the-us-public-and-ai-experts-view-artificial-intelligence/"]],c:"var(--priv)"}
+];
+$("#proj").innerHTML=P.map(r=>`<div class="prow"><div><h4>${r.w}</h4><p>${r.p}</p>${srcHTML(r.src,r.vs)}</div><div class="htrack"><span class="hspan ${r.open?"open":""}" style="left:${pos(r.a)}%;width:${pos(r.b)-pos(r.a)}%;--c:${r.c}"></span><span class="hlabel" style="left:min(${pos(r.b)}% + 6px, calc(100% - 40px))">${Math.floor(r.b)}</span></div></div>`).join("");
+$("#cal").innerHTML=[
+ ["15 Oct 2026","The US Advisory Committee on Evidence Rules meets. Proposed Rule 707 (machine-generated evidence) remains under study."],
+ ["18 Oct 2026","Comment deadline for the Tenth Circuit's human-review rule for AI-assisted filings."],
+ ["6 Nov 2026","Reported due date for summary-judgment replies in the OpenAI copyright litigation (NYT, Authors Guild), per search results only."],
+ ["2 Dec 2026","End of the grace period for AI Act watermarking duties on systems already on the market."],
+ ["1 Jan 2027","Colorado's replacement AI law takes effect, along with California's automated-decision duties under the CCPA and the proposed Tenth Circuit rule."],
+ ["2 Dec 2027","Delayed start date for the EU AI Act's stand-alone high-risk obligations, which cover AI used in justice and law enforcement."],
+ ["2 Aug 2028","Delayed start date for the AI Act's rules on AI built into regulated products."]
+].map(([d,t])=>`<li><span class="d">${d}</span><span>${t}</span></li>`).join("");
+
+fill("#recheck",[
+ {d:"SB 574",h:"Did California's governor sign or veto SB 574 by the 30 September deadline?",src:[["Farella Braun + Martel","https://www.fbm.com/publications/sb-574-advances-california-ai-rules-for-lawyers-arbitrators-near-enactment/"]],tags:[["warn","Pending"]]},
+ {d:"Rule 707",h:"Status of proposed Federal Rule of Evidence 707 after the 15 October 2026 committee meeting.",src:[["US Courts","https://www.uscourts.gov/sites/default/files/document/advisory_committee_on_evidence_rules_may_2026.pdf"]],tags:[["warn","Pending"]]},
+ {d:"Getty appeal",h:"Hearing date for the appeal in <em>Getty Images v. Stability AI</em>, unconfirmed.",src:[["IPKat","https://ipkitten.blogspot.com/2026/01/permission-to-appeal-granted-in-getty.html"]],tags:[["warn","Pending"]]},
+ {d:"Sept 2026",h:"Several September stories (Opus 5.5 launch, UN session, White House accord) were confirmed by multiple search results but not opened directly. Open the links once before presenting.",src:[["CNBC (accord)","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"]]}
+]);
+
+/* ---------- first screen: trending feed ---------- */
+const FEED=[
+ {d:"28–29 Sep",k:["ai","AI & safety"],h:"OpenAI cancels the release of GPT-6.1 “Astra” after it failed internal safety tests",src:[["Al Jazeera","https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns"],["CNBC","https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html"]],t:"month"},
+ {d:"29–30 Sep",k:["law","Copyright"],h:"Third Circuit affirms Thomson Reuters v. ROSS, the first federal appeals ruling on fair use in AI training",src:[["IPWatchdog","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"]],t:"law"},
+ {d:"29 Sep",k:["ai","Policy"],h:"President Trump says top AI leaders signed a voluntary, “morally binding” superintelligence accord",src:[["CNBC","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"],["ABC News","https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988"]],vs:1,t:"month"},
+ {d:"29 Sep",k:["ai","Industry"],h:"Anthropic's leaked IPO prospectus shows a $42B loss for 2025 and a target valuation above $2T",src:[["Fortune","https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/"]],t:"month"},
+ {d:"26 Sep",k:["ai","AI & safety"],h:"OpenAI pauses training after its agents probed US government websites in unexpected ways",src:[["AP via WTOP","https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/"]],t:"month"},
+ {d:"25 Sep",k:["priv","Privacy"],h:"Ireland's data protection regulator publishes its AI Insights Report, covering about 180 AI products",src:[["Irish DPC","https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"]],t:"privacy"},
+ {d:"25 Sep",k:["law","Courts"],h:"DC Circuit (2–1) lets the Pentagon keep its “supply chain risk” label on Anthropic for now",src:[["ABC News","https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690"]],t:"month"},
+ {d:"23 Sep",k:["ai","Policy"],h:"Sam Altman and Dario Amodei ask the UN Security Council for international AI safety standards",src:[["CNN","https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council"]],vs:1,t:"month"},
+ {d:"21–22 Sep",k:["law","Litigation"],h:"British Columbia sues OpenAI and Sam Altman over the Tumbler Ridge school shooting",src:[["Al Jazeera","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"],["CBC","https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395"]],t:"month"}
+];
+fill("#feed",FEED.map(f=>({d:f.d,h:f.h,src:f.src,vs:f.vs,tags:[[f.k[0],f.k[1]]]})));
+
+(function spark(){
+  const W=420,H=70,p=4,x=d=>p+(d-1)/29*(W-2*p),y=v=>H-p-v/5.6*(H-2*p);
+  let segs=[],seg=[];SEPT.forEach((r,i)=>{const d=+r[0];if(i&&d!==+SEPT[i-1][0]+1){segs.push(seg);seg=[]}seg.push([x(d),y(r[2])])});segs.push(seg);
+  let g=`<line x1="${p}" x2="${W-p}" y1="${H-p}" y2="${H-p}" stroke="var(--rule)"/>`;
+  segs.forEach(s=>{const pts=s.map(q=>q.join(",")).join(" ");
+    g+=`<polygon points="${s[0][0]},${H-p} ${pts} ${s[s.length-1][0]},${H-p}" fill="var(--ai)" opacity=".1"/><polyline points="${pts}" fill="none" stroke="var(--ai)" stroke-width="2" stroke-linejoin="round"/>`;});
+  g+=`<circle cx="${x(24)}" cy="${y(4.94)}" r="4" fill="var(--ai)"/>`;
+  $("#spark").innerHTML=g;
+})();
+
+/* ---------- topic map ---------- */
+const NODES=[
+ {id:"law",l:["AI in","legal systems"],s:"my core question",x:500,y:320,r:70,c:"var(--law)",sec:"law"},
+ {id:"news",l:["AI in","the news"],s:"3 years charted",x:215,y:165,r:52,c:"var(--ai)",sec:"pulse"},
+ {id:"landmarks",l:["Landmark","headlines"],s:"2023–2026",x:118,y:372,r:42,c:"var(--ai)",sec:"landmarks"},
+ {id:"month",l:["September","2026"],s:"the past month",x:285,y:520,r:46,c:"var(--ai)",sec:"month"},
+ {id:"meaning",l:["Vagueness &","interpretation"],s:"law · language · LLMs",x:790,y:168,r:60,c:"var(--lang)",sec:"meaning"},
+ {id:"privacy",l:["Data","privacy"],s:"HDSR + my course",x:790,y:468,r:58,c:"var(--priv)",sec:"privacy"},
+ {id:"watch",l:["Video","clips"],s:"credited",x:520,y:578,r:38,c:"var(--muted)",sec:"watch"},
+ {id:"next",l:["What's","next"],s:"forecasts",x:500,y:92,r:44,c:"var(--warn)",sec:"next"},
+ // satellites
+ {id:"s-sanc",sat:"law",l:["Sanctions"],x:428,y:200,c:"var(--law)",sec:"law",act:{filter:"Sanctions"}},
+ {id:"s-judg",sat:"law",l:["Judges"],x:572,y:200,c:"var(--law)",sec:"law",act:{filter:"Judges"}},
+ {id:"s-copy",sat:"law",l:["Copyright"],x:640,y:322,c:"var(--law)",sec:"law",act:{filter:"Copyright"}},
+ {id:"s-reg",sat:"law",l:["Regulation"],x:368,y:372,c:"var(--law)",sec:"law",act:{filter:"Regulation"}},
+ {id:"s-ind",sat:"law",l:["Legal-AI industry"],x:470,y:452,c:"var(--law)",sec:"law",act:{filter:"Industry"}},
+ {id:"s-found",sat:"meaning",l:["Foundations"],x:905,y:72,c:"var(--lang)",sec:"meaning",act:{to:"#foundations"}},
+ {id:"s-llm",sat:"meaning",l:["LLMs as interpreters"],x:925,y:228,c:"var(--lang)",sec:"meaning",act:{to:"#papers"}},
+ {id:"s-evid",sat:"meaning",l:["The evidence"],x:680,y:58,c:"var(--lang)",sec:"meaning",act:{to:"#evidence"}},
+ {id:"s-conf",sat:"privacy",side:"b",l:["Confidentiality"],x:668,y:588,c:"var(--priv)",sec:"privacy",act:{to:"#pCourts"}},
+ {id:"s-regu",sat:"privacy",l:["Regulators"],x:930,y:385,c:"var(--priv)",sec:"privacy",act:{to:"#pReg"}},
+ {id:"s-anon",sat:"privacy",l:["Legally “anonymous”"],x:918,y:535,c:"var(--priv)",sec:"privacy",act:{to:"#pAnon"}},
+ {id:"s-leak",sat:"privacy",l:["What models leak"],x:815,y:605,c:"var(--priv)",sec:"privacy",act:{to:"#pLeak"}},
+ {id:"s-hdsr",sat:"privacy",l:["HDSR shelf"],x:690,y:400,c:"var(--priv)",sec:"privacy",act:{to:"#pHdsr"}},
+ {id:"s-chart",sat:"news",l:["Coverage chart"],x:95,y:95,c:"var(--ai)",sec:"pulse",act:{to:"#chart"}},
+ {id:"s-cal",sat:"next",l:["Legal calendar"],x:330,y:52,c:"var(--warn)",sec:"next",act:{to:"#cal"}}
+];
+const EDGES=[
+ ["law","news","AI-and-law share of news grew 3.2×"],
+ ["law","month","10 legal stories in September"],
+ ["law","meaning","Judges ask LLMs what words mean"],
+ ["law","privacy","Chat logs in discovery, privilege"],
+ ["meaning","privacy","The law's vague word “anonymous”"],
+ ["law","next","Court rules & AI Act deadlines ahead"],
+ ["law","landmarks","$1.5B settlement made headlines"],
+ ["law","watch","Courtroom clips"],
+ ["news","landmarks","Spikes line up with big stories"],
+ ["news","month","Record 4.94% share on 24 Sep"],
+ ["news","next","Forecasts of AI's growth"],
+ ["month","privacy","Irish DPC AI report, 25 Sep"],
+ ["watch","meaning","How LLMs handle meaning"],
+ ["watch","month","News clips"]
+];
+NODES.filter(n=>n.sat).forEach(n=>EDGES.push([n.sat,n.id,null]));
+const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
+const NS="http://www.w3.org/2000/svg";
+function curve(a,b){const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,k=len*.12;
+  const cx=mx-dy/len*k,cy=my+dx/len*k;return {d:`M${a.x},${a.y} Q${cx},${cy} ${b.x},${b.y}`,lx:(mx+cx)/2,ly:(my+cy)/2};}
+(function drawMap(){
+  const svg=$("#map");let g="";
+  EDGES.forEach(([a,b,l],i)=>{const c=curve(byId[a],byId[b]);g+=`<path class="edge ${l?"":"sat"}" data-e="${i}" data-a="${a}" data-b="${b}" d="${c.d}"/>`;});
+  EDGES.forEach(([a,b,l],i)=>{if(!l)return;const c=curve(byId[a],byId[b]);const w=l.length*7.3+16;
+    g+=`<rect class="elabel-bg" data-e="${i}" x="${c.lx-w/2}" y="${c.ly-12}" width="${w}" height="22" rx="11" stroke="var(--rule)"/><text class="elabel" data-e="${i}" x="${c.lx}" y="${c.ly+4}" text-anchor="middle">${esc(l)}</text>`;});
+  NODES.forEach((n,i)=>{
+    const dur=7+((i*37)%50)/10, dx=((i*13)%7)-3, dy=((i*29)%7)-3;
+    if(n.sat){
+      const p=byId[n.sat],ang=Math.atan2(n.y-p.y,n.x-p.x),right=Math.cos(ang)>=-.2;
+      let tx=Math.abs(Math.cos(ang))<.35?0:(right?14:-14), ty=Math.abs(Math.cos(ang))<.35?(Math.sin(ang)>0?24:-14):4;
+      if(n.side==="b"){tx=0;ty=26}
+      const anchor=tx===0?"middle":(right?"start":"end");
+      g+=`<g class="node sat float" tabindex="0" role="button" aria-label="Open ${esc(n.l[0])}" data-n="${n.id}" style="--c:${n.c};--dur:${dur}s;--dx:${dx}px;--dy:${dy}px">
+        <circle class="halo" cx="${n.x}" cy="${n.y}" r="14"/><circle class="dotc" cx="${n.x}" cy="${n.y}" r="6"/>
+        <text x="${n.x+tx}" y="${n.y+ty}" style="text-anchor:${anchor}">${esc(n.l[0])}</text></g>`;
+    } else {
+      const fs=n.r>=60?19:n.r>=50?17:15.5;
+      g+=`<g class="node float" tabindex="0" role="button" aria-label="Open ${esc(n.l.join(" "))}" data-n="${n.id}" style="--c:${n.c};--dur:${dur}s;--dx:${dx}px;--dy:${dy}px">
+        <circle class="halo" cx="${n.x}" cy="${n.y}" r="${n.r+12}"/><circle class="core" cx="${n.x}" cy="${n.y}" r="${n.r}"/>
+        <text x="${n.x}" y="${n.y-(n.l.length>1?fs*0.35:-fs*0.1)}" font-size="${fs}" font-weight="700">${esc(n.l[0])}</text>
+        ${n.l[1]?`<text x="${n.x}" y="${n.y+fs*0.8}" font-size="${fs}" font-weight="700">${esc(n.l[1])}</text>`:""}
+        <text class="sub" x="${n.x}" y="${n.y+n.r+28}">${esc(n.s)}</text></g>`;
+    }
+  });
+  svg.innerHTML=g;
+  const hl=id=>{svg.classList.add("dim");const keep=new Set([id]);
+    EDGES.forEach(([a,b],i)=>{if(a===id||b===id){keep.add(a);keep.add(b);svg.querySelectorAll(`[data-e="${i}"]`).forEach(e=>e.classList.add("hl"))}});
+    svg.querySelectorAll(".node").forEach(e=>e.classList.toggle("hl",keep.has(e.dataset.n)));};
+  const clear=()=>{svg.classList.remove("dim");svg.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl"));};
+  svg.querySelectorAll(".node").forEach(el=>{const id=el.dataset.n;
+    el.addEventListener("mouseenter",()=>hl(id));el.addEventListener("mouseleave",clear);
+    el.addEventListener("focus",()=>hl(id));el.addEventListener("blur",clear);
+    el.addEventListener("click",()=>openTopic(id));
+    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openTopic(id)}});});
+  $("#topiclist").innerHTML=NODES.filter(n=>!n.sat).map(n=>`<li><button data-open-node="${n.id}" style="--c:${n.c}">${esc(n.l.join(" "))}</button></li>`).join("");
+})();
+
+/* ---------- topic sheet ---------- */
+const SECNAME={pulse:"AI in the news",landmarks:"Landmark headlines",month:"September 2026",law:"AI in legal systems",meaning:"Vagueness & interpretation",privacy:"Data privacy",watch:"Video clips",next:"What's next",sources:"Method & sourcing"};
+let current=null,lastFocus=null;
+function neighbours(id){const s=new Set();EDGES.forEach(([a,b,l])=>{if(!l)return;if(a===id)s.add(b);if(b===id)s.add(a)});return [...s].map(k=>byId[k]);}
+function openTopic(id){
+  const n=byId[id]||{sec:id,l:[SECNAME[id]||id]};const main=n.sat?byId[n.sat]:n;
+  const sec=document.getElementById(n.sec);if(!sec)return;
+  if(current&&current!==sec){current.querySelectorAll(".vid .thumb").forEach(stopPrev);$("#library").appendChild(current);}
+  $("#sheetBody").appendChild(sec);current=sec;relayoutIn(sec);requestAnimationFrame(()=>relayoutIn(sec));
+  $("#sheetCrumb").innerHTML=`Map / <b>${esc(SECNAME[n.sec])}</b>${n.sat?` / ${esc(n.l[0])}`:""}`;
+  const rel=byId[main.id]?neighbours(main.id):[];
+  $("#related").innerHTML=rel.length?`<span>Connected:</span>`+rel.map(r=>`<button data-open-node="${r.id}" style="--c:${r.c}">${esc(r.l.join(" "))}</button>`).join(""):"";
+  const sh=$("#sheet");if(sh.hidden){lastFocus=document.activeElement;sh.hidden=false;document.documentElement.classList.add("locked");}
+  const px=$("#panelx");px.scrollTop=0;px.focus({preventScroll:true});relayoutIn(sec);
+  if(vio)sec.querySelectorAll(".vid .thumb").forEach(a=>{vio.unobserve(a);vio.observe(a)});
+  if(sec.id==="law"){const c=(n.act&&n.act.filter)||"All";const b=$(`#lawChips .chip[data-c="${c}"]`);if(b)b.click();}
+  if(n.act&&n.act.to){const t=document.querySelector(n.act.to);const box=t&&(t.closest(".panel,.chartbox")||t);
+    if(box)setTimeout(()=>{px.scrollTo({top:box.getBoundingClientRect().top-px.getBoundingClientRect().top+px.scrollTop-70,behavior:"smooth"});box.classList.remove("flash");void box.offsetWidth;box.classList.add("flash");},120);}
+  try{history.replaceState(null,"","#"+id)}catch(_){}
+}
+function closeTopic(){const sh=$("#sheet");if(sh.hidden)return;sh.hidden=true;document.documentElement.classList.remove("locked");
+  if(current){current.querySelectorAll(".vid .thumb").forEach(stopPrev);$("#library").appendChild(current);current=null}
+  try{history.replaceState(null,"","#mapsec")}catch(_){}
+  if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});}
+document.addEventListener("click",e=>{
+  const o=e.target.closest("[data-open-node]");if(o){openTopic(o.dataset.openNode);return}
+  const s=e.target.closest("[data-open]");if(s){e.preventDefault();openTopic(s.dataset.open);return}
+  if(e.target.closest("[data-close]"))closeTopic();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeTopic();});
+function fromHash(){const h=location.hash.slice(1);if(h&&(byId[h]||SECNAME[h]))openTopic(h);else if(h==="mapsec"||h==="now")closeTopic();}
+fromHash();window.addEventListener("hashchange",fromHash);
+</script>
+</body>
+</html>
