@@ -183,324 +183,35 @@ html.present body{font-size:18px}
 html.present .slidecount{display:inline}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 html{scroll-behavior:smooth}
-
-/* ---- network layout additions ---- */
-:root{--lang:#6A4BC4;--lang-soft:rgba(106,75,196,.10)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--lang:#B59EFF;--lang-soft:rgba(181,158,255,.14)}}
-:root[data-theme="dark"]{--lang:#B59EFF;--lang-soft:rgba(181,158,255,.14)}
-
-.bar-top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.bar-top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:10px}
-.bar-top nav{display:flex;gap:4px}
-.bar-top nav a{font-family:var(--f-mono);font-size:12px;text-decoration:none;padding:5px 10px;border-radius:999px;color:var(--muted)}
-.bar-top nav a:hover{background:var(--soft);color:var(--ink)}
-
-/* first screen */
-.now{min-height:calc(100vh - 50px);display:flex;align-items:center;padding-block:28px 32px}
-.now .wrap{width:100%;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:44px;align-items:start}
-.now h1{font-size:clamp(38px,4.6vw,64px);font-weight:800;letter-spacing:-.025em;line-height:1}
-.now h1 span{display:block;color:var(--ai);font-size:.62em;margin-top:.25em;letter-spacing:-.01em}
-.now .intro{font-size:18.5px;color:var(--muted);margin-top:18px;max-width:42ch}
-.pulse{margin-top:28px;border-top:1px solid var(--rule);padding-top:16px}
-.pulse b{font-family:var(--f-display);font-size:34px;font-weight:800;color:var(--ai);font-variant-numeric:tabular-nums}
-.pulse p{font-size:14px;color:var(--muted);margin-top:2px}
-.pulse svg{display:block;width:100%;height:auto;margin-top:10px}
-.cue{display:inline-flex;align-items:center;gap:8px;margin-top:26px;font-family:var(--f-mono);font-size:12.5px;color:var(--ink);text-decoration:none;border:1px solid var(--rule);border-radius:999px;padding:8px 14px;background:var(--surface)}
-.cue:hover{border-color:var(--ink)}
-.cue i{display:inline-block;animation:bob 1.8s ease-in-out infinite;font-style:normal}
-@keyframes bob{50%{transform:translateY(3px)}}
-.feed-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
-.feed-head h2{font-size:15px;font-family:var(--f-mono);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);max-width:none}
-.live{display:inline-flex;align-items:center;gap:7px}
-.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--law);box-shadow:0 0 0 0 var(--law);animation:ping 2s infinite}
-@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--law) 60%,transparent)}100%{box-shadow:0 0 0 9px transparent}}
-.feed{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
-.feed li{padding:13px 0;border-top:1px solid var(--rule);min-width:0}
-.feed .meta{display:flex;gap:8px;align-items:center;font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
-.feed p{font-size:15.5px;line-height:1.38;margin-top:5px}
-.feed .src{margin-top:5px}
-.feed li.lead{grid-column:1/-1}
-.feed li.lead p{font-family:var(--f-display);font-size:23px;font-weight:700;line-height:1.2}
-.linkbtn{font-family:var(--f-mono);font-size:12px;background:none;border:0;color:var(--ai);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px}
-@media (max-width:900px){.now .wrap{grid-template-columns:1fr;gap:30px}.now{min-height:0}}
-@media (max-width:560px){.feed{grid-template-columns:1fr}}
-
-/* map */
-.mapsec{padding-block:64px 40px;border-top:1px solid var(--rule)}
-.mapsec h2{max-width:20ch}
-.mapwrap{position:relative;margin-top:26px;background:var(--surface);border:1px solid var(--rule);border-radius:14px;overflow:hidden}
-#map{display:block;width:100%;height:auto}
-#map .edge{fill:none;stroke:var(--rule);stroke-width:1.6;transition:stroke .2s,stroke-width .2s,opacity .2s}
-#map .edge.sat{stroke-width:1;stroke-dasharray:3 4}
-#map .elabel{font-family:var(--f-mono);font-size:12px;fill:var(--ink);opacity:0;transition:opacity .2s;pointer-events:none}
-#map .elabel-bg{fill:var(--surface);opacity:0;transition:opacity .2s}
-#map .node{cursor:pointer;transition:opacity .2s}
-#map .node circle.halo{fill:var(--c);opacity:.12;transition:opacity .2s}
-#map .node circle.core{fill:var(--surface);stroke:var(--c);stroke-width:2}
-#map .node circle.dotc{fill:var(--c)}
-#map .node text{font-family:var(--f-display);fill:var(--ink);text-anchor:middle;pointer-events:none}
-#map .node text.sub{font-family:var(--f-mono);fill:var(--muted);font-size:11px}
-#map .node.sat text{font-family:var(--f-mono);font-size:12px;fill:var(--muted)}
-#map .node:hover circle.halo,#map .node:focus-visible circle.halo,#map .node.hl circle.halo{opacity:.28}
-#map .node:focus{outline:none}
-#map .node:focus-visible circle.core{stroke-width:3.5}
-#map.dim .node:not(.hl){opacity:.28}
-#map.dim .edge:not(.hl){opacity:.25}
-#map .edge.hl{stroke:var(--ink);stroke-width:2.2}
-#map .edge.sat.hl{stroke-width:1.4}
-#map .elabel.hl,#map .elabel-bg.hl{opacity:1}
-#map .float{animation:drift var(--dur,9s) ease-in-out infinite alternate}
-@keyframes drift{from{transform:translate(0,0)}to{transform:translate(var(--dx,3px),var(--dy,-4px))}}
-.maphint{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;padding:12px 18px;border-top:1px solid var(--rule);font-family:var(--f-mono);font-size:12px;color:var(--muted)}
-.maphint .keys{display:flex;flex-wrap:wrap;gap:14px}
-.maphint .keys span::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);margin-right:6px;vertical-align:0}
-.topiclist{display:none;list-style:none;padding:0;margin:18px 0 0;gap:8px;grid-template-columns:1fr 1fr}
-.topiclist button{width:100%;text-align:left;font-family:var(--f-display);font-weight:700;font-size:15px;background:var(--surface);color:var(--ink);border:1px solid var(--rule);border-left:4px solid var(--c);border-radius:8px;padding:11px 12px;cursor:pointer}
-@media (max-width:700px){.topiclist{display:grid}}
-.statsrow{margin-top:34px}
-
-/* sheet (topic detail) */
-.sheet{position:fixed;inset:0;z-index:50;display:flex;justify-content:flex-end}
-.sheet[hidden]{display:none!important}
-.scrim{position:absolute;inset:0;background:color-mix(in srgb,var(--ink) 38%,transparent);animation:fade .2s ease}
-.panelx{position:relative;width:min(1120px,100%);height:100%;background:var(--bg);overflow-y:auto;box-shadow:-20px 0 60px rgba(0,0,0,.18);animation:slide .28s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-.sheet-head{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
-.crumbs{font-family:var(--f-mono);font-size:12px;color:var(--muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.crumbs b{color:var(--ink);font-weight:500}
-.related{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:0 20px;margin:22px auto 0;max-width:1180px;font-family:var(--f-mono);font-size:12px;color:var(--muted)}
-.related button{font-family:var(--f-mono);font-size:12px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 11px;cursor:pointer}
-.related button::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c);margin-right:6px}
-.panelx section.ex{border-bottom:0;padding-block:28px 56px}
-html.locked,html.locked body{overflow:hidden}
-@keyframes slide{from{transform:translateX(40px);opacity:.4}to{transform:none;opacity:1}}
-@keyframes fade{from{opacity:0}}
-.flash{animation:flash 1.6s ease}
-@keyframes flash{0%,40%{box-shadow:0 0 0 3px var(--ai)}100%{box-shadow:0 0 0 0 transparent}}
-@media (prefers-reduced-motion:reduce){#map .float,.cue i,.live::before,.panelx,.scrim{animation:none}}
-footer a{color:inherit}
-
-/* ===== LAB THEME: studio black, lit in red, green and blue (one deliberate dark look) ===== */
-:root:not(#_){
-  --bg:#07090C; --surface:#0F1318; --ink:#F1F3F6; --muted:#97A0AE; --rule:#222833; --soft:#161B22;
-  --law:#FF4D63;  /* crimson light, from Harvard/Bok #A51C30 */
-  --ai:#4FA3FF;   /* blue light, from Bok #2A659C */
-  --lang:#3BE89B; /* green light */
-  --priv:#C77DFF; /* red + blue mixed light */
-  --warn:#FFC24B;
-  --law-soft:rgba(255,77,99,.14); --ai-soft:rgba(79,163,255,.14); --lang-soft:rgba(59,232,155,.14); --priv-soft:rgba(199,125,255,.15); --warn-soft:rgba(255,194,75,.14);
-  color-scheme:dark;
-}
-body{background:var(--bg)}
-/* ambient stage lights */
-body::before{content:"";position:fixed;inset:-20vmax;z-index:-1;pointer-events:none;
-  background:
-   radial-gradient(38vmax 30vmax at 12% 8%, rgba(255,77,99,.20), transparent 70%),
-   radial-gradient(40vmax 32vmax at 92% 18%, rgba(79,163,255,.22), transparent 70%),
-   radial-gradient(42vmax 34vmax at 55% 98%, rgba(59,232,155,.16), transparent 70%);
-  filter:blur(10px);animation:lights 26s ease-in-out infinite alternate}
-@keyframes lights{to{transform:translate3d(2vmax,-1.5vmax,0) rotate(4deg)}}
-body{position:relative;z-index:0}
-.panel,.chartbox,.card,.mapwrap,.stats,.arc{background:color-mix(in srgb,var(--surface) 82%,transparent);backdrop-filter:blur(6px);border-color:var(--rule)}
-.stat{background:color-mix(in srgb,var(--surface) 90%,transparent)}
-.arc li{background:color-mix(in srgb,var(--surface) 92%,transparent)}
-.bar-top,.topnav,.sheet-head{background:color-mix(in srgb,var(--bg) 78%,transparent)}
-.panelx{background:var(--bg)}
-.panelx::before{content:"";position:sticky;top:0;display:block;height:0}
-.scrim{background:rgba(2,3,5,.72)}
-a{text-decoration-color:color-mix(in srgb,currentColor 35%,transparent)}
-
-/* glowing type accents */
-.now h1 span{background:linear-gradient(90deg,var(--law),var(--priv) 40%,var(--ai) 70%,var(--lang));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(79,163,255,.35))}
-.now h1{text-shadow:0 0 40px rgba(255,255,255,.08)}
-.pulse b,.stat b{text-shadow:0 0 22px color-mix(in srgb,var(--c,var(--ai)) 55%,transparent)}
-.pulse b{--c:var(--ai)}
-.callout{background:linear-gradient(120deg,var(--law-soft),transparent 70%);border:1px solid color-mix(in srgb,var(--law) 35%,transparent)}
-.callout b{text-shadow:0 0 30px color-mix(in srgb,var(--law) 60%,transparent)}
-.eyebrow .dot{box-shadow:0 0 10px var(--c,var(--ai))}
-.tag.hdsr{background:var(--priv);color:#0B0710}
-.chip[aria-pressed="true"]{box-shadow:0 0 16px color-mix(in srgb,var(--law) 55%,transparent);color:#fff}
-.seg button[aria-pressed="true"],.btn[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.cue{background:color-mix(in srgb,var(--surface) 70%,transparent);box-shadow:0 0 0 1px var(--rule),0 0 24px rgba(79,163,255,.18)}
-
-/* charts glow */
-#chart polyline,#sept polyline,#spark polyline{filter:drop-shadow(0 0 5px var(--ai))}
-.bar .fill{box-shadow:0 0 12px var(--c,var(--ai))}
-
-/* map glow */
-#map .edge{stroke:#2C3440}
-#map .edge.hl{stroke:#fff;filter:drop-shadow(0 0 4px rgba(255,255,255,.6))}
-#map .node circle.core{fill:#0B0E13;filter:drop-shadow(0 0 14px var(--c))}
-#map .node circle.halo{opacity:.16}
-#map .node:hover circle.halo,#map .node.hl circle.halo{opacity:.38}
-#map .node circle.dotc{filter:drop-shadow(0 0 6px var(--c))}
-#map .elabel-bg{fill:#0B0E13}
-
-/* ===== gallery covers ===== */
-.cover{position:relative;display:block;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:
-  radial-gradient(circle at 30% 30%,color-mix(in srgb,var(--c,var(--ai)) 40%,transparent),transparent 60%),var(--soft)}
-.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease,filter .5s ease;filter:saturate(1.05) contrast(1.03)}
-.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(5,7,10,.55));pointer-events:none}
-.cover figcaption{position:absolute;left:8px;bottom:6px;z-index:1;font-family:var(--f-mono);font-size:10.5px;color:rgba(255,255,255,.82);text-shadow:0 1px 3px #000}
-.cover.noimg img{display:none}
-.cover.noimg::before{content:attr(data-src);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--f-display);font-weight:800;font-size:22px;color:color-mix(in srgb,var(--ink) 40%,transparent)}
-
-.items.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:18px}
-.items.gallery .item{display:flex;flex-direction:column;gap:8px;padding:0 0 14px;border:1px solid var(--rule);border-radius:10px;background:color-mix(in srgb,var(--surface) 70%,transparent);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
-.items.gallery .item>.d{padding:0 14px}
-.items.gallery .item>.t{padding:0 14px}
-.items.gallery .item .cover{border-radius:0}
-.items.gallery .item:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--c,var(--ai)) 60%,var(--rule));box-shadow:0 10px 30px -10px color-mix(in srgb,var(--c,var(--ai)) 55%,transparent)}
-.items.gallery .item:hover .cover img{transform:scale(1.05)}
-.items.gallery .item .t p{font-size:15.5px;line-height:1.4}
-.items.gallery .item[hidden]{display:none}
-#month .grid.g2{grid-template-columns:1fr}
-.panel:has(> .items.gallery){background:transparent;border:0;padding:0;backdrop-filter:none}
-
-/* first-screen feed as gallery */
-.feed li{border-top:0;padding:0}
-.feed{gap:14px 18px}
-.feed .fcard{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:start;padding:10px;border:1px solid var(--rule);border-radius:10px;background:color-mix(in srgb,var(--surface) 70%,transparent);transition:border-color .2s,box-shadow .2s;height:100%}
-.feed .fcard:hover{border-color:color-mix(in srgb,var(--c) 60%,var(--rule));box-shadow:0 0 26px -8px var(--c)}
-.feed .fcard .cover{aspect-ratio:4/3;border-radius:6px}
-.feed .fcard .cover figcaption{display:none}
-.feed p{font-size:14.5px;margin-top:4px}
-.feed li.lead .fcard{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;padding:12px}
-.feed li.lead .fcard .cover{aspect-ratio:16/10}
-.feed li.lead .fcard .cover figcaption{display:block}
-.feed li.lead p{font-size:22px}
-@media (max-width:560px){.feed li.lead .fcard{grid-template-columns:1fr}.feed .fcard{grid-template-columns:96px 1fr}}
-
-/* ===== video previews ===== */
-.vid .thumb{position:relative;overflow:hidden;background:#000}
-.vid .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .4s}
-.vid .thumb iframe{position:absolute;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);border:0;pointer-events:none;opacity:0;transition:opacity .6s}
-.vid .thumb.playing iframe{opacity:1}
-.vid .thumb span{position:relative;z-index:2;background:rgba(7,9,12,.7);box-shadow:0 0 0 1px rgba(255,255,255,.25),0 0 24px var(--c);transition:opacity .3s}
-.vid .thumb.playing span{opacity:0}
-.vid .thumb span::after{border-left-color:#fff}
-.vid .live-badge{font-style:normal;position:absolute;top:8px;left:8px;z-index:3;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(7,9,12,.7);padding:3px 7px;border-radius:4px;opacity:0;transition:opacity .3s}
-.vid .thumb.playing .live-badge{opacity:1}
-.vid{transition:box-shadow .25s,border-color .25s}
-.vid:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--rule));box-shadow:0 0 30px -10px var(--c)}
-@media (prefers-reduced-motion:reduce){body::before{animation:none}}
-
-figure.cover{margin:0}
-#lawList,#monthLegal{--c:var(--law)} #landmarkList,#monthGeneral,#feed{--c:var(--ai)}
-
-/* ===== draggable impact mosaic ===== */
-.mosaic{position:relative;margin-top:14px;border-radius:14px;border:1px solid var(--rule);background:color-mix(in srgb,var(--surface) 55%,transparent);overflow:hidden}
-.mosaic-vp{overflow-x:auto;overflow-y:hidden;touch-action:pan-x pan-y;cursor:grab;scrollbar-width:none;overscroll-behavior-x:contain;overscroll-behavior-y:auto;
-  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 28px,#000 calc(100% - 28px),transparent 100%)}
-.mosaic-vp::-webkit-scrollbar{display:none}
-.mosaic-vp.grabbing{cursor:grabbing}
-.mosaic-vp.grabbing .tile{transition:none}
-.items.gallery.board{position:relative;display:block;padding:0;margin:0;user-select:none;-webkit-user-select:none}
-.mosaic-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px 16px;padding:10px 16px;border-top:1px solid var(--rule);font-family:var(--f-mono);font-size:11.5px;color:var(--muted)}
-.mosaic-bar button{font-family:var(--f-mono);font-size:11.5px;background:none;border:1px solid var(--rule);color:var(--ink);border-radius:999px;padding:4px 10px;cursor:pointer}
-.drag-hint{position:absolute;top:12px;right:14px;z-index:6;pointer-events:none;font-family:var(--f-mono);font-size:11px;color:var(--ink);background:rgba(7,9,12,.7);border:1px solid var(--rule);padding:5px 10px;border-radius:999px;transition:opacity .6s}
-.mosaic.touched .drag-hint{opacity:0}
-
-.tile{position:absolute;list-style:none;border-radius:12px;overflow:hidden;background:var(--soft);border:1px solid var(--rule);
-  transition:transform .28s cubic-bezier(.2,.9,.3,1.3),box-shadow .28s,border-color .28s;transform-origin:center;will-change:transform;min-width:0}
-.items.gallery .tile{padding:0;display:block;gap:0}
-.tile:hover,.tile:focus-within{transform:scale(1.13);z-index:5;border-color:color-mix(in srgb,var(--c,var(--ai)) 70%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--c,var(--ai)) 50%,transparent),0 18px 50px -12px color-mix(in srgb,var(--c,var(--ai)) 70%,transparent)}
-.tile.t4:hover,.tile.t5:hover{transform:scale(1.06)}
-.tile .cover,.tile .thumb{position:absolute!important;inset:0;aspect-ratio:auto!important;border-radius:0!important;margin:0}
-.tile .cover figcaption{top:8px;bottom:auto;left:auto;right:10px;opacity:.75}
-.tile .cover::after{background:linear-gradient(180deg,rgba(5,7,10,.05) 20%,rgba(5,7,10,.55) 55%,rgba(5,7,10,.94))}
-.tile:hover .cover img{transform:scale(1.06)}
-.tile-body{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:12px 13px 11px;display:flex;flex-direction:column;gap:5px;pointer-events:none}
-.tile-body a,.tile-body button{pointer-events:auto}
-.tile-body .d{padding:0!important;font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,.75);display:flex;gap:7px;align-items:center;flex-wrap:wrap}
-.tile-body p{margin:0;color:#fff;font-family:var(--f-display);font-weight:700;line-height:1.18;text-shadow:0 1px 8px rgba(0,0,0,.6);display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden}
-.tile.t1 .tile-body p{font-size:13.5px;-webkit-line-clamp:4}
-.tile.t2 .tile-body p{font-size:15px;-webkit-line-clamp:3}
-.tile.t3 .tile-body p{font-size:17px;-webkit-line-clamp:5}
-.tile.t4 .tile-body p{font-size:20px;-webkit-line-clamp:5}
-.tile.t5 .tile-body p{font-size:25px;-webkit-line-clamp:6}
-.tile-body .src{margin-top:2px}
-.tile-body .src a{color:#fff;text-decoration-color:rgba(255,255,255,.4)}
-.tile-body .vs{color:rgba(255,255,255,.6)}
-.tile.t1 .tile-body .src{display:none}
-.tile:hover.t1 .tile-body .src{display:flex}
-.imp{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.03em;color:#fff;background:color-mix(in srgb,var(--c,var(--ai)) 38%,rgba(7,9,12,.7));border:1px solid color-mix(in srgb,var(--c,var(--ai)) 60%,transparent);border-radius:999px;padding:2px 8px;align-self:flex-start;pointer-events:auto}
-.imp::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--c,var(--ai));box-shadow:0 0 8px var(--c,var(--ai))}
-.tile .tag{background:rgba(7,9,12,.6);color:#fff;border:1px solid color-mix(in srgb,var(--c,var(--ai)) 60%,transparent)}
-.tile[hidden]{display:none!important}
-.tile.vid .thumb span{width:44px;height:44px}
-.tile.vid .tile-body{background:linear-gradient(180deg,transparent,rgba(5,7,10,.9) 45%)}
-.tile.vid .thumb{z-index:1}
-.tile.vid .tile-body{z-index:3}
-.tile.vid .credit{border:0;padding:0;color:rgba(255,255,255,.75)}
-.tile.vid .credit a{color:#fff}
-.panel:has(.mosaic){background:transparent;border:0;padding:0;backdrop-filter:none}
-#watch .grid.g3,#watch h3.mt{display:none}
-#now .mosaic{margin-top:8px}
-
-@media (prefers-reduced-motion:reduce){.tile{transition:none}.tile:hover{transform:none}}
 </style>
 </head>
 <body>
-<div class="bar-top">
+<nav class="topnav" aria-label="Sections">
   <div class="wrap">
     <span class="brand">Research Interest Board</span>
-    <nav aria-label="Page"><a href="#now">Now</a><a href="#mapsec">Map</a><a href="#" data-open="sources">Method</a></nav>
+    <div class="navlinks" id="navlinks">
+      <a href="#pulse">Coverage</a>
+      <a href="#landmarks">3-year headlines</a>
+      <a href="#month">Past month</a>
+      <a href="#law">AI &amp; law</a>
+      <a href="#meaning">Vagueness</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#watch">Videos</a>
+      <a href="#next">What's next</a>
+      <a href="#sources">Method</a>
+    </div>
+    <span class="slidecount" id="slidecount"></span>
+    <button class="btn" id="presentBtn" aria-pressed="false" title="Arrow keys move between sections">Present</button>
   </div>
-</div>
+</nav>
 
-<header class="now" id="now">
-  <div class="wrap">
-    <div>
-      <div class="eyebrow"><span class="dot"></span>My research interest board · updated 30 Sep 2026</div>
-      <h1>Research Interest Board <span>AI, law &amp; language</span></h1>
-      <p class="intro">I'm interested in how AI is entering legal systems: the courts, the rules, the language law is written in, and the privacy of the people it touches. Every claim on this board links to its source.</p>
-      <div class="pulse">
-        <b>4.94%</b>
-        <p>of all news articles GDELT monitored on 24 Sep 2026 mentioned “artificial intelligence,” the month's peak among full days of data (30 Sep was partial).</p>
-        <svg id="spark" viewBox="0 0 420 70" role="img" aria-label="Daily share of news mentioning AI in September 2026"></svg>
-        <p class="note">AI's daily share of news, 1–30 Sep 2026. Gaps are days with no GDELT data. Source: <a href="https://api.gdeltproject.org/api/v2/doc/doc?query=%22artificial%20intelligence%22&mode=timelinevolraw&timelinesmooth=0&startdatetime=20231001000000&enddatetime=20260930000000">GDELT DOC 2.0</a></p>
-      </div>
-      <a class="cue" href="#mapsec"><i>↓</i> Explore how my topics connect</a>
-    </div>
-    <div>
-      <div class="feed-head"><h2 class="live">Trending now · September 2026</h2><button class="linkbtn" data-open="month">All September stories →</button></div>
-      <ul class="items gallery" id="feed"></ul>
-    </div>
-  </div>
+<header class="hero wrap" id="top">
+  <div class="eyebrow"><span class="dot"></span>My research interest board · October 2023 – September 2026</div>
+  <h1>Three years of <em>AI</em> in the news, and what it means for law</h1>
+  <p class="lede">Headlines, legal developments, research on how machines read vague language, and data privacy in legal systems. Every claim on this board links to its source.</p>
+  <div class="stats" id="heroStats"></div>
 </header>
 
-<section class="mapsec" id="mapsec">
-  <div class="wrap">
-    <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>The map</div>
-    <h2>How my interests connect</h2>
-    <p class="lede">At the centre is my core question, AI in legal systems. Each topic around it opens its sources, charts and videos. Hover over a topic to see why it links to its neighbours.</p>
-    <div class="mapwrap">
-      <svg id="map" viewBox="-70 -10 1150 680" role="group" aria-label="Network of research topics"></svg>
-      <div class="maphint">
-        <span class="keys">
-          <span style="--c:var(--law)">Law</span><span style="--c:var(--ai)">AI &amp; news</span><span style="--c:var(--lang)">Language</span><span style="--c:var(--priv)">Privacy</span><span style="--c:var(--warn)">Outlook</span>
-        </span>
-        <span>Click a topic to open it · Esc to close</span>
-      </div>
-    </div>
-    <ul class="topiclist" id="topiclist"></ul>
-    <div class="stats statsrow" id="heroStats"></div>
-  </div>
-</section>
-
-<div class="sheet" id="sheet" hidden>
-  <div class="scrim" data-close></div>
-  <div class="panelx" role="dialog" aria-modal="true" aria-labelledby="sheetCrumb" tabindex="-1" id="panelx">
-    <div class="sheet-head">
-      <span class="crumbs" id="sheetCrumb"></span>
-      <button class="btn" data-close>← Back to map</button>
-    </div>
-    <div class="related" id="related"></div>
-    <div id="sheetBody"></div>
-  </div>
-</div>
-
-<div id="library" hidden>
 <!-- 1 COVERAGE -->
 <section class="ex" id="pulse">
   <div class="wrap">
@@ -563,7 +274,7 @@ figure.cover{margin:0}
 
     <div class="panel mt">
       <h3>Landmark stories</h3>
-      <ul class="items gallery" id="landmarkList"></ul>
+      <ul class="items" id="landmarkList"></ul>
     </div>
   </div>
 </section>
@@ -575,8 +286,8 @@ figure.cover{margin:0}
     <h2>September 2026: safety pauses, lawsuits and a White House accord</h2>
     <p class="lede">Major AI headlines from 1–30 September 2026. Legal items are tagged and also appear in Exhibit 4.</p>
     <div class="grid g2 mt">
-      <div class="panel"><h3>Industry, safety &amp; policy</h3><ul class="items gallery" id="monthGeneral"></ul></div>
-      <div class="panel"><h3>Law &amp; courts this month</h3><ul class="items gallery" id="monthLegal"></ul></div>
+      <div class="panel"><h3>Industry, safety &amp; policy</h3><ul class="items" id="monthGeneral"></ul></div>
+      <div class="panel"><h3>Law &amp; courts this month</h3><ul class="items" id="monthLegal"></ul></div>
     </div>
   </div>
 </section>
@@ -597,7 +308,7 @@ figure.cover{margin:0}
     </div>
 
     <div class="chips" id="lawChips" role="group" aria-label="Filter legal timeline"></div>
-    <div class="panel"><ul class="items gallery" id="lawList"></ul></div>
+    <div class="panel"><ul class="items" id="lawList"></ul></div>
   </div>
 </section>
 
@@ -661,7 +372,6 @@ figure.cover{margin:0}
     <div class="eyebrow"><span class="dot" style="--c:var(--law)"></span>Exhibit 7 · Watch</div>
     <h2>Video clips to show, with credit to their makers</h2>
     <p class="lede">Every video was checked against YouTube's own record of its title, channel and publish date. All rights belong to the channels named. Each card links to the original on YouTube.</p>
-    <ul class="items gallery" id="vAll"></ul>
     <h3 class="mt">Landmark AI news</h3><div class="grid g3" id="vNews"></div>
     <h3 class="mt">AI in courts and legal practice</h3><div class="grid g3" id="vLaw"></div>
     <h3 class="mt">Meaning, language and how LLMs work</h3><div class="grid g3" id="vLang"></div>
@@ -716,7 +426,6 @@ figure.cover{margin:0}
   </div>
 </section>
 
-</div>
 <footer class="wrap">Compiled 30 September 2026. Video rights belong to the channels credited. Paper summaries are paraphrased from the cited works.</footer>
 
 <script>
@@ -730,86 +439,11 @@ const EVENTS_LEGAL=[["2023-12","UK judiciary issues first AI guidance for judges
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 function srcHTML(src,vs){return `<span class="src">${src.map(([n,u])=>`<a href="${u}">${esc(n)}</a>`).join("")}${vs?'<span class="vs">◦ search-confirmed</span>':''}</span>`}
-const COVERS={"https://wikimediafoundation.org/news/2023/12/05/announcing-wikipedias-most-popular-articles-of-2023/":"https://wikimediafoundation.org/wp-content/uploads/2023/12/mostpopular_1200x630.png","https://techcrunch.com/2025/12/04/gemini-was-googles-top-trending-search-term-in-2025":"https://techcrunch.com/wp-content/uploads/2025/08/GettyImages-2198713751.jpg?w=1024","https://chartbeat.com/resources/articles/most-engaging-stories-2025/":"https://chartbeat.com/wp-content/uploads/2025/12/Hero-Chartbeat-2025-Most-Engaging-Stories@2x.png","https://www.pewresearch.org/data-labs/2025/05/23/what-web-browsing-data-tells-us-about-how-ai-appears-online/":"https://www.pewresearch.org/wp-content/uploads/sites/20/2025/05/PL_25.04.25_AmericansAI_feature.jpg?w=1200&h=628&crop=1","https://www.pewresearch.org/short-reads/2026/03/12/key-findings-about-how-americans-view-artificial-intelligence/":"https://www.pewresearch.org/wp-content/uploads/sites/20/2026/03/SR_26.03.12_ai_featured.jpg?w=1200&h=628&crop=1","https://www.npr.org/2023/10/30/1209343819/ai-biden-oversight-executive-order":"https://media.npr.org/assets/img/2023/10/30/gettyimages-1765585110_wide-8e0eaba5c893b0c55ab8ae9c28baa916158b796c.jpg?s=1400&c=85&f=jpeg","https://techcrunch.com/2023/11/17/sam-altman-is-out-as-openais-ceo/":"https://techcrunch.com/wp-content/uploads/2019/10/Sam-Altman-OpenAI-DSC02874.jpg?resize=1200,800","https://www.cnbc.com/2024/02/22/google-pauses-gemini-ai-image-generator-after-inaccuracies.html":"https://image.cnbcfm.com/api/v1/image/107374413-1708024437471-gettyimages-1992338676-AA_10022024_1525083.jpeg?v=1741831934&w=1920&h=1080","https://www.wilmerhale.com/en/insights/blogs/wilmerhale-privacy-and-cybersecurity-law/20240314-the-european-parliament-adopts-the-ai-act":"https://www.wilmerhale.com/-/media/bdd83daaf0cd4e21855eab95d8bdbf0e.jpg","https://www.cnbc.com/amp/2024/05/20/scarlett-johansson-says-openai-ripped-off-her-voice-.html":"https://image.cnbcfm.com/api/v1/image/107328179-1698960970836-gettyimages-187583808-187705550AZ00033_Her_Premie.jpeg?v=1716248470","https://www.aljazeera.com/economy/2024/6/19/nvidia-becomes-worlds-most-valuable-company-dethroning-microsoft":"https://www.aljazeera.com/wp-content/uploads/2024/06/AP24143482649627-1718755214_f0ad7b-1718763006.jpg?resize=1200%2C630&quality=80","https://www.pbs.org/newshour/science/watch-live-the-winner-of-the-2024-nobel-prize-in-chemistry-is":"https://d3i6fh83elv35t.cloudfront.net/static/2024/10/GettyImages-2176876715-1024x683.jpg","https://www.business-standard.com/markets/news/deepseek-sparks-ai-stock-selloff-nvidia-loses-record-593-bn-in-mcap-125012800095_1.html":"https://bsmedia.business-standard.com/_media/bs/img/article/2025-01/15/thumb/featurecrop/1200X630/1736943239-9551.jpg","https://www.cnbc.com/2025/07/09/nvidia-4-trillion.html":"https://image.cnbcfm.com/api/v1/image/108148694-1748377244940-108148694-1747838033473-gettyimages-2215609342-AFP_47HG7CG.jpeg?v=1755832628&w=1920&h=1080","https://www.aljazeera.com/economy/2025/7/23/trump-administration-unveils-wide-ranging-ai-action-plan":"https://www.aljazeera.com/wp-content/uploads/2025/07/AP25199698581532-1753293017.jpg?resize=1920%2C1440","https://www.cnbc.com/2025/08/07/openai-launches-gpt-5-model-for-all-chatgpt-users.html":"https://image.cnbcfm.com/api/v1/image/108163566-1750813219176-gettyimages-2197366846-dsc00553_qmdcp7an.jpeg?v=1761664550&w=1920&h=1080","https://www.npr.org/2025/09/05/nx-s1-5529404/anthropic-settlement-authors-copyright-ai":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/3967x2231+0+207/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fed%2F6b%2F4221fe0e4eccbcbea7f0c49d1a7b%2Fgettyimages-2227254922.jpg","https://techcrunch.com/2025/10/29/nvidia-becomes-first-public-company-worth-5-trillion/":"https://techcrunch.com/wp-content/uploads/2025/05/GettyImages-2216028442.jpg?w=1024","https://techcrunch.com/2025/11/18/google-launches-gemini-3-with-new-coding-app-and-record-benchmark-scores/":"https://techcrunch.com/wp-content/uploads/2025/10/gemini.jpg?resize=1200,800","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting":"https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-21T215939Z_2033624676_RC2KKJALN6OJ_RTRMADP_3_OPENAI-CANADA-LAWSUIT-1790032747.jpg?resize=1920%2C1440","https://www.npr.org/2026/03/06/g-s1-112713/pentagon-labels-ai-company-anthropic-a-supply-chain-risk":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/5000x2813+0+262/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Fd2%2Fb8%2Fdbc551884e5ab396b5f7ce397e94%2Fap26057633664886.jpg","https://variety.com/2026/digital/news/openai-shutting-down-sora-video-disney-1236698277/":"https://variety.com/wp-content/uploads/2026/03/OpenAI-Sora.png?w=901&h=563&crop=1","https://www.anthropic.com/glasswing":"https://www-cdn.anthropic.com/images/4zrzovbb/website/65641e7846f10255c4a3415a10bbf5793ae87b13-1200x630.jpg","https://techcrunch.com/2026/06/08/following-anthropic-openai-files-confidentially-for-ipo/":"https://techcrunch.com/wp-content/uploads/2026/02/modi-openai-anthropic-2261854815.jpg?resize=1200,800","https://fortune.com/2026/07/21/openai-says-ai-models-escaped-control-hacked-hugging-face/":"https://fortune.com/img-assets/wp-content/uploads/2026/07/GettyImages-2279684900-e1784662826633.jpg?resize=1200,600","https://darioamodei.com/post/we-must-pace-the-frontier":"https://cdn.prod.website-files.com/67ecbba31246a69e485fdd4b/6aa5311897ee19af5d9f2cd9_og_we-must-pace-the-frontier.jpg","https://www.semafor.com/article/09/14/2026/ai-slowdown-calls-prompt-chip-selloff":"https://img.semafor.com/8e83075f12fa7cfe564600bf23e44f2ed4e4a7bf-6495x4425.jpg?rect=0,508,6495,3410&w=1200&h=630&q=75&auto=format","https://www.macrumors.com/2026/09/22/anthropic-claude-opus-5-5/":"https://images.macrumors.com/t/miP5cemYnLJaXuUhVtW0LMDZCJQ=/1782x/article-new/2025/09/anthopic-claude.jpg","https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council":"https://media.cnn.com/api/v1/images/stellar/prod/2026-09-23t195301z-1785342310-rc27pna296tc-rtrmadp-3-ai-un.jpg?c=16x9&q=w_800,c_fill","https://9to5google.com/2026/09/24/google-says-gemini-4-release-is-coming-as-soon-as-possible/":"https://9to5google.com/wp-content/uploads/sites/4/2026/03/gemini-logo.jpg?quality=82&strip=all&resize=1200,628","https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/":"https://wtop.com/wp-content/uploads/2026/09/Open_AI_Safety__4766-scaled.jpg","https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns":"https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-28T223038Z_1656552687_RC29LNAECGOF_RTRMADP_3_AI-SAFETY-OPENAI-1790641403_cd656d-1790642721.jpg?resize=1200%2C630&quality=80","https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/":"https://fortune.com/img-assets/wp-content/uploads/2026/09/gettyimages-1554653087-594x594-1.jpg?resize=1200,600","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html":"https://image.cnbcfm.com/api/v1/image/108369794-1790713950915-108369794-1790711674658-gettyimages-2297244120-AFP_C9Q83W4_1.jpeg?v=1790713979&w=1920&h=1080","https://techcrunch.com/2026/09/09/harvey-hits-15-5b-valuation-months-after-reaching-11b/":"https://techcrunch.com/wp-content/uploads/2025/11/Screenshot-2025-11-14-at-11.50.31-AM.png?resize=1200,863","https://lawcommentary.com/articles/tenth-circuit-ai-court-filings-human-review-rule":"https://lawcommentary.sfo3.cdn.digitaloceanspaces.com/.cache/articles/01M35ZX46DSYWCYXDFSH5Q0N14.png/a47fe4a9db502842","https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690":"https://i.abcnewsfe.com/a/6adb6243-fb82-448a-9655-149edbd68943/Anthropic-gty-sn-260910_1789083503772_hpMain_16x9.jpg?w=1600","http://thedailyrecord.com/2026/09/25/ai-hallucinations-lawyers-quinn-patton/":"https://thedailyrecord.com/files/2026/04/7-JUDGES-wp-040626-Depositphotos.jpg","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/":"https://ipwatchdog.com/wp-content/uploads/2018/04/fairuseMarkerRed.jpg","https://www.artificiallawyer.com/2026/09/30/clio-buys-learned-hand-as-judiciary-strategy-expands/":"https://www.artificiallawyer.com/wp-content/uploads/2026/09/Screenshot-2026-09-30-at-14.40.35.png","https://www.lawnext.com/2024/06/in-redo-of-its-study-stanford-finds-westlaws-ai-hallucinates-at-double-the-rate-of-lexisnexis.html":"https://www.lawnext.com/wp-content/uploads/2024/06/StanfordStudy-v2-hallucinationchart-169.png","https://www.pbs.org/newshour/arts/judge-tosses-authors-ai-training-copyright-lawsuit-against-meta":"https://d3i6fh83elv35t.cloudfront.net/static/2025/06/2025-06-13T164044Z_482018431_RC25H3APV49U_RTRMADP_3_USA-M-A-AI-DEALS-1024x683.jpg","https://www.law360.com/articles/2368805/butler-snow-attys-dq-d-for-fake-ai-citations-in-prisoner-case":"https://assets.law360news.com/2368000/2368805/06d2e67869fc545e5e6343f3617a298eaa8abd9f-butler.jpg","https://www.thomsonreuters.com/en/press-releases/2025/august/thomson-reuters-launches-cocounsel-legal-transforming-legal-work-with-agentic-ai-and-deep-research":"https://www.thomsonreuters.com/content/dam/ewp-m/images/thomsonreuters/en/photography/reuters/rtr1zkvu-luke-macgregor-tr.jpg.transform/rect-768/q90/image.jpg","https://www.npr.org/2025/09/05/g-s1-87367/anthropic-authors-settlement-pirated-chatbot-training-material":"https://npr.brightspotcdn.com/dims3/default/strip/false/crop/7105x3998+0+289/resize/1400/quality/85/format/jpeg/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F46%2Fe5%2Fc6e9104144d6a1b47d8b31133e11%2Fap25247699422658.jpg","https://www.abajournal.com/news/article/2-federal-judges-reveal-ai-use-by-staff-members-led-to-error-riddled-opinions":"https://www.abajournal.com/images/main_images/Neals_Wingate_headshots.png","https://www.sidley.com/en/insights/newsupdates/2025/12/unpacking-the-december-11-2025-executive-order":"https://www.sidley.com/-/media/update-images/unpacking-the-december-11-2025-executive-order-ensuring-a-national-policy-framework-for-artificial-i.png?rev=146c53ef206f4eaa8df7ac8f7b7ad357","https://www.cnbc.com/2026/03/25/legal-ai-startup-harvey-raises-200-million-at-11-billion-valuation.html":"https://image.cnbcfm.com/api/v1/image/108282726-1774438079827-StellaKalinina_Founders.jpg?v=1774438132&w=1920&h=1080","https://natlawreview.com/article/sixth-circuit-sanctions-attorneys-fake-citations-what-does-mean-use-ai":"https://natlawreview.com/sites/default/files/styles/article_image/public/2026-03/AI%20artificial%20intelligence%20legislation%20laws%20bigstock%20477629147_0.jpg.webp?itok=GT7zSxf1","https://www.lawandtheworkplace.com/2026/05/major-developments-put-colorados-ai-law-on-ice-ahead-of-implementation/":"https://images.bannerbear.com/direct/y0aJ23zRDdqMxX4OGl/requests/000/145/225/548/w0gWbdEPaYaBPXvJzrVklOA5j/99f20b38c08d4745b183ecb3d7783b5b229c2e55.png","https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/":"https://www.gibsondunn.com/wp-content/uploads/2024/09/A.jpg"};
-function coverHTML(src){if(!src||!src[0])return "";const [n,u]=src[0],img=COVERS[u];
-  return `<figure class="cover${img?"":" noimg"}" data-src="${esc(n.replace(/&amp;/g,"&"))}">${img?`<img src="${img}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg')">`:""}<figcaption>Image: ${n}</figcaption></figure>`;}
-function itemHTML(it,gal){
+function itemHTML(it){
   const tags=(it.tags||[]).map(([c,l])=>`<span class="tag ${c}">${esc(l)}</span>`).join(" ");
-  return `<li class="item" ${it.cat?`data-cat="${it.cat}"`:""}>${gal?coverHTML(it.src):""}<div class="d">${esc(it.d)}</div><div class="t"><p>${it.h}</p>${srcHTML(it.src||[],it.vs)}${tags?`<div class="src" style="margin-top:6px">${tags}</div>`:""}</div></li>`;
+  return `<li class="item" ${it.cat?`data-cat="${it.cat}"`:""}><div class="d">${esc(it.d)}</div><div class="t"><p>${it.h}</p>${srcHTML(it.src||[],it.vs)}${tags?`<div class="src" style="margin-top:6px">${tags}</div>`:""}</div></li>`;
 }
-const VIEWS={"qrvK_KuIeJk":4530019,"I19ezZcyB6w":47490,"XDE9DjpcSdI":97340,"WEBiebbeNCA":5968921,"aAPpQC-3EyE":1254298,"GL5ZSWQUbeM":239,"oqSYljRYDEM":5991984,"wiNHGXyVY58":49423,"7KqrfwGeCko":31336,"MvBdRF3zw5k":3774,"rfxgovgpWcM":3067,"qRaq-3BZfNg":1502,"eMlx5fFNoYc":4686173,"6iO8TtCs_Cw":59736,"LPZh9BOjkQs":7882029,"gG5R-TdfXhw":404};
-
-/* ---------- mosaic: a treemap that always fills its frame ---------- */
-const fmtN=v=>v>=1e6?(v/1e6).toFixed(v>=1e7?0:1)+"M":v>=1e3?(v/1e3).toFixed(v>=1e4?0:1)+"k":String(Math.round(v));
-function tileHTML(it){
-  const tags=(it.tags||[]).map(([c,l])=>`<span class="tag ${c}">${esc(l)}</span>`).join(" ");
-  const tc=((it.tags||[]).find(t=>["law","ai","priv","warn"].includes(t[0]))||[])[0];
-  return `<li class="item tile" ${it.cat?`data-cat="${it.cat}"`:""} ${tc?`style="--c:var(--${tc})"`:""}>${coverHTML(it.src)}<div class="tile-body"><div class="d">${esc(it.d)} ${tags}</div><p>${it.h}</p>${srcHTML(it.src||[],it.vs)}</div></li>`;
-}
-/* squarified treemap (Bruls, Huizing & van Wijk 2000): areas proportional to weights, no gaps */
-function squarify(ws,W,H){
-  const total=ws.reduce((a,b)=>a+b,0),items=ws.map((w,i)=>({i,a:w/total*W*H})).sort((p,q)=>q.a-p.a);
-  const out=[];let x=0,y=0,w=W,h=H,row=[];
-  const worst=(r,len)=>{const s=r.reduce((a,b)=>a+b.a,0),mx=Math.max(...r.map(o=>o.a)),mn=Math.min(...r.map(o=>o.a));return Math.max(len*len*mx/(s*s),(s*s)/(len*len*mn));};
-  const place=r=>{const s=r.reduce((a,b)=>a+b.a,0);
-    if(w>=h){const cw=s/h;let cy=y;r.forEach(o=>{const ch=o.a/cw;out[o.i]={x,y:cy,w:cw,h:ch};cy+=ch});x+=cw;w-=cw;}
-    else{const rh=s/w;let cx=x;r.forEach(o=>{const cw=o.a/rh;out[o.i]={x:cx,y,w:cw,h:rh};cx+=cw});y+=rh;h-=rh;}};
-  items.forEach(o=>{const len=Math.min(w,h);if(!row.length||worst([...row,o],len)<=worst(row,len))row.push(o);else{place(row);row=[o];}});
-  if(row.length)place(row);
-  return out;
-}
-const MOSAICS=new Set();
-function layoutMosaic(ul,opts){
-  if(opts)ul._opts=opts;opts=ul._opts||{};
-  ul.classList.add("board");
-  if(!ul.parentNode.classList.contains("mosaic-vp")){
-    const wrap=document.createElement("div");wrap.className="mosaic";
-    const vp=document.createElement("div");vp.className="mosaic-vp";vp.tabIndex=0;vp.setAttribute("aria-label","Mosaic. Drag or scroll to explore.");
-    ul.parentNode.insertBefore(wrap,ul);vp.appendChild(ul);wrap.appendChild(vp);
-    wrap.insertAdjacentHTML("afterbegin",`<span class="drag-hint">✥ Drag to explore</span>`);
-    wrap.insertAdjacentHTML("beforeend",`<div class="mosaic-bar"><span>${esc(opts.legend||"Drag, scroll or swipe to see every story")}</span><button type="button" data-recenter>Recenter</button></div>`);
-    dragify(vp);
-    wrap.querySelector("[data-recenter]").addEventListener("click",()=>vp.scrollTo({left:0,top:0,behavior:"smooth"}));
-    MOSAICS.add(ul);
-    if("ResizeObserver" in window)new ResizeObserver(()=>positionTiles(ul)).observe(vp);
-  }
-  positionTiles(ul);
-}
-function positionTiles(ul){
-  const vp=ul.parentNode,vw=vp.clientWidth;if(!vw)return;
-  const opts=ul._opts||{},tiles=[...ul.children].filter(t=>!t.hidden);if(!tiles.length){ul.style.height="0px";return;}
-  const ws=tiles.map(t=>opts.weight?opts.weight(t):1);
-  const H=Math.min(opts.height||560,Math.max(360,innerHeight*.72));
-  const minA=opts.minArea||52000, wmin=Math.min(...ws), sum=ws.reduce((a,b)=>a+b,0);
-  const W=Math.max(vw,Math.ceil(minA*sum/(H*wmin)));
-  ul.style.width=W+"px";ul.style.height=H+"px";
-  const rects=squarify(ws,W,H), G=6;
-  tiles.forEach((t,k)=>{const r=rects[k];
-    Object.assign(t.style,{left:(r.x+G/2)+"px",top:(r.y+G/2)+"px",width:(r.w-G)+"px",height:(r.h-G)+"px"});
-    const s=Math.sqrt(r.w*r.h);t.classList.remove("t1","t2","t3","t4","t5");
-    t.classList.add(s<200?"t1":s<250?"t2":s<320?"t3":s<400?"t4":"t5");});
-}
-let _rz;addEventListener("resize",()=>{clearTimeout(_rz);_rz=setTimeout(()=>relayoutIn(document.body),150)});
-function relayoutIn(root){MOSAICS.forEach(ul=>{if(root.contains(ul))positionTiles(ul)})}
-function dragify(vp){
-  let sx,sy,sl,st,down=false,moved=false;
-  vp.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.button!==0)return;down=true;moved=false;sx=e.clientX;sy=e.clientY;sl=vp.scrollLeft;st=vp.scrollTop;});
-  window.addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-sx,dy=e.clientY-sy;
-    if(!moved&&Math.hypot(dx,dy)>5){moved=true;vp.classList.add("grabbing");vp.closest(".mosaic").classList.add("touched");}
-    if(moved){vp.scrollLeft=sl-dx;}});
-  window.addEventListener("pointerup",()=>{if(!down)return;down=false;setTimeout(()=>vp.classList.remove("grabbing"),0);});
-  vp.addEventListener("click",e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false;}},true);
-  vp.addEventListener("scroll",()=>vp.closest(".mosaic").classList.add("touched"),{once:true});
-  vp.addEventListener("dragstart",e=>e.preventDefault());
-  vp.addEventListener("wheel",e=>{
-    const dx=e.shiftKey&&!e.deltaX?e.deltaY:e.deltaX;
-    if(Math.abs(dx)<=Math.abs(e.shiftKey?0:e.deltaY))return;            /* mostly vertical: let the page scroll */
-    const max=vp.scrollWidth-vp.clientWidth;
-    if((dx<0&&vp.scrollLeft<=0)||(dx>0&&vp.scrollLeft>=max-1))return;   /* at an edge: don't trap the gesture */
-    e.preventDefault();vp.scrollLeft+=dx;vp.closest(".mosaic").classList.add("touched");
-  },{passive:false});
-}
-function fill(id,arr){const el=$(id),g=el.classList.contains("gallery");el.innerHTML=arr.map(it=>g?tileHTML(it):itemHTML(it,false)).join("");if(g)layoutMosaic(el)}
+function fill(id,arr){$(id).innerHTML=arr.map(itemHTML).join("")}
 
 /* ---------- hero stats ---------- */
 const total=MONTHLY.reduce((a,r)=>a+r[1],0), totalL=MONTHLY.reduce((a,r)=>a+r[3],0);
@@ -1101,7 +735,7 @@ fill("#pGov",[
 ]);
 
 /* ---------- Exhibit 7 videos ---------- */
-const V=(t,ch,chu,id,date,len,desc,c)=>`<li class="item tile vid" data-v="${VIEWS[id]||""}" style="--c:${c}" title="${esc(desc.replace(/<[^>]+>/g,""))}"><a class="thumb" href="https://www.youtube.com/watch?v=${id}" aria-label="Watch ${esc(t)} on YouTube"><span></span></a><div class="tile-body"><div class="d">${date} · ${len}</div><p>${t}</p><span class="credit">Video by <a href="${chu}">${ch}</a> · <a href="https://www.youtube.com/watch?v=${id}">Watch on YouTube ↗</a></span>${VIEWS[id]?`<span class="imp">${fmtN(VIEWS[id])} views</span>`:""}</div></li>`;
+const V=(t,ch,chu,id,date,len,desc,c)=>`<div class="card vid" style="--c:${c}"><a class="thumb" href="https://www.youtube.com/watch?v=${id}" aria-label="Watch ${esc(t)} on YouTube"><span></span></a><span class="len">${date} · ${len}</span><h4>${t}</h4><p>${desc}</p><span class="credit">Video by <a href="${chu}">${ch}</a> · <a href="https://www.youtube.com/watch?v=${id}">Watch on YouTube ↗</a></span></div>`;
 $("#vNews").innerHTML=[
  V("“Godfather of AI” Geoffrey Hinton: The 60 Minutes Interview","60 Minutes","https://www.youtube.com/@60minutes","qrvK_KuIeJk","9 Oct 2023","13 min","Scott Pelley interviews Hinton about what AI can do and why he says no path to safety is guaranteed.","var(--ai)"),
  V("The EU agrees on AI regulations: What will it mean for people and businesses in the EU?","DW News","https://www.youtube.com/@dwnews","I19ezZcyB6w","9 Dec 2023","4 min","Reports the provisional deal on the EU AI Act, including rules for ChatGPT-style systems and biometric surveillance.","var(--ai)"),
@@ -1124,25 +758,6 @@ $("#vLang").innerHTML=[
  V("Large Language Models explained briefly","3Blue1Brown","https://www.youtube.com/@3blue1brown","LPZh9BOjkQs","20 Nov 2024","8 min","A short animated explainer of LLMs as next-word predictors, made for the Computer History Museum.","var(--priv)"),
  V("Critical Legal AI Literacies: Emily Bender on “LLMs and the Lawyer's Search for Meaning”","Yale Law Library","https://www.youtube.com/@yalelawlibrary","gG5R-TdfXhw","10 Oct 2025","20 min","Computational linguist Emily Bender on why LLMs may be ill-suited to the lawyer's search for meaning. This video links Exhibits 4 and 5.","var(--priv)")
 ].join("");
-["#vNews","#vLaw","#vLang"].forEach(q=>[...$(q).children].forEach(t=>$("#vAll").appendChild(t)));
-layoutMosaic($("#vAll"),{legend:"Tile area grows with YouTube views (log scale), checked 1 Oct 2026",weight:t=>Math.pow(Math.log10(+t.dataset.v||10),1.5),minArea:32000,height:680});
-$("#lawChips").addEventListener("click",()=>setTimeout(()=>positionTiles($("#lawList")),0));
-/* video previews: official YouTube thumbnail, then a muted embedded preview while the card is on screen */
-const VSTART={qrvK_KuIeJk:180,I19ezZcyB6w:45,XDE9DjpcSdI:300,WEBiebbeNCA:420,"aAPpQC-3EyE":180,GL5ZSWQUbeM:90,oqSYljRYDEM:300,wiNHGXyVY58:15,"7KqrfwGeCko":40,MvBdRF3zw5k:600,rfxgovgpWcM:15,"qRaq-3BZfNg":300,eMlx5fFNoYc:240,"6iO8TtCs_Cw":30,LPZh9BOjkQs:90,"gG5R-TdfXhw":180};
-document.querySelectorAll(".vid .thumb").forEach(a=>{const id=new URL(a.href).searchParams.get("v");a.dataset.vid=id;
-  a.insertAdjacentHTML("afterbegin",`<img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" referrerpolicy="no-referrer"><em class="live-badge">Muted preview</em>`);});
-const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
-function playPrev(a){if(a.querySelector("iframe"))return;const id=a.dataset.vid,st=VSTART[id]||30;
-  const f=document.createElement("iframe");f.title="Muted preview";f.allow="autoplay; encrypted-media; picture-in-picture";f.tabIndex=-1;f.setAttribute("aria-hidden","true");
-  f.src=`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&mute=1&controls=0&start=${st}&modestbranding=1&playsinline=1&rel=0&iv_load_policy=3&disablekb=1&cc_load_policy=0`;
-  f.addEventListener("load",()=>setTimeout(()=>a.classList.add("playing"),900));a.appendChild(f);}
-function stopPrev(a){const f=a.querySelector("iframe");if(f)f.remove();a.classList.remove("playing");}
-let vio=null;
-if(!reduceMotion&&"IntersectionObserver" in window){
-  vio=new IntersectionObserver(es=>es.forEach(e=>{const a=e.target;if(e.isIntersecting&&!a.closest("#library"))playPrev(a);else stopPrev(a);}),{threshold:.6});
-  document.querySelectorAll(".vid .thumb").forEach(a=>vio.observe(a));
-}
-
 
 /* ---------- Exhibit 8 ---------- */
 const Y0=2026,Y1=2045,pos=y=>((y-Y0)/(Y1-Y0)*100);
@@ -1176,146 +791,23 @@ fill("#recheck",[
  {d:"Sept 2026",h:"Several September stories (Opus 5.5 launch, UN session, White House accord) were confirmed by multiple search results but not opened directly. Open the links once before presenting.",src:[["CNBC (accord)","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"]]}
 ]);
 
-/* ---------- first screen: trending feed ---------- */
-const FEED=[
- {d:"28–29 Sep",k:["ai","AI & safety"],h:"OpenAI cancels the release of GPT-6.1 “Astra” after it failed internal safety tests",src:[["Al Jazeera","https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns"],["CNBC","https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html"]],t:"month"},
- {d:"29–30 Sep",k:["law","Copyright"],h:"Third Circuit affirms Thomson Reuters v. ROSS, the first federal appeals ruling on fair use in AI training",src:[["IPWatchdog","https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"]],t:"law"},
- {d:"29 Sep",k:["ai","Policy"],h:"President Trump says top AI leaders signed a voluntary, “morally binding” superintelligence accord",src:[["CNBC","https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"],["ABC News","https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988"]],vs:1,t:"month"},
- {d:"29 Sep",k:["ai","Industry"],h:"Anthropic's leaked IPO prospectus shows a $42B loss for 2025 and a target valuation above $2T",src:[["Fortune","https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/"]],t:"month"},
- {d:"26 Sep",k:["ai","AI & safety"],h:"OpenAI pauses training after its agents probed US government websites in unexpected ways",src:[["AP via WTOP","https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/"]],t:"month"},
- {d:"25 Sep",k:["priv","Privacy"],h:"Ireland's data protection regulator publishes its AI Insights Report, covering about 180 AI products",src:[["Irish DPC","https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"]],t:"privacy"},
- {d:"25 Sep",k:["law","Courts"],h:"DC Circuit (2–1) lets the Pentagon keep its “supply chain risk” label on Anthropic for now",src:[["ABC News","https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690"]],t:"month"},
- {d:"23 Sep",k:["ai","Policy"],h:"Sam Altman and Dario Amodei ask the UN Security Council for international AI safety standards",src:[["CNN","https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council"]],vs:1,t:"month"},
- {d:"21–22 Sep",k:["law","Litigation"],h:"British Columbia sues OpenAI and Sam Altman over the Tumbler Ridge school shooting",src:[["Al Jazeera","https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"],["CBC","https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395"]],t:"month"}
-];
-fill("#feed",FEED.map(f=>({d:f.d,h:f.h,src:f.src,vs:f.vs,tags:[[f.k[0],f.k[1]]]})));
-
-(function spark(){
-  const W=420,H=70,p=4,x=d=>p+(d-1)/29*(W-2*p),y=v=>H-p-v/5.6*(H-2*p);
-  let segs=[],seg=[];SEPT.forEach((r,i)=>{const d=+r[0];if(i&&d!==+SEPT[i-1][0]+1){segs.push(seg);seg=[]}seg.push([x(d),y(r[2])])});segs.push(seg);
-  let g=`<line x1="${p}" x2="${W-p}" y1="${H-p}" y2="${H-p}" stroke="var(--rule)"/>`;
-  segs.forEach(s=>{const pts=s.map(q=>q.join(",")).join(" ");
-    g+=`<polygon points="${s[0][0]},${H-p} ${pts} ${s[s.length-1][0]},${H-p}" fill="var(--ai)" opacity=".1"/><polyline points="${pts}" fill="none" stroke="var(--ai)" stroke-width="2" stroke-linejoin="round"/>`;});
-  g+=`<circle cx="${x(24)}" cy="${y(4.94)}" r="4" fill="var(--ai)"/>`;
-  $("#spark").innerHTML=g;
-})();
-
-/* ---------- topic map ---------- */
-const NODES=[
- {id:"law",l:["AI in","legal systems"],s:"my core question",x:500,y:320,r:70,c:"var(--law)",sec:"law"},
- {id:"news",l:["AI in","the news"],s:"3 years charted",x:215,y:165,r:52,c:"var(--ai)",sec:"pulse"},
- {id:"landmarks",l:["Landmark","headlines"],s:"2023–2026",x:118,y:372,r:42,c:"var(--ai)",sec:"landmarks"},
- {id:"month",l:["September","2026"],s:"the past month",x:285,y:520,r:46,c:"var(--ai)",sec:"month"},
- {id:"meaning",l:["Vagueness &","interpretation"],s:"law · language · LLMs",x:790,y:168,r:60,c:"var(--lang)",sec:"meaning"},
- {id:"privacy",l:["Data","privacy"],s:"HDSR + my course",x:790,y:468,r:58,c:"var(--priv)",sec:"privacy"},
- {id:"watch",l:["Video","clips"],s:"credited",x:520,y:578,r:38,c:"var(--muted)",sec:"watch"},
- {id:"next",l:["What's","next"],s:"forecasts",x:500,y:92,r:44,c:"var(--warn)",sec:"next"},
- // satellites
- {id:"s-sanc",sat:"law",l:["Sanctions"],x:428,y:200,c:"var(--law)",sec:"law",act:{filter:"Sanctions"}},
- {id:"s-judg",sat:"law",l:["Judges"],x:572,y:200,c:"var(--law)",sec:"law",act:{filter:"Judges"}},
- {id:"s-copy",sat:"law",l:["Copyright"],x:640,y:322,c:"var(--law)",sec:"law",act:{filter:"Copyright"}},
- {id:"s-reg",sat:"law",l:["Regulation"],x:368,y:372,c:"var(--law)",sec:"law",act:{filter:"Regulation"}},
- {id:"s-ind",sat:"law",l:["Legal-AI industry"],x:470,y:452,c:"var(--law)",sec:"law",act:{filter:"Industry"}},
- {id:"s-found",sat:"meaning",l:["Foundations"],x:905,y:72,c:"var(--lang)",sec:"meaning",act:{to:"#foundations"}},
- {id:"s-llm",sat:"meaning",l:["LLMs as interpreters"],x:925,y:228,c:"var(--lang)",sec:"meaning",act:{to:"#papers"}},
- {id:"s-evid",sat:"meaning",l:["The evidence"],x:680,y:58,c:"var(--lang)",sec:"meaning",act:{to:"#evidence"}},
- {id:"s-conf",sat:"privacy",side:"b",l:["Confidentiality"],x:668,y:588,c:"var(--priv)",sec:"privacy",act:{to:"#pCourts"}},
- {id:"s-regu",sat:"privacy",l:["Regulators"],x:930,y:385,c:"var(--priv)",sec:"privacy",act:{to:"#pReg"}},
- {id:"s-anon",sat:"privacy",l:["Legally “anonymous”"],x:918,y:535,c:"var(--priv)",sec:"privacy",act:{to:"#pAnon"}},
- {id:"s-leak",sat:"privacy",l:["What models leak"],x:815,y:605,c:"var(--priv)",sec:"privacy",act:{to:"#pLeak"}},
- {id:"s-hdsr",sat:"privacy",l:["HDSR shelf"],x:690,y:400,c:"var(--priv)",sec:"privacy",act:{to:"#pHdsr"}},
- {id:"s-chart",sat:"news",l:["Coverage chart"],x:95,y:95,c:"var(--ai)",sec:"pulse",act:{to:"#chart"}},
- {id:"s-cal",sat:"next",l:["Legal calendar"],x:330,y:52,c:"var(--warn)",sec:"next",act:{to:"#cal"}}
-];
-const EDGES=[
- ["law","news","AI-and-law share of news grew 3.2×"],
- ["law","month","10 legal stories in September"],
- ["law","meaning","Judges ask LLMs what words mean"],
- ["law","privacy","Chat logs in discovery, privilege"],
- ["meaning","privacy","The law's vague word “anonymous”"],
- ["law","next","Court rules & AI Act deadlines ahead"],
- ["law","landmarks","$1.5B settlement made headlines"],
- ["law","watch","Courtroom clips"],
- ["news","landmarks","Spikes line up with big stories"],
- ["news","month","Record 4.94% share on 24 Sep"],
- ["news","next","Forecasts of AI's growth"],
- ["month","privacy","Irish DPC AI report, 25 Sep"],
- ["watch","meaning","How LLMs handle meaning"],
- ["watch","month","News clips"]
-];
-NODES.filter(n=>n.sat).forEach(n=>EDGES.push([n.sat,n.id,null]));
-const byId=Object.fromEntries(NODES.map(n=>[n.id,n]));
-const NS="http://www.w3.org/2000/svg";
-function curve(a,b){const mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1,k=len*.12;
-  const cx=mx-dy/len*k,cy=my+dx/len*k;return {d:`M${a.x},${a.y} Q${cx},${cy} ${b.x},${b.y}`,lx:(mx+cx)/2,ly:(my+cy)/2};}
-(function drawMap(){
-  const svg=$("#map");let g="";
-  EDGES.forEach(([a,b,l],i)=>{const c=curve(byId[a],byId[b]);g+=`<path class="edge ${l?"":"sat"}" data-e="${i}" data-a="${a}" data-b="${b}" d="${c.d}"/>`;});
-  EDGES.forEach(([a,b,l],i)=>{if(!l)return;const c=curve(byId[a],byId[b]);const w=l.length*7.3+16;
-    g+=`<rect class="elabel-bg" data-e="${i}" x="${c.lx-w/2}" y="${c.ly-12}" width="${w}" height="22" rx="11" stroke="var(--rule)"/><text class="elabel" data-e="${i}" x="${c.lx}" y="${c.ly+4}" text-anchor="middle">${esc(l)}</text>`;});
-  NODES.forEach((n,i)=>{
-    const dur=7+((i*37)%50)/10, dx=((i*13)%7)-3, dy=((i*29)%7)-3;
-    if(n.sat){
-      const p=byId[n.sat],ang=Math.atan2(n.y-p.y,n.x-p.x),right=Math.cos(ang)>=-.2;
-      let tx=Math.abs(Math.cos(ang))<.35?0:(right?14:-14), ty=Math.abs(Math.cos(ang))<.35?(Math.sin(ang)>0?24:-14):4;
-      if(n.side==="b"){tx=0;ty=26}
-      const anchor=tx===0?"middle":(right?"start":"end");
-      g+=`<g class="node sat float" tabindex="0" role="button" aria-label="Open ${esc(n.l[0])}" data-n="${n.id}" style="--c:${n.c};--dur:${dur}s;--dx:${dx}px;--dy:${dy}px">
-        <circle class="halo" cx="${n.x}" cy="${n.y}" r="14"/><circle class="dotc" cx="${n.x}" cy="${n.y}" r="6"/>
-        <text x="${n.x+tx}" y="${n.y+ty}" style="text-anchor:${anchor}">${esc(n.l[0])}</text></g>`;
-    } else {
-      const fs=n.r>=60?19:n.r>=50?17:15.5;
-      g+=`<g class="node float" tabindex="0" role="button" aria-label="Open ${esc(n.l.join(" "))}" data-n="${n.id}" style="--c:${n.c};--dur:${dur}s;--dx:${dx}px;--dy:${dy}px">
-        <circle class="halo" cx="${n.x}" cy="${n.y}" r="${n.r+12}"/><circle class="core" cx="${n.x}" cy="${n.y}" r="${n.r}"/>
-        <text x="${n.x}" y="${n.y-(n.l.length>1?fs*0.35:-fs*0.1)}" font-size="${fs}" font-weight="700">${esc(n.l[0])}</text>
-        ${n.l[1]?`<text x="${n.x}" y="${n.y+fs*0.8}" font-size="${fs}" font-weight="700">${esc(n.l[1])}</text>`:""}
-        <text class="sub" x="${n.x}" y="${n.y+n.r+28}">${esc(n.s)}</text></g>`;
-    }
-  });
-  svg.innerHTML=g;
-  const hl=id=>{svg.classList.add("dim");const keep=new Set([id]);
-    EDGES.forEach(([a,b],i)=>{if(a===id||b===id){keep.add(a);keep.add(b);svg.querySelectorAll(`[data-e="${i}"]`).forEach(e=>e.classList.add("hl"))}});
-    svg.querySelectorAll(".node").forEach(e=>e.classList.toggle("hl",keep.has(e.dataset.n)));};
-  const clear=()=>{svg.classList.remove("dim");svg.querySelectorAll(".hl").forEach(e=>e.classList.remove("hl"));};
-  svg.querySelectorAll(".node").forEach(el=>{const id=el.dataset.n;
-    el.addEventListener("mouseenter",()=>hl(id));el.addEventListener("mouseleave",clear);
-    el.addEventListener("focus",()=>hl(id));el.addEventListener("blur",clear);
-    el.addEventListener("click",()=>openTopic(id));
-    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openTopic(id)}});});
-  $("#topiclist").innerHTML=NODES.filter(n=>!n.sat).map(n=>`<li><button data-open-node="${n.id}" style="--c:${n.c}">${esc(n.l.join(" "))}</button></li>`).join("");
-})();
-
-/* ---------- topic sheet ---------- */
-const SECNAME={pulse:"AI in the news",landmarks:"Landmark headlines",month:"September 2026",law:"AI in legal systems",meaning:"Vagueness & interpretation",privacy:"Data privacy",watch:"Video clips",next:"What's next",sources:"Method & sourcing"};
-let current=null,lastFocus=null;
-function neighbours(id){const s=new Set();EDGES.forEach(([a,b,l])=>{if(!l)return;if(a===id)s.add(b);if(b===id)s.add(a)});return [...s].map(k=>byId[k]);}
-function openTopic(id){
-  const n=byId[id]||{sec:id,l:[SECNAME[id]||id]};const main=n.sat?byId[n.sat]:n;
-  const sec=document.getElementById(n.sec);if(!sec)return;
-  if(current&&current!==sec){current.querySelectorAll(".vid .thumb").forEach(stopPrev);$("#library").appendChild(current);}
-  $("#sheetBody").appendChild(sec);current=sec;relayoutIn(sec);requestAnimationFrame(()=>relayoutIn(sec));
-  $("#sheetCrumb").innerHTML=`Map / <b>${esc(SECNAME[n.sec])}</b>${n.sat?` / ${esc(n.l[0])}`:""}`;
-  const rel=byId[main.id]?neighbours(main.id):[];
-  $("#related").innerHTML=rel.length?`<span>Connected:</span>`+rel.map(r=>`<button data-open-node="${r.id}" style="--c:${r.c}">${esc(r.l.join(" "))}</button>`).join(""):"";
-  const sh=$("#sheet");if(sh.hidden){lastFocus=document.activeElement;sh.hidden=false;document.documentElement.classList.add("locked");}
-  const px=$("#panelx");px.scrollTop=0;px.focus({preventScroll:true});relayoutIn(sec);
-  if(vio)sec.querySelectorAll(".vid .thumb").forEach(a=>{vio.unobserve(a);vio.observe(a)});
-  if(sec.id==="law"){const c=(n.act&&n.act.filter)||"All";const b=$(`#lawChips .chip[data-c="${c}"]`);if(b)b.click();}
-  if(n.act&&n.act.to){const t=document.querySelector(n.act.to);const box=t&&(t.closest(".panel,.chartbox")||t);
-    if(box)setTimeout(()=>{px.scrollTo({top:box.getBoundingClientRect().top-px.getBoundingClientRect().top+px.scrollTop-70,behavior:"smooth"});box.classList.remove("flash");void box.offsetWidth;box.classList.add("flash");},120);}
-  try{history.replaceState(null,"","#"+id)}catch(_){}
-}
-function closeTopic(){const sh=$("#sheet");if(sh.hidden)return;sh.hidden=true;document.documentElement.classList.remove("locked");
-  if(current){current.querySelectorAll(".vid .thumb").forEach(stopPrev);$("#library").appendChild(current);current=null}
-  try{history.replaceState(null,"","#mapsec")}catch(_){}
-  if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true});}
-document.addEventListener("click",e=>{
-  const o=e.target.closest("[data-open-node]");if(o){openTopic(o.dataset.openNode);return}
-  const s=e.target.closest("[data-open]");if(s){e.preventDefault();openTopic(s.dataset.open);return}
-  if(e.target.closest("[data-close]"))closeTopic();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeTopic();});
-function fromHash(){const h=location.hash.slice(1);if(h&&(byId[h]||SECNAME[h]))openTopic(h);else if(h==="mapsec"||h==="now")closeTopic();}
-fromHash();window.addEventListener("hashchange",fromHash);
+/* ---------- nav + present mode ---------- */
+const secs=[...document.querySelectorAll("header.hero, section.ex")];
+const links=[...document.querySelectorAll("#navlinks a")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id));
+  const i=secs.indexOf(e.target);$("#slidecount").textContent=`${i+1} / ${secs.length}`;}}),{rootMargin:"-45% 0px -50% 0px"});
+secs.forEach(s=>io.observe(s));
+$("#presentBtn").addEventListener("click",e=>{const on=document.documentElement.classList.toggle("present");e.currentTarget.setAttribute("aria-pressed",on);
+  try{localStorage.setItem("present",on?"1":"")}catch(_){}});
+try{if(localStorage.getItem("present")){document.documentElement.classList.add("present");$("#presentBtn").setAttribute("aria-pressed","true")}}catch(_){}
+document.addEventListener("keydown",e=>{
+  if(!document.documentElement.classList.contains("present")||/INPUT|TEXTAREA/.test(document.activeElement.tagName))return;
+  const fw=["ArrowRight","PageDown"," "].includes(e.key), bk=["ArrowLeft","PageUp"].includes(e.key); if(!fw&&!bk)return;
+  e.preventDefault();const y=window.scrollY+70;
+  let i=secs.findIndex(s=>s.offsetTop>y); if(i<0)i=secs.length; const cur=i-1;
+  const t=fw?secs[Math.min(cur+1,secs.length-1)]:secs[Math.max(cur-1,0)];
+  window.scrollTo({top:t.offsetTop-50});
+});
 </script>
 </body>
 </html>
