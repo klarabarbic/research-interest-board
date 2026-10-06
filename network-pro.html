@@ -563,6 +563,12 @@ kbd{font-family:var(--f-mono);font-size:10.5px;border:1px solid var(--rule);bord
 .helpk h4{font-size:15px;margin-bottom:8px}
 .helpk div{display:flex;justify-content:space-between;gap:12px;font-size:14px;padding:4px 0;color:var(--muted)}
 .tile.t-out,.item.t-out,.card.t-out,.prow.t-out{display:none!important}
+.tour-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.tour-skip{font-family:var(--f-mono);font-size:12px;color:var(--ink);background:color-mix(in srgb,var(--surface) 80%,transparent);border:1px solid var(--rule);border-radius:999px;padding:5px 12px;cursor:pointer}
+.tour-skip:hover{border-color:var(--law);color:var(--law)}
+.tour .tick{height:2px;background:var(--soft);border-radius:2px;margin-top:12px;overflow:hidden}
+.tour .tick i{display:block;height:100%;width:0;background:var(--ai);box-shadow:0 0 8px var(--ai)}
+#tourPause[aria-pressed="true"]{color:var(--ink);border-color:var(--ai)}
 </style>
 </head>
 <body>
@@ -746,10 +752,11 @@ kbd{font-family:var(--f-mono);font-size:10.5px;border:1px solid var(--rule);bord
 </div>
 
 <div class="tour" id="tour" hidden role="dialog" aria-label="Guided tour">
-  <div class="st" id="tourStep"></div>
+  <div class="tour-top"><span class="st" id="tourStep"></span><button class="tour-skip" type="button" id="tourEnd">Skip tour ✕</button></div>
   <h4 id="tourTitle"></h4>
   <p id="tourText"></p>
-  <div class="row"><button class="btn" type="button" id="tourBack">Back</button><span class="bar"><i id="tourBar"></i></span><button class="btn" type="button" id="tourNext" aria-pressed="true">Next</button><button class="iconbtn" type="button" id="tourEnd">End</button></div>
+  <div class="tick" aria-hidden="true"><i id="tourTick"></i></div>
+  <div class="row"><button class="btn" type="button" id="tourBack">Back</button><button class="iconbtn" type="button" id="tourPause" aria-pressed="false">❚❚ Pause</button><span class="bar"><i id="tourBar"></i></span><button class="btn" type="button" id="tourNext" aria-pressed="true">Next</button></div>
 </div>
 <div class="tour-ring" id="tourRing" hidden></div>
 
@@ -1726,7 +1733,7 @@ function renderAsk(){const q=$("#askQ").value.trim(),out=$("#askOut");
   out.innerHTML=`<div class="ask-sum"><b>${r.all.length} source${r.all.length>1?"s":""}</b> on the board match. Mostly in ${grp}. Top ${r.top.length}:</div>`+
     r.top.map(x=>{const src=x.d.el.querySelector(".src");return `<div class="ask-r"><div class="top"><span>${esc(x.d.date.trim())}</span><button class="jump" type="button" data-goto="${x.d.el.dataset.doc}" style="--c:var(--ai)">${esc(SECLABEL[x.d.sec]||"Open")}</button></div><p>${hiTitle(x.d.title,r.terms)}</p>${src?src.outerHTML:""}</div>`}).join("");
 }
-function openAsk(prefill){const a=$("#ask");a.hidden=false;const i=$("#askQ");if(prefill!=null)i.value=prefill;renderAsk();setTimeout(()=>i.focus(),20);}
+function openAsk(prefill){if(typeof TI!=="undefined"&&TI>=0)pauseTour(true);const a=$("#ask");a.hidden=false;const i=$("#askQ");if(prefill!=null)i.value=prefill;renderAsk();setTimeout(()=>i.focus(),20);}
 function closeAsk(){$("#ask").hidden=true;}
 $("#askQ").addEventListener("input",renderAsk);
 $("#askChips").addEventListener("click",e=>{const b=e.target.closest("button");if(b){$("#askQ").value=b.textContent;renderAsk();$("#askQ").focus();}});
@@ -1759,7 +1766,7 @@ const TOUR=[
  {open:"watch",sel:"#watch .mosaic",t:"Videos",x:"Credited clips sized by YouTube views. Muted previews play while a tile is on screen."},
  {close:true,sel:".askbtn",t:"Ask the board",x:"Press / at any time to search every source on the board. That's the tour."}
 ];
-let TI=-1,ringRAF=null;
+let TI=-1,ringRAF=null,tourTimer=null,tourPaused=false;const STEPMS=7000;
 function placeRing(){const s=TOUR[TI];if(!s)return;const el=document.querySelector(s.sel);const ring=$("#tourRing");
   if(!el){ring.hidden=true;return}const r=el.getBoundingClientRect();ring.hidden=false;
   Object.assign(ring.style,{left:(r.left-8)+"px",top:(r.top-8)+"px",width:(r.width+16)+"px",height:(r.height+16)+"px"});
@@ -1769,9 +1776,16 @@ function showStep(i){TI=Math.max(0,Math.min(TOUR.length-1,i));const s=TOUR[TI];
   setTimeout(()=>{const el=document.querySelector(s.sel);if(el)el.scrollIntoView({block:"center",behavior:"smooth"});},s.open?250:0);
   $("#tourStep").textContent=`Tour · ${TI+1} of ${TOUR.length}`;$("#tourTitle").textContent=s.t;$("#tourText").textContent=s.x;
   $("#tourBar").style.width=((TI+1)/TOUR.length*100)+"%";$("#tourBack").disabled=TI===0;$("#tourNext").textContent=TI===TOUR.length-1?"Finish":"Next";
-  cancelAnimationFrame(ringRAF);placeRing();}
-function startTour(){closeAsk();$("#tour").hidden=false;showStep(0);$("#tourNext").focus();}
-function endTour(){$("#tour").hidden=true;$("#tourRing").hidden=true;cancelAnimationFrame(ringRAF);TI=-1;}
+  cancelAnimationFrame(ringRAF);placeRing();scheduleStep();}
+/* automatic advance: each step stays ~7 s; Pause, Back, Next and Skip are always available */
+function scheduleStep(){clearTimeout(tourTimer);const t=$("#tourTick");t.style.transition="none";t.style.width="0";void t.offsetWidth;
+  if(tourPaused||TI<0)return;t.style.transition=`width ${STEPMS}ms linear`;t.style.width="100%";
+  tourTimer=setTimeout(()=>{if(TI>=TOUR.length-1)endTour();else showStep(TI+1)},STEPMS);}
+function pauseTour(p){tourPaused=p;const b=$("#tourPause");b.setAttribute("aria-pressed",p);b.textContent=p?"▶ Play":"❚❚ Pause";
+  if(p){clearTimeout(tourTimer);const t=$("#tourTick");const w=getComputedStyle(t).width;t.style.transition="none";t.style.width=w;}else scheduleStep();}
+function startTour(auto){closeAsk();$("#tour").hidden=false;tourPaused=false;pauseTour(matchMedia("(prefers-reduced-motion: reduce)").matches);showStep(0);if(!auto)$("#tourNext").focus();}
+function endTour(){clearTimeout(tourTimer);$("#tour").hidden=true;$("#tourRing").hidden=true;cancelAnimationFrame(ringRAF);TI=-1;try{localStorage.setItem("tourSeen","1")}catch(_){}}
+$("#tourPause").addEventListener("click",()=>pauseTour(!tourPaused));
 $("#tourNext").addEventListener("click",()=>{if(TI>=TOUR.length-1)endTour();else showStep(TI+1)});
 $("#tourBack").addEventListener("click",()=>showStep(TI-1));
 $("#tourEnd").addEventListener("click",endTour);
@@ -1796,6 +1810,9 @@ document.addEventListener("keydown",e=>{
 
 function fromHash(){const h=location.hash.slice(1);if(h&&(byId[h]||SECNAME[h]))openTopic(h);else if(h==="mapsec"||h==="now")closeTopic();}
 fromHash();window.addEventListener("hashchange",fromHash);
+/* first visit: start the tour automatically; anyone can skip it, and it won't auto-start again for them */
+(function(){if(location.hash)return;let seen=false;try{seen=localStorage.getItem("tourSeen")==="1"}catch(_){}
+  if(!seen)setTimeout(()=>{if($("#sheet").hidden&&$("#ask").hidden&&$("#tour").hidden)startTour(true)},1400);})();
 </script>
 </body>
 </html>
