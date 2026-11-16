@@ -1,192 +1,92 @@
 {
- "updated": "2026-09-30",
- "label": "September 2026",
+ "updated": "2026-11-16",
+ "label": "Week of 9 Nov 2026",
  "items": [
   {
-   "d": "28–29 Sep",
-   "k": [
-    "ai",
-    "AI & safety"
-   ],
-   "h": "OpenAI cancels the release of GPT-6.1 “Astra” after it failed internal safety tests",
+   "d": "8–12 Nov",
+   "k": ["ai", "Industry"],
+   "h": "Jensen Huang resigns as Nvidia CEO after reports of an affair with a woman US officials suspect of spying for China; CFO Colette Kress becomes interim CEO",
    "src": [
-    [
-     "Al Jazeera",
-     "https://www.aljazeera.com/economy/2026/9/29/openai-scraps-release-of-latest-ai-model-over-safety-concerns"
-    ],
-    [
-     "CNBC",
-     "https://www.cnbc.com/2026/09/28/openai-abandons-plan-to-release-upcoming-model-as-safety-concerns-escalate.html"
-    ]
+    ["CNN", "https://www.cnn.com/2026/11/12/tech/jensen-huang-nvidia-resigns"],
+    ["ABC News", "https://abcnews.com/Business/nvidia-ceo-jensen-huang-resigns-amid-alleged-affair/story?id=138076256"],
+    ["Al Jazeera", "https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress"]
    ],
-   "cover": "https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-28T223038Z_1656552687_RC29LNAECGOF_RTRMADP_3_AI-SAFETY-OPENAI-1790641403_cd656d-1790642721.jpg?resize=1200%2C630&quality=80"
+   "cover": "https://www.aljazeera.com/wp-content/uploads/2026/11/ap_6af6100196e00-1794510849.jpg?resize=1920%2C1440"
   },
   {
-   "d": "29–30 Sep",
-   "k": [
-    "law",
-    "Copyright"
-   ],
-   "h": "Third Circuit affirms Thomson Reuters v. ROSS, the first federal appeals ruling on fair use in AI training",
+   "d": "14 Nov",
+   "k": ["priv", "Privacy"],
+   "h": "Italy's data protection authority fines Meta €805 million because Facebook's Android app read users' photo galleries without specific consent",
    "src": [
-    [
-     "IPWatchdog",
-     "https://ipwatchdog.com/2026/09/30/third-circuit-affirms-revised-fair-use-ruling-against-ross-ai-legal-research-platform-in-sealed-opinion/"
-    ]
+    ["CyberInsider", "https://cyberinsider.com/meta-italy-fine-facebook-android-photo-access/"],
+    ["MediaNama", "https://www.medianama.com/2026/11/223-italy-fines-meta-accessing-without-permission/"]
    ],
-   "cover": "https://ipwatchdog.com/wp-content/uploads/2018/04/fairuseMarkerRed.jpg"
+   "cover": "https://cyberinsider.com/wp-content/uploads/2026/11/Meta-fined-E805-million-over-Facebooks-access-to-Android-photos.jpg"
   },
   {
-   "d": "29 Sep",
-   "k": [
-    "ai",
-    "Policy"
-   ],
-   "h": "President Trump says top AI leaders signed a voluntary, “morally binding” superintelligence accord",
+   "d": "13 Nov",
+   "k": ["law", "Courts"],
+   "h": "Delaware's Court of Chancery fines a Richards, Layton & Finger partner $2,500 for a brief containing AI-hallucinated material",
    "src": [
-    [
-     "CNBC",
-     "https://www.cnbc.com/2026/09/29/tech-white-house-ai-lunch-trump.html"
-    ],
-    [
-     "ABC News",
-     "https://abcnews.com/Politics/top-ai-leaders-meet-trump-white-house-amid/story?id=136832988"
-    ]
+    ["Bloomberg Law", "https://news.bloomberglaw.com/litigation/delaware-chancery-court-sanctions-attorney-for-ai-hallucinations"]
    ],
-   "vs": 1,
-   "cover": "https://image.cnbcfm.com/api/v1/image/108369794-1790713950915-108369794-1790711674658-gettyimages-2297244120-AFP_C9Q83W4_1.jpeg?v=1790713979&w=1920&h=1080"
+   "cover": "https://news-api.bloomberglaw.com/v1/resize-image?url=https%3A%2F%2Fbloomberg-bna-brightspot.s3.us-east-1.amazonaws.com%2F1b%2Ff4%2Ffdc948a6471295f194452cc96260%2Fbrowserpreview-tmp.png&width=1200&height=630&fit=cover&removeAnimation=true"
   },
   {
-   "d": "29 Sep",
-   "k": [
-    "ai",
-    "Industry"
-   ],
-   "h": "Anthropic's leaked IPO prospectus shows a $42B loss for 2025 and a target valuation above $2T",
+   "d": "13 Nov",
+   "k": ["law", "Copyright"],
+   "h": "Ontario's Court of Appeal rejects OpenAI's bid to move Canadian news publishers' AI-training copyright suit to the US",
    "src": [
-    [
-     "Fortune",
-     "https://fortune.com/2026/09/29/anthropic-leaked-ipo-prospectus-losses-growth-ai-end-humanity/"
-    ]
+    ["Canadian Press via BNN Bloomberg", "https://www.bnnbloomberg.ca/business/artificial-intelligence/2026/11/13/court-allows-news-publishers-copyright-lawsuit-against-openai-to-go-ahead/"],
+    ["Tech Times", "https://www.techtimes.com/articles/330797/20261116/ontario-appeal-court-keeps-openai-copyright-suit-canada-where-us-fair-use-does-not-apply.htm"]
    ],
-   "cover": "https://fortune.com/img-assets/wp-content/uploads/2026/09/gettyimages-1554653087-594x594-1.jpg?resize=1200,600"
+   "cover": "https://www.bnnbloomberg.ca/resizer/v2/IGUQ3QCCNCKPMWK3P3G735AMCQ.jpg?smart=true&auth=783aba2fce4b1b8bbd9e38209476d00d3dccf9c3aae8661bf989cf2d4ebb48e6&width=1200&height=630"
   },
   {
-   "d": "26 Sep",
-   "k": [
-    "ai",
-    "AI & safety"
-   ],
-   "h": "OpenAI pauses training after its agents probed US government websites in unexpected ways",
+   "d": "12 Nov",
+   "k": ["law", "Litigation"],
+   "h": "Four nonprofits, including Public Citizen, sue Anthropic, Google, Meta, OpenAI and SpaceX's AI unit in San Francisco to freeze frontier AI at today's capability level",
    "src": [
-    [
-     "AP via WTOP",
-     "https://wtop.com/national/2026/09/openai-pauses-training-of-latest-models-after-agents-probed-us-government-sites-in-unexpected-ways/"
-    ]
+    ["Tech Times", "https://techtimes.com/articles/330616/20261114/ai-development-freeze-lawsuit-nonprofits-sue-5-labs-say-real-freeze-needs-government-inspections.htm"],
+    ["Techweez", "https://techweez.com/2026/11/14/nonprofits-sue-openai-google-meta-anthropic-spacex"]
    ],
-   "cover": "https://wtop.com/wp-content/uploads/2026/09/Open_AI_Safety__4766-scaled.jpg"
+   "cover": "https://d.techtimes.com/en/full/477269/ai.jpg"
   },
   {
-   "d": "25 Sep",
-   "k": [
-    "priv",
-    "Privacy"
-   ],
-   "h": "Ireland's data protection regulator publishes its AI Insights Report, covering about 180 AI products",
+   "d": "11 Nov",
+   "k": ["law", "Copyright"],
+   "h": "Google, Meta and TikTok tell Indonesia's parliament that a proposed AI copyright bill could restrict access to news",
    "src": [
-    [
-     "Irish DPC",
-     "https://www.dataprotection.ie/en/news-media/latest-news/data-protection-commission-publishes-ai-insights-report"
-    ]
+    ["IPWatchdog", "https://ipwatchdog.com/2026/11/13/bites-barks-netlist-fails-appeal-of-ptabs-mtc-ruling-and-cjeu-ag-says-general-court-erred-in-reversing-e1-5-b"]
    ]
   },
   {
-   "d": "25 Sep",
-   "k": [
-    "law",
-    "Courts"
-   ],
-   "h": "DC Circuit (2–1) lets the Pentagon keep its “supply chain risk” label on Anthropic for now",
+   "d": "10 Nov",
+   "k": ["ai", "Models"],
+   "h": "Google opens its frontier model Gemini 4 Carbon to paying developers, businesses and AI Ultra subscribers after two weeks with cybersecurity defenders only",
    "src": [
-    [
-     "ABC News",
-     "https://abcnews.com/Business/anthropic-appeals-court-declines-block-pentagon-blacklisting/story?id=136755690"
-    ]
+    ["Digital Trends", "https://www.digitaltrends.com/computing/google-gemini-4-carbon-is-now-available-for-complex-ai-tasks/"]
    ],
-   "cover": "https://i.abcnewsfe.com/a/6adb6243-fb82-448a-9655-149edbd68943/Anthropic-gty-sn-260910_1789083503772_hpMain_16x9.jpg?w=1600"
+   "cover": "https://i0.wp.com/cdn.dtmg.xyz/uploads/2026/11/Gemini-carbon-feature.jpg?resize=1200%2C630&ssl=1"
   },
   {
-   "d": "23 Sep",
-   "k": [
-    "ai",
-    "AI & safety"
-   ],
-   "h": "An OpenAI agent broke into Services Australia's Medicare statistics portal during an ordinary data task, described as the first known AI hack of a government system",
+   "d": "10 Nov",
+   "k": ["ai", "Industry"],
+   "h": "Anthropic launches its IPO roadshow, pricing shares at $70–78 for a planned Nasdaq listing under the ticker ANT",
    "src": [
-    [
-     "ABC Australia",
-     "https://www.abc.net.au/news/2026-09-26/openai-review-rogue-agents-australia-medicare-hack/107199074"
-    ],
-    [
-     "CNN",
-     "https://www.cnn.com/2026/09/23/business/australia-openai-agent-hack-intl-hnk"
-    ],
-    [
-     "CNBC",
-     "https://www.cnbc.com/2026/09/24/openai-agent-hacked-australian-government-website-.html"
-    ]
+    ["Anthropic", "https://www.anthropic.com/news/roadshow-launch"]
    ],
-   "vs": 1,
-   "cover": "https://live-production.wcms.abc-cdn.net.au/fb0c1157d8e49c704f33ce3a5a676e77?impolicy=wcms_watermark_news&cropH=2812&cropW=5000&xPos=0&yPos=261&width=862&height=485&imformat=generic"
+   "cover": "https://assets.claude.com/6d4a0d28992ade92d6fa63646fd9c9d318245c6c.jpg"
   },
   {
-   "d": "23 Sep",
-   "k": [
-    "ai",
-    "Policy"
-   ],
-   "h": "Sam Altman and Dario Amodei ask the UN Security Council for international AI safety standards",
+   "d": "9 Nov",
+   "k": ["ai", "Models"],
+   "h": "Anthropic releases Claude Fable 5.2 and the restricted Mythos 5.2, citing better coding, reasoning and vision, up to 30% faster output and lower prices",
    "src": [
-    [
-     "CNN",
-     "https://edition.cnn.com/2026/09/23/tech/altman-amodei-ai-safety-un-security-council"
-    ]
+    ["9to5Mac", "https://9to5mac.com/2026/11/09/anthropic-upgrades-claude-with-new-fable-5-2-model-details-here/"],
+    ["SD Times", "https://sdtimes.com/ai/anthropic-introduces-claude-fable-5-2-mythos-5-2/"]
    ],
-   "vs": 1,
-   "cover": "https://media.cnn.com/api/v1/images/stellar/prod/2026-09-23t195301z-1785342310-rc27pna296tc-rtrmadp-3-ai-un.jpg?c=16x9&q=w_800,c_fill"
-  },
-  {
-   "d": "21–22 Sep",
-   "k": [
-    "law",
-    "Litigation"
-   ],
-   "h": "British Columbia sues OpenAI and Sam Altman over the Tumbler Ridge school shooting",
-   "src": [
-    [
-     "Al Jazeera",
-     "https://www.aljazeera.com/news/2026/9/22/canadas-bc-sues-openai-over-chatgpt-role-in-tumbler-ridge-school-shooting"
-    ],
-    [
-     "CBC",
-     "https://www.cbc.ca/news/canada/british-columbia/bc-government-announce-update-openai-legal-action-9.7352395"
-    ]
-   ],
-   "cover": "https://www.aljazeera.com/wp-content/uploads/2026/09/2026-09-21T215939Z_2033624676_RC2KKJALN6OJ_RTRMADP_3_OPENAI-CANADA-LAWSUIT-1790032747.jpg?resize=1920%2C1440"
-  },
-  {
-   "d": "8 Sep",
-   "k": [
-    "ai",
-    "Research"
-   ],
-   "h": "OpenAI announces an AI-produced proof resolving the Navier–Stokes Millennium Prize Problem, with a Lean formalization",
-   "src": [
-    [
-     "OpenAI",
-     "https://openai.com/index/navier-stokes-solution/"
-    ]
-   ]
+   "cover": "https://sdtimes.com/wp-content/uploads/2026/11/Screenshot-2026-11-09-at-2.53.59-PM.jpg"
   }
  ]
 }
